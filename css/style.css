@@ -1,0 +1,4527 @@
+/* ==========================================================================
+   Global Variables & Reset
+   ========================================================================== */
+:root {
+    /* Colors - Warm Green Theme */
+    --color-primary: #66C258;
+    /* Brighter Warm Green */
+    --color-primary-dark: #4CA93E;
+    --color-text: #554E44;
+    /* Warm Gray/Brown */
+    --color-text-light: #888078;
+    --color-bg: #FEFDF5;
+    /* Creamy White */
+    --color-white: #FFFFFF;
+
+    /* Block Colors (Warm/Muted tones) */
+    --color-block-blue: #7CB9E8;
+    --color-block-blue-bg: #EBF5FB;
+    --color-block-yellow: #F4D06F;
+    --color-block-yellow-bg: #FFFEF0;
+    --color-block-red: #E07A5F;
+    --color-block-red-bg: #F9EBE8;
+    --color-block-green: #81B29A;
+    --color-block-green-bg: #EDF7F4;
+
+    /* Spacing */
+    --container-width: 1100px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --spacing-xl: 64px;
+    --spacing-xxl: 80px;
+
+    /* Visual Style */
+    --border-radius-card: 24px;
+    --border-radius-btn: 50px;
+    --shadow-soft: 0 8px 24px rgba(102, 194, 88, 0.15);
+    --shadow-hover: 0 12px 32px rgba(102, 194, 88, 0.25);
+
+    /* Typography */
+    --font-base: 'Noto Sans JP',
+        sans-serif;
+    --line-height-base: 1.7;
+    /* More breathing room */
+    --font-size-base: 16px;
+    --font-size-lg: 18px;
+
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box !important;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-base);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: var(--line-height-base);
+    font-size: var(--font-size-lg);
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ==========================================================================
+   Layout & Utilities
+   ========================================================================== */
+.section__container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* =============================================
+   Nara Weather Widget — Tallinn City Style
+   ============================================= */
+.nara-weather {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: #0072CE;
+    color: #fff;
+    padding: 14px 22px;
+    border-bottom: 3px solid #005BA8;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+}
+
+.nara-weather__left {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.nara-weather__city {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.nara-weather__label {
+    font-size: 0.7rem;
+    opacity: 0.75;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.nara-weather__center {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.nara-weather__icon {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.nara-weather__temp {
+    font-size: 2.4rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.nara-weather__unit {
+    font-size: 1.1rem;
+    font-weight: 400;
+    opacity: 0.85;
+    align-self: flex-start;
+    padding-top: 4px;
+}
+
+.nara-weather__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    text-align: right;
+}
+
+.nara-weather__desc {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.nara-weather__humidity {
+    font-size: 0.75rem;
+    opacity: 0.75;
+}
+
+.section {
+    padding: var(--spacing-xxl) 0;
+}
+
+.section__title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--color-text);
+    position: relative;
+    letter-spacing: 0.05em;
+}
+
+.section__title::after {
+    display: none;
+}
+
+/* Sidebar Titles - Dynamic American Aesthetic */
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1.3rem;
+    font-weight: 900;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    color: #FAFAF7;
+    background-color: #2C2C2A;
+    margin-bottom: var(--spacing-lg);
+    padding: 12px 16px;
+    border: 3px solid #2C2C2A;
+    box-shadow: 4px 4px 0px #D4A574;
+    position: relative;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.sidebar-title i {
+    color: #D4A574;
+    font-size: 1.25rem;
+}
+
+/* 新着情報ヘッダーのみブルー（外枠に合わせる） */
+.side-news .sidebar-title {
+    background-color: #0072CE;
+    border-color: #0072CE;
+    box-shadow: 4px 4px 0px #005EB8;
+    color: #FFFFFF;
+}
+
+.side-news .sidebar-title i {
+    color: #FFFFFF;
+}
+
+/* Responsive Utilities */
+.u-sp-br {
+    display: none;
+}
+@media (max-width: 768px) {
+    .u-sp-br {
+        display: block;
+    }
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.header {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.header__container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo a {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #4A3B32;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.header__logo-img {
+    height: 48px;
+    width: auto;
+    max-width: 280px;
+}
+
+.header__logo-text {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #4A3B32;
+    letter-spacing: 0.08em;
+}
+
+.header__nav-list {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.header__nav-item a {
+    font-weight: 600;
+    color: #4A3B32;
+    padding: var(--spacing-sm);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.header__nav-item a:hover,
+.header__nav-item a.is-active {
+    color: #D4A574;
+    border-bottom: 2px solid #D4A574;
+}
+
+/* Page Header - Elegant Design */
+.page-header {
+    background: linear-gradient(135deg, #2d5a45 0%, #3d7a5f 40%, #4a9a7a 100%);
+    color: var(--color-white);
+    padding: var(--spacing-xxl) 0;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 35%);
+    pointer-events: none;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    pointer-events: none;
+}
+
+.page-header__title {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 1;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* Mobile Hamburger */
+.header__hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    z-index: 1001;
+}
+
+.header__hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-primary);
+    position: absolute;
+    left: 0;
+    transition: all 0.3s;
+}
+
+.header__hamburger span:nth-child(1) {
+    top: 0;
+}
+
+.header__hamburger span:nth-child(2) {
+    top: 11px;
+}
+
+.header__hamburger span:nth-child(3) {
+    bottom: 0;
+}
+
+.header__hamburger.is-active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 11px;
+}
+
+.header__hamburger.is-active span:nth-child(2) {
+    opacity: 0;
+}
+
+.header__hamburger.is-active span:nth-child(3) {
+    transform: rotate(-45deg);
+    bottom: 11px;
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+/* ==========================================================================
+   Section: Hero — Berlin City Design (berlin.de)
+   ========================================================================== */
+/* Berlin Brand Reference:
+   Blue: #324fa3 (exact color extracted from berlin.de CSS)
+   Red:  #CC0000 (Berlin Red / Landeswappen)
+   Black: #000000 (headline strip)
+   White: #FFFFFF
+*/
+/* Hero color cycling animation */
+@keyframes berlinColorCycle {
+    0%, 100% {
+        background-color: #722F37; /* Wine Red */
+    }
+    33% {
+        background-color: #2D5A3D; /* Deep Forest Green */
+    }
+    66% {
+        background-color: #8B1A2B; /* Dark Burgundy */
+    }
+}
+
+.hero {
+    background-color: #722F37; /* Wine Red — fallback */
+    color: #fff;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate; /* create stacking context without animation */
+}
+
+/* Animated color background via ::before to avoid hero creating broken stacking context */
+.hero__color-bg {
+    position: absolute;
+    inset: 0;
+    background-color: #722F37;
+    animation: berlinColorCycle 9s ease-in-out infinite;
+    z-index: 0;
+}
+
+/* Fernsehturm (TV Tower) silhouette — geometric white lines, bottom-left */
+.hero::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    bottom: 0;
+    width: 3px;
+    height: 180px;
+    background: rgba(255,255,255,0.25);
+    z-index: 0;
+}
+
+/* Circular disc of Fernsehturm */
+.hero::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    bottom: 100px;
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* Diagonal hatch pattern — bottom left, like berlin.de */
+.hero__bg-hatch {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    background-image: repeating-linear-gradient(
+        -45deg,
+        rgba(255,255,255,0.18) 0px,
+        rgba(255,255,255,0.18) 2px,
+        transparent 2px,
+        transparent 10px
+    );
+    z-index: 0;
+}
+
+/* Tsurumai Mascot silhouette — centered at top */
+.hero__bear {
+    display: block;
+    width: 60px;
+    margin: 0 auto 12px;
+    font-size: 3rem;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+    filter: brightness(0) invert(1); /* Force white */
+    opacity: 0.95;
+    transform-origin: bottom center;
+    /* Respectful, elegant 9-second animation synced with hero color cycle */
+    animation: berlin-homage 9s infinite cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes berlin-homage {
+    0% { transform: translateY(0) scale(1); opacity: 0.95; }
+    20% { transform: translateY(0) scale(1); opacity: 0.95; }
+    25% { transform: translateY(-5px) scale(1.05); opacity: 0.95; }
+    35% { transform: translateY(25px) scale(0.9); opacity: 0; filter: blur(2px); }
+    65% { transform: translateY(25px) scale(0.9); opacity: 0; filter: blur(2px); }
+    75% { transform: translateY(0) scale(1); opacity: 0.95; filter: blur(0px); }
+    100% { transform: translateY(0) scale(1); opacity: 0.95; }
+}
+
+.hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 40px 24px 36px;
+    width: 100%;
+}
+
+.hero__title {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    margin-bottom: 16px;
+    text-shadow: none;
+    /* Berlin-style: Text on a bold black background strip */
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 8px 16px;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+}
+
+.hero__subtitle {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    font-weight: 400;
+    text-shadow: none;
+    margin-bottom: 0;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+}
+
+.hero__actions {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.btn--kairan {
+    background-color: #005BAC;
+    color: #fff;
+    border: none;
+    border-radius: 50px !important;
+    padding: 14px 32px;
+    font-size: 1rem;
+}
+
+.btn--kairan:hover {
+    background-color: #004A8F;
+    box-shadow: 0 4px 16px rgba(0,91,172,0.35);
+}
+
+.btn--line-lower {
+    margin-top: 2px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 0; /* Berlin: square */
+    font-weight: 700;
+    text-align: center;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: none;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.9rem;
+}
+
+.btn:hover {
+    transform: none; /* Berlin stays grounded */
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+}
+
+/* LINE button → Berlin Red + pill/cloud shape */
+.btn--line {
+    background-color: #FF6600;
+    color: #fff;
+    border: none;
+    border-radius: 50px !important; /* Cloud/pill shape — override Berlin square base */
+    padding: 14px 28px;
+    font-size: 1rem;
+}
+
+.btn--line:hover {
+    background-color: #E05500;
+    box-shadow: 0 4px 16px rgba(255,102,0,0.4);
+}
+
+.btn--discord {
+    background-color: #5865F2;
+    color: #fff;
+}
+
+
+/* ==========================================================================
+   Section: Services (Major Business)
+   ========================================================================== */
+.services {
+    margin-top: 8rem;  /* Increased to push below the fold */
+    padding-top: 1rem;
+    clear: both;
+}
+
+/* ==========================================================================
+   Section: About (Block Cards)
+   ========================================================================== */
+/* Grid Layout */
+.about__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+}
+
+/* Card Base - Bayern Barcelona Style */
+.about__card {
+    background: #FFFFFF;
+    border-radius: 2px; /* Barcelona: sharp, civic geometry */
+    overflow: hidden;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.25s, box-shadow 0.25s;
+    border: 2px solid #1A1A1B; /* Barcelona Black border */
+}
+
+.about__card:hover {
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 0 #C1001F; /* Barcelona Red offset shadow on hover */
+}
+
+.about__card-header {
+    padding: 18px 24px;
+    color: #FFFFFF;
+    background: #C1001F; /* Barcelona Official Red */
+    border-bottom: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.about__card-header::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 100%;
+    background: rgba(255,255,255,0.3);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.about__card-title {
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 900; /* Barcelona Type Bold */
+    margin: 0;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.about__card-body {
+    padding: var(--spacing-lg);
+    flex-grow: 1;
+    background: #FFFFFF;
+}
+
+.about__subtitle {
+    font-size: 1rem;
+    color: #1A1A1B; /* Barcelona Black */
+    margin-bottom: var(--spacing-sm);
+    border-left: 4px solid #C1001F; /* Barcelona Red accent */
+    padding-left: var(--spacing-sm);
+    font-weight: 700;
+    margin-top: var(--spacing-md);
+}
+
+.about__subtitle:first-of-type {
+    margin-top: 0;
+}
+
+.about__list {
+    margin-bottom: var(--spacing-md);
+}
+
+.about__list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 0.92rem;
+    color: #1A1A1B;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.about__list li:last-child {
+    border-bottom: none;
+}
+
+/* Block Specific Styles - Barcelona Civic Identity */
+/* All blocks share the same Barcelona Red header — unified civic look */
+.about__card--blue .about__card-header,
+.about__card--yellow .about__card-header,
+.about__card--red .about__card-header,
+.about__card--green .about__card-header {
+    background: #C1001F; /* Ajuntament de Barcelona Red */
+}
+
+/* Individual block numbering via left-border accent color variation */
+.about__card--blue {
+    border-color: #1A1A1B;
+}
+.about__card--yellow {
+    border-color: #1A1A1B;
+}
+.about__card--red {
+    border-color: #1A1A1B;
+}
+.about__card--green {
+    border-color: #1A1A1B;
+}
+
+.about__card--blue .about__subtitle { border-color: #C1001F; }
+.about__card--yellow .about__subtitle { border-color: #C1001F; }
+.about__card--yellow .about__card-title { color: #FFFFFF; }
+.about__card--red .about__subtitle { border-color: #C1001F; }
+.about__card--green .about__subtitle { border-color: #C1001F; }
+
+/* ==========================================================================
+   Section: Dashboard Gateway — Berlin City Design System
+   ========================================================================== */
+/* Berlin Brand Colors:
+   Berlin Red:   #CC0000 (primary accent — Landeswappen Rot)
+   Berlin Black: #1A1A1A (Headline / strong text)
+   Berlin Grey:  #5A5A5A (body text)
+   Berlin Light: #F0F0F0 (card background tint)
+   Berlin White: #FFFFFF
+*/
+.dashboard {
+    background-color: #F5F5F5; /* Berlin-style cool neutral background */
+}
+
+.dashboard__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: var(--spacing-xl);
+    max-width: 100% !important;
+}
+
+.dashboard__card {
+    background-color: #FFFFFF;
+    padding: 28px 20px 24px;
+    border-radius: 0; /* Berlin: stark square corners */
+    box-shadow: none;
+    border: 1px solid #DCDCDC;
+    border-top: 4px solid #0072CE;
+    transition: box-shadow 0.2s ease, border-top-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    max-width: 100% !important;
+}
+
+.dashboard__card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-top-color: #005999;
+}
+
+.dashboard__icon {
+    font-size: 2rem;
+    color: #0072CE;
+    margin-bottom: 12px;
+    opacity: 1;
+}
+
+.dashboard__label {
+    font-size: 0.82rem;
+    color: #5A5A5A; /* Berlin Grey */
+    margin-bottom: 6px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+}
+
+.dashboard__value {
+    font-size: 2.6rem;
+    font-weight: 900; /* Berlin: bold and confident */
+    color: #1A1A1A; /* Berlin Black */
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.dashboard__unit {
+    font-size: 1rem;
+    margin-left: 4px;
+    font-weight: 700;
+    color: #5A5A5A;
+}
+
+.dashboard__action {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+}
+
+.dashboard__period {
+    text-align: center;
+    font-size: 0.88rem;
+    color: #5A5A5A;
+    margin-bottom: var(--spacing-lg);
+    background: #EDEDED; /* Neutral Berlin grey pill */
+    padding: 6px 16px;
+    border-radius: 0; /* Square — Berlin style */
+    display: inline-block;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 0.04em;
+    border-left: 3px solid #0072CE; /* Berlin Red left tab */
+}
+
+.dashboard__period i {
+    margin-right: 6px;
+    color: #0072CE; /* Berlin Red */
+}
+
+.btn--dashboard {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0072CE !important;
+    color: #fff !important;
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 0; /* Berlin: square CTA button */
+    text-decoration: none;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: none;
+    border: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.btn--dashboard:hover {
+    transform: none; /* No float — Berlin stays grounded */
+    background: #005999 !important;
+    box-shadow: 4px 4px 0 #1A1A1A; /* Bold German offset shadow */
+}
+
+/* GPS Live Map Button */
+.btn--gps-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #0f2d1a !important;
+    color: #22c55e !important;
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 0;
+    text-decoration: none;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid #22c55e;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.btn--gps-live:hover {
+    background: #1a4a28 !important;
+    box-shadow: 4px 4px 0 #22c55e;
+}
+
+.btn--gps-live__dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #22c55e;
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: gpsLivePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes gpsLivePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); }
+    50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+}
+
+
+
+/* ==========================================================================
+   Section: Departments — Stadt Zürich Design System
+   ========================================================================== */
+/* Zürich Brand Colors:
+   Zürich Blue:  #0F2D6F (primary deep blue)
+   Zürich Accent: #0064B4 (interactive/link blue)
+   Zürich Light:  #E8EFF8 (pale blue tint for backgrounds)
+   Neutral:       #1A1A1A (near black text)
+   Rule:          #C8D5E5 (subtle divider)
+*/
+.departments {
+    background-color: #F4F6FA; /* Subtle Zürich-tinted background */
+    padding: var(--spacing-xxl) 0;
+}
+
+.departments__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.department__card {
+    background-color: #FFFFFF;
+    padding: 32px 28px;
+    border-radius: 0; /* Swiss precision: square corners */
+    border-left: 5px solid #0F2D6F; /* Zürich Blue left rule */
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    box-shadow: 0 1px 4px rgba(15, 45, 111, 0.06);
+    transition: box-shadow 0.2s ease, border-left-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.department__card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #0F2D6F 0%, transparent 100%);
+    opacity: 0.15;
+}
+
+.department__card:hover {
+    box-shadow: 0 4px 18px rgba(15, 45, 111, 0.12);
+    border-left-color: #0064B4; /* Lighter Zürich Blue on hover */
+}
+
+.department__title {
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0F2D6F; /* Zürich Blue */
+    margin-bottom: 12px;
+    letter-spacing: 0.01em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #C8D5E5; /* Precise rule below title */
+}
+
+.department__text {
+    font-size: 0.92rem;
+    color: #3A4A66; /* Dark blue-grey for legibility */
+    line-height: 1.85;
+    font-feature-settings: 'palt';
+}
+
+/* ==========================================================================
+   Section: Mobility Support
+   ========================================================================== */
+.mobility__card {
+    background-color: #FAFAF7;
+    border-radius: 8px;
+    padding: var(--spacing-xxl);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid #E8E6E1;
+}
+
+/* Reset inner title margin */
+.mobility__title {
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.mobility__intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-lg);
+    line-height: 2.2;
+    font-size: 1.05rem;
+    color: #2C2C2A;
+    letter-spacing: 0.05em;
+}
+
+.dashboard__intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-lg);
+    line-height: 2.2;
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "YuMincho", serif;
+    font-size: 1.1rem;
+    color: var(--color-primary-dark);
+    letter-spacing: 0.05em;
+}
+
+.mobility__details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    background: transparent;
+    padding: var(--spacing-lg) 0 0 0;
+    border-top: 1px solid #E8E6E1;
+    margin-top: var(--spacing-xl);
+    border-radius: 0;
+}
+
+.mobility__item {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-xs);
+}
+
+.mobility__label {
+    font-size: 0.85rem;
+    color: #D4A574;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mobility__value {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #1A1A1A;
+    padding-left: 24px;
+}
+
+.mobility__tel {
+    font-size: inherit;
+    color: var(--color-text);
+    font-weight: inherit;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.mobility__note {
+    text-align: right;
+    margin-top: var(--spacing-lg);
+    font-size: 0.85rem;
+    color: #8C8A88;
+}
+
+
+/* ==========================================================================
+   Section: Instagram
+   ========================================================================== */
+.instagram {
+    background-color: var(--color-white);
+    padding: var(--spacing-xxl) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle Museum Background Accents */
+.instagram::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(124, 185, 232, 0.05) 0%, transparent 70%);
+    z-index: 1;
+}
+
+.instagram::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(129, 178, 154, 0.05) 0%, transparent 70%);
+    z-index: 1;
+}
+
+.instagram__museum-box {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xxl) var(--spacing-lg);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    position: relative;
+    z-index: 2;
+    background: var(--color-white);
+}
+
+/* Simple Instagram Box — Paris Lifestyle Magazine */
+.instagram__simple-box {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 28px 20px 24px;
+    background: #FAFAF8;
+    border: 1px solid #E0D8CC;
+    position: relative;
+}
+
+.instagram__simple-box::before {
+    content: '✦ FOLLOW US ✦';
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    color: #C9A84C;
+    margin-bottom: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+}
+
+.instagram__simple-box::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: #C9A84C;
+    margin: 14px auto 0;
+}
+
+.instagram__casual-text {
+    font-size: 0.85rem;
+    color: #5A5040;
+    margin-bottom: 18px;
+    line-height: 2;
+    font-family: 'Noto Sans JP', sans-serif;
+    letter-spacing: 0.04em;
+}
+
+.btn--instagram-simple {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: transparent;
+    color: #1A1A1A;
+    padding: 10px 22px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1.5px solid #1A1A1A;
+    border-radius: 0;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    box-shadow: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 100;
+    pointer-events: auto;
+}
+
+.btn--instagram-simple:hover {
+    background: #1A1A1A;
+    color: #FAFAF8;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn--instagram-simple:active {
+    opacity: 0.85;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn--instagram-simple i {
+    font-size: 1rem;
+    margin-right: 0;
+    pointer-events: none;
+}
+
+.instagram__title {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "YuMincho", serif;
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-lg);
+    letter-spacing: 0.1em;
+}
+
+.instagram__subtitle {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "YuMincho", serif;
+    font-size: 1.1rem;
+    line-height: 2;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-xl);
+}
+
+.instagram__gallery-teaser {
+    margin-bottom: var(--spacing-xl);
+}
+
+.instagram__accents {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.accent {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.accent--blue {
+    background-color: var(--color-block-blue);
+    opacity: 0.4;
+}
+
+.accent--yellow {
+    background-color: var(--color-block-yellow);
+    opacity: 0.4;
+}
+
+.accent--red {
+    background-color: var(--color-block-red);
+    opacity: 0.4;
+}
+
+.accent--green {
+    background-color: var(--color-block-green);
+    opacity: 0.4;
+}
+
+/* Instagram Posts Grid */
+.instagram__posts {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+}
+
+.instagram__post-item {
+    display: block;
+    width: 120px;
+    height: 120px;
+    text-decoration: none;
+}
+
+.instagram__post-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.instagram__post-placeholder i {
+    font-size: 2rem;
+    color: #ccc;
+}
+
+.instagram__post-item:hover .instagram__post-placeholder {
+    background: linear-gradient(135deg, #e8e8e8 0%, #ddd 100%);
+    transform: scale(1.02);
+}
+
+.instagram__post-item:hover .instagram__post-placeholder i {
+    color: #E1306C;
+}
+
+.instagram__action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.btn--instagram {
+    background-color: transparent;
+    color: var(--color-text);
+    border: 1px solid #ddd;
+    padding: 12px 32px;
+    font-size: 1rem;
+    border-radius: 0;
+    /* Museum caption style (rectangular/sharp) */
+    transition: all 0.4s ease;
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+}
+
+.btn--instagram:hover {
+    background-color: #f8f8f8;
+    border-color: #aaa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.instagram__account-name {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    font-style: italic;
+    margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+    .instagram__title {
+        font-size: 1.8rem;
+    }
+}
+
+/* Responsive Helpers */
+.sp-only {
+    display: none;
+}
+
+.pc-only {
+    display: inline;
+}
+
+@media (max-width: 768px) {
+    .sp-only {
+        display: inline;
+    }
+
+    .pc-only {
+        display: none;
+    }
+
+    .instagram__museum-box {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .pc-only {
+        display: none;
+    }
+}
+
+
+/* ==========================================================================
+   Section: Contact
+   ========================================================================== */
+.contact {
+    background-color: #FAFAF7;
+    padding: var(--spacing-xxl) 0;
+}
+
+.contact__wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding: var(--spacing-xxl) var(--spacing-xl);
+    border-radius: 0;
+    border: 3px solid #1A1A1A;
+    box-shadow: 8px 8px 0px #F37022; /* Metro Orange drop shadow */
+}
+
+.contact__info {
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 3px solid #1A1A1A;
+    text-align: left; /* Helsinki aligns sharp left */
+}
+
+.contact__message {
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-sm);
+    color: #1A1A1A;
+    font-weight: 900;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    line-height: 1.4;
+}
+
+.contact__message span {
+    white-space: normal !important;
+}
+
+.contact__label {
+    font-size: 0.95rem;
+    color: #1A1A1A;
+    font-weight: 800;
+    margin-top: var(--spacing-lg);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.contact__tel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    font-size: 1.25rem;
+    color: #1A1A1A;
+    font-weight: 900;
+    font-family: 'Inter', sans-serif;
+    margin-top: var(--spacing-xs);
+    letter-spacing: 0em;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    max-width: 100%;
+}
+
+.contact__tel:hover {
+    color: #0274BD; /* Bus Blue */
+    opacity: 1;
+}
+
+.contact__tel-icon {
+    font-size: 1.4rem;
+    color: #F37022; /* Metro Orange */
+}
+
+.contact__tel-number {
+    word-break: keep-all;
+    white-space: nowrap;
+}
+
+/* Icon Spacing */
+.contact__info i {
+    margin-right: 4px;
+}
+
+.form__group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form__label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: #1A1A1A;
+    letter-spacing: 0.02em;
+}
+
+.form__input,
+.form__textarea {
+    width: 100%;
+    padding: 16px 18px;
+    border: 3px solid #1A1A1A;
+    background-color: #FFFFFF;
+    border-radius: 0;
+    font-size: 1.05rem;
+    font-family: 'Inter', 'Noto Sans JP', inherit;
+    color: #1A1A1A;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.form__textarea {
+    min-height: 160px;
+    resize: vertical;
+}
+
+.form__input:focus,
+.form__textarea:focus {
+    outline: none;
+    border-color: #1A1A1A;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 4px #0274BD; /* Bus Blue focus ring */
+}
+
+.form__button {
+    width: 100%;
+    padding: 18px;
+    background-color: #0274BD; /* Bus Blue */
+    color: #FFFFFF;
+    border: 3px solid #0274BD;
+    border-radius: 0;
+    font-size: 1.2rem;
+    font-weight: 900;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: var(--spacing-md);
+    letter-spacing: 0.05em;
+}
+
+.form__button:hover {
+    background-color: #015A94; /* Darker blue */
+    border-color: #015A94;
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+    background: #F8F7F5;
+    color: #2C2C2A;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid #E8E6E1;
+}
+
+.footer::before {
+    display: none;
+}
+
+.footer__container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.footer__main {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.footer__logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.footer__logo-icon {
+    width: 56px;
+    height: 56px;
+    background: #D4A574;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+.footer__logo-icon::after {
+    display: none;
+}
+
+.footer__logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.footer__logo-main {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #2C2C2A;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+}
+
+.footer__logo-sub {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(44, 44, 42, 0.6);
+    letter-spacing: 0.15em;
+}
+
+.footer__tagline {
+    font-size: 0.85rem;
+    color: rgba(44, 44, 42, 0.5);
+    font-style: italic;
+    padding-left: calc(56px + var(--spacing-md));
+    position: relative;
+}
+
+.footer__tagline::before {
+    content: '―';
+    margin-right: 8px;
+    color: #D4A574;
+}
+
+.footer__social {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.footer__social-link {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid #D4A574;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #D4A574;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    background: transparent;
+}
+
+
+.footer__social-link:hover {
+    background: #D4A574;
+    color: #F8F7F5;
+    transform: translateY(-2px);
+}
+
+.footer__social-link i {
+    margin: auto;
+}
+
+.footer__info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+.footer__info-card {
+    display: flex;
+    gap: var(--spacing-sm);
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.footer__info-card:hover {
+    transform: none;
+}
+
+.footer__info-icon {
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border-radius: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    color: #D4A574;
+    padding-top: 2px;
+}
+
+.footer__info-icon i {
+    margin: 0;
+}
+
+.footer__info-content {
+    flex: 1;
+}
+
+.footer__info-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(44, 44, 42, 0.6);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.footer__info-content p {
+    font-size: 0.95rem;
+    color: #2C2C2A;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.footer__bottom {
+    padding: var(--spacing-md) 0;
+    text-align: center;
+}
+
+.footer__copyright {
+    font-size: 0.8rem;
+    color: rgba(44, 44, 42, 0.5);
+}
+
+/* Footer Mobile */
+@media (max-width: 768px) {
+    .footer__main {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+        padding: var(--spacing-lg) 0;
+    }
+
+    .footer__brand {
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer__logo-wrapper {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .footer__logo-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
+    }
+
+    .footer__logo-main {
+        font-size: 1.4rem;
+    }
+
+    .footer__logo-sub {
+        font-size: 0.8rem;
+    }
+
+    .footer__tagline {
+        padding-left: 0;
+    }
+
+    .footer__info {
+        grid-template-columns: 1fr;
+    }
+
+    .footer__info-card {
+        padding: var(--spacing-sm);
+    }
+}
+
+
+/* ==========================================================================
+   Responsive Design (Mobile)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .header__hamburger {
+        display: block;
+    }
+
+    .header__nav {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-white);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        padding: var(--spacing-md) 0;
+    }
+
+    .header__nav.is-active {
+        display: block;
+    }
+
+    .header__nav-list {
+        flex-direction: column;
+        gap: 0;
+        text-align: center;
+    }
+
+    .header__nav-item a {
+        display: block;
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+
+    .about__grid,
+    .departments__grid,
+    .mobility__details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Force Vertical Stack with High Specificity */
+    body .dashboard__grid {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+        gap: var(--spacing-md) !important;
+    }
+
+    body .dashboard__card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: var(--spacing-md);
+        display: flex !important;
+        box-sizing: border-box !important;
+    }
+
+    .hero__title {
+        font-size: 1.8rem;
+    }
+
+    .section__title {
+        font-size: 1.6rem;
+    }
+
+    .mobility__card {
+        padding: var(--spacing-md);
+    }
+
+    .contact__wrapper {
+        padding: var(--spacing-md);
+    }
+
+    .contact__tel {
+        font-size: 1.5rem;
+    }
+
+    /* Calendar Mobile */
+    .calendar {
+        padding: var(--spacing-md) 0;
+    }
+
+    .calendar__wrapper {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .calendar__main {
+        padding: var(--spacing-sm);
+    }
+
+    .calendar__header {
+        margin-bottom: 4px;
+        padding-bottom: 4px;
+    }
+
+    .calendar__month-title {
+        font-size: 1rem;
+    }
+
+    .calendar__nav-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+    }
+
+    .calendar__weekday {
+        font-size: 0.7rem;
+        padding: 2px;
+    }
+
+    .calendar__day {
+        padding: 4px 1px;
+        font-size: 0.75rem;
+        min-height: 28px;
+        border-radius: 4px;
+    }
+
+    .calendar__day--has-event::after {
+        width: 4px;
+        height: 4px;
+        bottom: 2px;
+    }
+
+    .calendar__sidebar {
+        padding: var(--spacing-sm);
+    }
+
+    .calendar__topics-title {
+        font-size: 0.95rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .calendar__topic-item {
+        padding: 4px 0;
+    }
+
+    .calendar__topic-date {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+    }
+
+    .calendar__topic-text {
+        font-size: 0.8rem;
+    }
+}
+
+/* ==========================================================================
+   Section: Monthly Calendar
+   ========================================================================== */
+.calendar {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: var(--spacing-lg) 0;
+}
+
+.calendar__wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    align-items: start;
+}
+
+.calendar__main {
+    background: #FAFAF7;
+    border: 3px solid #2C2C2A;
+    border-radius: 0;
+    box-shadow: 6px 6px 0px #D4A574;
+    padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.calendar__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 3px solid #2C2C2A;
+}
+
+.calendar__month-title {
+    font-size: 1.6rem;
+    font-weight: 900;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    color: #2C2C2A;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.calendar__nav-btn {
+    background: #2C2C2A;
+    color: #FAFAF7;
+    border: 2px solid #2C2C2A;
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.calendar__nav-btn:hover {
+    background: #D4A574;
+    color: #2C2C2A;
+    transform: translate(-3px, -3px);
+    box-shadow: 3px 3px 0px #2C2C2A;
+}
+
+.calendar__weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 8px;
+}
+
+.calendar__weekday {
+    text-align: center;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 8px 4px;
+    color: #2C2C2A;
+    border-bottom: 3px solid #2C2C2A;
+}
+
+.calendar__weekday:first-child {
+    color: #D92121;
+}
+
+.calendar__weekday:last-child {
+    color: #005BAA;
+}
+
+.calendar__grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    border-left: 2px solid #EAEAE8;
+    border-top: 2px solid #EAEAE8;
+}
+
+.calendar__day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 4px;
+    border-right: 2px solid #EAEAE8;
+    border-bottom: 2px solid #EAEAE8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #2C2C2A;
+    position: relative;
+    background: transparent;
+    min-height: 56px;
+}
+
+.calendar__day:hover {
+    background: #EAEAE8;
+    transform: scale(1.05);
+    z-index: 2;
+    border: 2px solid #2C2C2A;
+    box-shadow: 2px 2px 0px #D4A574;
+}
+
+.calendar__day--today {
+    background: #2C2C2A;
+    color: #FAFAF7;
+    border: 2px solid #2C2C2A;
+    z-index: 1;
+}
+
+.calendar__day--today:hover {
+    background: #D4A574;
+    color: #2C2C2A;
+}
+
+.calendar__day--has-event::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #D4A574;
+    border: 2px solid #2C2C2A;
+    position: absolute;
+    bottom: 4px;
+}
+
+.calendar__day--other-month {
+    color: #A0A0A0;
+    background: #F1F1F0;
+}
+
+.calendar__day--sunday {
+    color: #D92121;
+}
+
+.calendar__day--saturday {
+    color: #005BAA;
+}
+
+/* Calendar Sidebar - Topics */
+.calendar__sidebar {
+    background: white;
+    border-radius: var(--border-radius-card);
+    box-shadow: var(--shadow-soft);
+    padding: var(--spacing-lg);
+}
+
+.calendar__topics-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.calendar__topics-list {
+    list-style: none;
+}
+
+.calendar__topic-item {
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: flex-start;
+}
+
+.calendar__topic-item:last-child {
+    border-bottom: none;
+}
+
+.calendar__topic-date {
+    background: var(--color-primary);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.calendar__topic-text {
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+/* ================================================================
+   Event Modal — Amsterdam City Style (amsterdam.nl)
+   Amsterdam brand:
+     Red:   #EC0000  (primary — used on header bar, accents)
+     Black: #1A1A1A  (text, close button)
+     White: #FFFFFF  (card background)
+     Cream: #F5F5F5  (event item background)
+   Motif: three Andrew's crosses (×××) from Amsterdam coat of arms
+================================================================ */
+
+/* Overlay */
+.event-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 10, 10, 0.72);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+}
+
+.event-modal.is-active {
+    display: flex;
+}
+
+/* Card */
+.event-modal__content {
+    background: #FFFFFF;
+    border-radius: 0;                /* Amsterdam: sharp square corners */
+    padding: 0;
+    max-width: 460px;
+    width: 92%;
+    max-height: 82vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.45), 6px 6px 0 #EC0000;
+}
+
+/* Red header bar — Amsterdam.nl style */
+.event-modal__content::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 8px;
+    background: #EC0000;
+}
+
+/* Close button — top right, Amsterdam style */
+.event-modal__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #1A1A1A;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #FFFFFF;
+    transition: background 0.15s ease;
+    z-index: 1;
+}
+
+.event-modal__close:hover {
+    background: #EC0000;
+}
+
+/* Date header section */
+.event-modal__date {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    background: #EC0000;
+    padding: 14px 24px 14px 24px;
+    margin: 0;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    /* Amsterdam ××× motif as pseudo */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ××× crosses decorative text before date */
+.event-modal__date::before {
+    content: '×\00a0×\00a0×';
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.75);
+    flex-shrink: 0;
+    display: none;
+}
+
+/* Inner body padding */
+.event-modal__list {
+    list-style: none;
+    margin: 0;
+    padding: 20px 24px 24px;
+}
+
+/* Each event item */
+.event-modal__item {
+    padding: 16px 16px 16px 20px;
+    margin-bottom: 12px;
+    background: #F5F5F5;
+    border-radius: 0;
+    border-left: 4px solid #EC0000;
+    transition: background 0.15s ease;
+}
+
+.event-modal__item:last-child {
+    margin-bottom: 0;
+}
+
+.event-modal__item:hover {
+    background: #EDEDED;
+}
+
+/* Event title */
+.event-modal__item .event-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+/* Event location */
+.event-modal__item .event-place {
+    font-size: 0.82rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.event-modal__item .event-place::before {
+    content: '●';
+    color: #EC0000;
+    font-size: 0.6rem;
+}
+
+
+/* ==========================================================================
+   Section: Main Services
+   ========================================================================== */
+.services {
+    background: white;
+    padding: var(--spacing-xxl) 0;
+}
+
+.services__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+}
+
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: var(--spacing-xl);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    background: #FAFAF7;
+    border: 1px solid #E8E6E1;
+    color: #2C2C2A;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+    color: #4A7C59;
+    transition: color 0.3s ease;
+}
+
+.service-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 1;
+}
+
+.service-card p {
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    color: #6B6B6B;
+}
+
+/* Subtle accents on hover without filling the background */
+.service-card--mobility:hover {
+    border-color: #10b981;
+}
+.service-card--mobility:hover i {
+    color: #10b981;
+}
+
+.service-card--safety:hover {
+    border-color: #ef4444;
+}
+.service-card--safety:hover i {
+    color: #ef4444;
+}
+
+.service-card--marche:hover {
+    border-color: #f59e0b;
+}
+.service-card--marche:hover i {
+    color: #f59e0b;
+}
+
+.service-card--yatai:hover {
+    border-color: #D4A574;
+}
+.service-card--yatai:hover i {
+    color: #D4A574;
+}
+ /* rule removed */
+/* ==========================================================================
+   Section: Photo Gallery — Editorial / Classic
+   ========================================================================== */
+.gallery {
+    background: #FAF8F4;
+    padding: var(--spacing-xxl) 0;
+}
+
+.gallery .section__title {
+    font-family: 'Noto Serif JP', 'Noto Sans JP', serif;
+    font-weight: 700;
+    color: #3b3226;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.6rem;
+}
+
+.gallery .section__title::after {
+    display: none;
+}
+
+.slideshow {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 32px rgba(59, 50, 38, 0.10);
+}
+
+.slideshow__container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #F0ECE4;
+}
+
+.slideshow__slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F0ECE4;
+}
+
+.slideshow__slide.is-active {
+    opacity: 1;
+}
+
+.slideshow__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slideshow__slide img.is-bottom-aligned {
+    object-fit: contain;
+    object-position: center center;
+}
+
+.slideshow__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 24px 42px;
+    background: linear-gradient(to top, rgba(30, 25, 15, 0.70) 0%, rgba(30, 25, 15, 0) 100%);
+    color: #FFFFFF;
+    font-size: 0.92rem;
+    font-weight: 500;
+    font-family: 'Noto Sans JP', sans-serif;
+    letter-spacing: 0.06em;
+    text-align: center;
+    box-sizing: border-box;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.slideshow__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    color: #8C8A88;
+}
+
+.slideshow__placeholder i {
+    font-size: 4rem;
+}
+
+.slideshow__placeholder span {
+    font-size: 1.2rem;
+}
+
+.slideshow__nav {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.slideshow__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slideshow__dot.is-active {
+    background: #FFFFFF;
+    transform: scale(1.4);
+}
+
+/* ==========================================================================
+   Responsive: Calendar & Services & Gallery
+   ========================================================================== */
+@media (max-width: 768px) {
+    .calendar__wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar__sidebar {
+        order: -1;
+    }
+
+    .calendar__day {
+        font-size: 0.85rem;
+        padding: 4px 2px;
+    }
+
+    .services__grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .service-card {
+        flex-direction: row;
+        text-align: left;
+        padding: var(--spacing-lg);
+    }
+
+    .service-card i {
+        font-size: 2rem;
+        margin-bottom: 0;
+        margin-right: var(--spacing-md);
+    }
+
+    .service-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 4px;
+    }
+
+    .service-card p {
+        font-size: 0.85rem;
+    }
+
+    .slideshow__container {
+        aspect-ratio: 4/3;
+    }
+
+    .contact__wrapper {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .contact__message {
+        font-size: 1.15rem;
+    }
+
+    .contact__tel {
+        font-size: 1.35rem;
+    }
+}
+
+/* ==========================================================================
+   Page Header - Elegant Designs
+   ========================================================================== */
+.page-header {
+    position: relative;
+    padding: 60px 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+.page-header__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.15;
+    background-size: 40px 40px;
+}
+
+.page-header__content {
+    position: relative;
+    z-index: 1;
+}
+
+.page-header__icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--spacing-md);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+
+.page-header__icon i {
+    margin: auto;
+}
+
+.page-header__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: var(--spacing-sm);
+}
+
+.page-header__subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+}
+
+/* About Page - Teal / Nature Theme */
+.page-header--about {
+    background: linear-gradient(135deg, #0d9488 0%, #14b8a6 50%, #2dd4bf 100%);
+}
+
+.page-header--about .page-header__bg {
+    background-image:
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+    opacity: 1;
+}
+
+.page-header--about .page-header__icon {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+}
+
+/* Departments Page - Purple / Professional Theme */
+.page-header--departments {
+    background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #a78bfa 100%);
+}
+
+.page-header--departments .page-header__bg {
+    background-image:
+        linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.05) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.05) 75%);
+    background-size: 30px 30px;
+    opacity: 1;
+}
+
+.page-header--departments .page-header__icon {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+}
+
+/* Contact Page - Coral / Warm Theme */
+.page-header--contact {
+    background: linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fdba74 100%);
+}
+
+.page-header--contact .page-header__bg {
+    background-image:
+        radial-gradient(ellipse at 0% 0%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 100% 100%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+    opacity: 1;
+}
+
+.page-header--contact .page-header__icon {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.15));
+}
+
+/* Page Header Mobile */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 40px 0;
+    }
+
+    .page-header__icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        border-radius: 16px;
+    }
+
+    .page-header__title {
+        font-size: 1.5rem;
+    }
+
+    .page-header__subtitle {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================================================
+   PC 3-Column Layout 
+   ========================================================================== */
+@media (min-width: 1024px) {
+
+    /* Match sidebars */
+    .pc-layout-wrapper {
+        display: grid;
+        grid-template-columns: 280px 1fr 280px;
+        gap: var(--spacing-lg);
+        max-width: 1400px;
+        margin: 60px auto 0;
+        padding: var(--spacing-lg) var(--spacing-md);
+        align-items: start;
+    }
+
+    /* Instagram in left sidebar */
+    .side-instagram {
+        background: transparent;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .side-instagram::before,
+    .side-instagram::after {
+        display: none;
+    }
+
+    .side-instagram .instagram__simple-box {
+        padding: var(--spacing-md);
+        background: var(--color-white);
+        border-radius: var(--border-radius-card);
+        box-shadow: var(--shadow-soft);
+        max-width: 100%;
+    }
+
+    /* Left Sidebar */
+    .pc-layout-left {
+        position: sticky;
+        top: 100px;
+    }
+
+    /* Center Main */
+    .pc-layout-center {
+        min-width: 0;
+    }
+
+    /* Right Sidebar */
+    .pc-layout-right {
+        position: sticky;
+        top: 100px;
+    }
+
+    /* Remove max-width on containers inside center */
+    .pc-layout-center .section__container,
+    .pc-layout-right .section__container,
+    .pc-layout-left .section__container {
+        padding: 0 !important;
+        max-width: none !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* Adjust padding of sections inside grid */
+    .pc-layout-center .section,
+    .pc-layout-right .section {
+        padding: 0 0 var(--spacing-xl) 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Ensure inner content fills full width */
+    .pc-layout-center .about__grid,
+    .pc-layout-center .departments__grid,
+    .pc-layout-center .mobility__card,
+    .pc-layout-center .dashboard__grid,
+    .pc-layout-center .services__grid {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .pc-layout-center .dashboard__intro {
+        max-width: 100%;
+    }
+
+    .hero {
+        border-radius: var(--border-radius-card);
+        overflow: hidden;
+        margin-bottom: var(--spacing-xl);
+        padding: 80px 40px;
+    }
+
+    /* Hide some elements on PC */
+    .header__nav {
+        display: none;
+    }
+}
+
+/* Fallback for Mobile/Tablet */
+@media (max-width: 1023px) {
+    .pc-layout-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pc-layout-left {
+        order: 2;
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .pc-layout-center {
+        order: 1;
+    }
+
+    .pc-layout-right {
+        order: 3;
+    }
+
+    .side-menu-blocks {
+        display: none;
+    }
+}
+
+/* Side Menu Blocks (Left Column) */
+.side-menu-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: var(--spacing-xl);
+}
+
+.side-menu-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #fff;
+    border: 2px solid var(--color-primary);
+    border-radius: 12px;
+    color: var(--color-text);
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.side-menu-block i {
+    color: var(--color-primary);
+    font-size: 1.3rem;
+    width: 24px;
+    text-align: center;
+}
+
+.side-menu-block:hover {
+    background: var(--color-primary);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(102, 194, 88, 0.2);
+}
+
+.side-menu-block:hover i {
+    color: #fff;
+}
+
+/* Side News — Tallinn City Design */
+.side-news {
+    background: #fff;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: hidden;
+    margin-bottom: var(--spacing-lg);
+    border: 2px solid #0072CE;
+    border-top: 6px solid #0072CE;
+}
+
+.side-news__content {
+    padding: 0;
+}
+
+.side-news__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.side-news__list li {
+    margin: 0;
+    padding: 14px 18px;
+    border-bottom: 1px solid #E8EFF7;
+    position: relative;
+    transition: background 0.18s ease;
+}
+
+.side-news__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: transparent;
+    transition: background 0.18s ease;
+}
+
+.side-news__list li:hover {
+    background: #F0F6FF;
+}
+
+.side-news__list li:hover::before {
+    background: #0072CE;
+}
+
+.side-news__list li:last-child {
+    border-bottom: none;
+}
+
+.side-news__date {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #fff;
+    background: #0072CE;
+    letter-spacing: 0.04em;
+    padding: 2px 7px;
+    margin-bottom: 6px;
+    border-radius: 2px;
+}
+
+.side-news__list a,
+.side-news__list .side-news__text {
+    font-size: 0.88rem;
+    color: #1A1A2E;
+    text-decoration: none;
+    line-height: 1.5;
+    display: block;
+    font-weight: 500;
+}
+
+.side-news__list a:hover {
+    color: #0072CE;
+    text-decoration: underline;
+}
+
+
+.pc-layout-right .calendar {
+    padding: 0;
+    background: transparent;
+}
+
+@media (min-width: 1024px) {
+    .calendar__wrapper {
+        display: block !important;
+    }
+
+    .departments__grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .about__grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Make all center column sections fill full width */
+    .pc-layout-center .section {
+        width: 100%;
+    }
+
+    .pc-layout-center .services__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .pc-layout-center .dashboard__grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+
+.pc-layout-right .instagram {
+    padding-top: 0;
+}
+
+.pc-layout-right .contact {
+    padding-top: 0;
+}
+
+.pc-layout-right .section__title {
+    font-size: 1.15rem;
+    letter-spacing: 0;
+    margin-bottom: var(--spacing-md);
+    white-space: nowrap;
+}
+
+/* ================================================================
+   Helsinki Club Section — hel.fi inspired design
+   Helsinki brand colors:
+     Bus Blue:    #0072c6
+     Coat Gold:   #C8A951
+     Black:       #1A1A1A
+     Light Grey:  #F0F0F0
+   Typography: Helsinki Grotesk alt → Inter / Noto Sans JP
+   ================================================================ */
+
+.helsinki-club {
+    padding: 24px 0 20px;
+    background: #F0F0F0;
+    border-radius: 12px;
+    margin-bottom: 0;
+}
+
+.helsinki-club__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 20px 18px;
+}
+
+.helsinki-club__wave {
+    display: flex;
+    align-items: center;
+    color: #0072c6;
+}
+
+.helsinki-club__title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #1A1A1A;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    letter-spacing: 0.03em;
+    margin: 0;
+}
+
+.helsinki-club__title--neon {
+    color: #FFFFFF;
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-shadow:
+        3px 3px 0 #E91E63,
+        -1px -1px 0 #E91E63,
+        1px -1px 0 #E91E63,
+        -1px 1px 0 #E91E63,
+        1px 1px 0 #E91E63;
+    animation: none;
+}
+
+.helsinki-club__icon-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+
+.helsinki-club__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 0 20px;
+}
+
+.helsinki-club__card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 18px 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    border: 1.5px solid transparent;
+}
+
+.helsinki-club__card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,114,198,0.12);
+    border-color: #0072c6;
+}
+
+.helsinki-club__icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.helsinki-club__icon-box--amber {
+    background: #FFF3E0;
+    color: #D4880F;
+}
+
+.helsinki-club__icon-box--teal {
+    background: #E0F7FA;
+    color: #00838F;
+}
+
+.helsinki-club__card-body h3 {
+    margin: 0 0 4px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1A1A1A;
+}
+
+.helsinki-club__card-body p {
+    margin: 0;
+    font-size: 0.78rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+.helsinki-club__arrow {
+    font-size: 1.1rem;
+    color: #0072c6;
+    margin-left: auto;
+    align-self: center;
+    font-weight: 700;
+    transition: transform 0.15s ease;
+}
+
+.helsinki-club__card:hover .helsinki-club__arrow {
+    transform: translateX(4px);
+}
+
+.helsinki-club__upcoming {
+    margin-top: 16px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.helsinki-club__notice {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #444;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 8px 12px;
+    border-radius: 6px;
+    border-left: 3px solid #0072c6;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.helsinki-club__notice-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.helsinki-club__notice-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.helsinki-club__notice-content p {
+    margin: 0;
+    line-height: 1.3;
+}
+
+.helsinki-club__notice strong {
+    color: #1A1A1A;
+}
+
+
+
+/* Mobile: stack club cards vertically */
+@media (max-width: 600px) {
+    .helsinki-club__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ================================================================
+   Layout: Club Sidebar + Services Main
+   ================================================================ */
+
+.services-and-club-wrapper {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-xl);
+}
+
+.helsinki-club.helsinki-club--sidebar {
+    flex: 0 0 320px;
+    padding: 24px 0 20px;
+    border-radius: 12px;
+    background: #F0F0F0; /* Keep the distinct background */
+    margin-bottom: 0;
+}
+
+.helsinki-club--sidebar .helsinki-club__grid {
+    grid-template-columns: 1fr; /* Stack cards vertically */
+    padding: 0 20px;
+}
+
+.services-and-club-wrapper .services {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Ensure original section paddings don't break layout */
+.pc-layout-center .services-and-club-wrapper .section {
+    padding-bottom: 0;
+}
+
+/* Responsive adjustment */
+@media (max-width: 1023px) {
+    .services-and-club-wrapper {
+        flex-direction: column;
+    }
+    
+    .helsinki-club.helsinki-club--sidebar {
+        flex: auto;
+        width: 100%;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .helsinki-club--sidebar .helsinki-club__grid {
+        /* On tablet, maybe side-by-side again */
+        grid-template-columns: 1fr 1fr; 
+    }
+}
+@media (max-width: 600px) {
+    .helsinki-club--sidebar .helsinki-club__grid {
+        grid-template-columns: 1fr; 
+    }
+}
+
+/* ================================================================
+   Side Feature Card (yatai)
+   ================================================================ */
+
+.sidebar-feature {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Visual Header --- */
+.sidebar-feature__visual {
+    position: relative;
+    padding: 28px 20px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* --- Yatai AI Theme --- */
+.sidebar-feature--yatai {
+    background: linear-gradient(165deg, #faf5ff 0%, #f3e8ff 40%, #e9d5ff 100%);
+}
+
+.sidebar-feature--yatai .sidebar-feature__visual {
+    background: linear-gradient(135deg, #581c87 0%, #7c3aed 50%, #a78bfa 100%);
+}
+
+/* --- Icon Wrap --- */
+.sidebar-feature__icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #fff;
+    flex-shrink: 0;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.sidebar-feature__icon-wrap--ai {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(88, 28, 135, 0.2);
+}
+
+/* --- Season Tag --- */
+.sidebar-feature__season-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.1em;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    text-transform: uppercase;
+}
+
+.sidebar-feature__season-tag--ai {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Body --- */
+.sidebar-feature__body {
+    padding: 22px 20px 24px;
+}
+
+.sidebar-feature__title {
+    font-size: 1.3rem;
+    font-weight: 900;
+    line-height: 1.3;
+    margin: 0 0 10px;
+    letter-spacing: 0.02em;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.sidebar-feature--yatai .sidebar-feature__title {
+    color: #3b0764;
+}
+
+.sidebar-feature__desc {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    margin: 0 0 18px;
+    font-weight: 400;
+}
+
+.sidebar-feature--yatai .sidebar-feature__desc {
+    color: #581c87;
+}
+
+/* --- CTA Button --- */
+.sidebar-feature__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    letter-spacing: 0.03em;
+}
+
+.sidebar-feature__cta--ai {
+    background: #7c3aed !important;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3) !important;
+}
+
+.sidebar-feature__cta--ai:hover {
+    background: #6d28d9 !important;
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4) !important;
+    transform: translateY(-1px);
+}
+
+.sidebar-feature__cta i {
+    font-size: 0.75rem;
+    transition: transform 0.2s ease;
+}
+
+.sidebar-feature__cta:hover i {
+    transform: translateX(3px);
+}
+
+/* ================================================================
+   Takenoko Compact Card — Photo Background
+   ================================================================ */
+.tk-card-compact {
+    display: block;
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    height: 120px;
+    text-decoration: none;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tk-card-compact:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.tk-card-compact__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+}
+
+.tk-card-compact__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(30, 25, 15, 0.65) 0%, rgba(30, 25, 15, 0.3) 100%);
+}
+
+.tk-card-compact__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 20px;
+}
+
+.tk-card-compact__title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 6px;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+.tk-card-compact__link {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.03em;
+}
+
+.tk-card-compact:hover .tk-card-compact__link {
+    color: #fff;
+}
+
+/* ==========================================================================
+   Sidebar: やまとの安全 Card
+   ========================================================================== */
+.side-yamato {
+    margin-top: 20px;
+    margin-bottom: 28px;
+}
+
+.side-yamato__card {
+    display: block;
+    background: #FFFFFF;
+    border: 2px solid #112E51;
+    border-radius: 2px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #1A1A1A;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.side-yamato__card:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0 #FF6600;
+}
+
+.side-yamato__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #112E51;
+    color: #FFFFFF;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.side-yamato__header i {
+    color: #FF6600;
+    font-size: 1.1rem;
+}
+
+.side-yamato__desc {
+    font-size: 0.78rem;
+    color: #666;
+    padding: 12px 16px 8px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.side-yamato__list {
+    list-style: none;
+    padding: 0 16px;
+    margin: 0;
+}
+
+.side-yamato__list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #112E51;
+}
+
+.side-yamato__list li:last-child {
+    border-bottom: none;
+}
+
+.side-yamato__list li i {
+    color: #C0392B;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.side-yamato__new {
+    display: inline-block;
+    background: #FF6600;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+.side-yamato__link {
+    display: block;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #103FEF;
+    text-align: right;
+    border-top: 1px solid #E8E8E8;
+}
+
+.side-yamato__link i {
+    margin-left: 4px;
+    font-size: 0.7rem;
+}
+
+.side-yamato__card:hover .side-yamato__link {
+    color: #FF6600;
+}
+
+
+/* 2026-05: 回覧板要約の主導線化・4部会カテゴリ整理 */
+.hero__kairan-feature {
+    width: min(760px, 92%);
+    margin: 30px auto 0;
+}
+
+.hero__kairan-link {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 20px;
+    align-items: center;
+    text-decoration: none;
+    background: linear-gradient(135deg, #FFFFFF 0%, #F8FAF8 100%);
+    color: #173B2F;
+    border: 1px solid rgba(255,255,255,0.92);
+    border-radius: 22px;
+    padding: 24px 26px;
+    box-shadow: 0 18px 44px rgba(0,0,0,0.18), 0 1px 0 rgba(255,255,255,0.7) inset;
+    backdrop-filter: blur(8px);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.hero__kairan-link:hover {
+    transform: translateY(-2px);
+    border-color: rgba(173, 196, 180, 0.9);
+    box-shadow: 0 22px 52px rgba(0,0,0,0.22), 0 1px 0 rgba(255,255,255,0.8) inset;
+}
+
+.hero__kairan-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    background: #F4F4F4;
+    color: #111111;
+    display: grid;
+    place-items: center;
+    font-size: 1.7rem;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.16);
+}
+
+.hero__kairan-copy strong {
+    display: block;
+    font-size: clamp(1.65rem, 4.2vw, 2.75rem);
+    line-height: 1.08;
+    letter-spacing: 0.06em;
+    font-weight: 900;
+    color: #173B2F;
+}
+
+.hero__kairan-copy small {
+    display: block;
+    margin-top: 9px;
+    font-size: clamp(0.9rem, 2vw, 1.03rem);
+    line-height: 1.65;
+    color: #435249;
+    font-weight: 700;
+}
+
+.hero__kairan-cta {
+    background: #FF7A00;
+    color: #111111;
+    border-radius: 999px;
+    padding: 12px 20px;
+    font-weight: 900;
+    white-space: nowrap;
+    box-shadow: 0 10px 22px rgba(255,122,0,0.34);
+}
+
+.services__grid--departments .service-card {
+    min-height: 230px;
+    border: 2px solid #1A1A1B;
+}
+
+.service-card__more {
+    margin-top: auto;
+    margin-left: auto;
+    width: 86px;
+    height: 86px;
+    min-width: 86px;
+    flex: 0 0 86px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    isolation: isolate;
+    color: #FFFFFF;
+    background: radial-gradient(circle at 35% 28%, #FFB14A 0%, #FF7A00 48%, #E95F00 100%);
+    font-size: 0.96rem;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-align: center;
+    font-weight: 900;
+    box-shadow: 0 12px 24px rgba(255,122,0,0.28), inset 0 2px 0 rgba(255,255,255,0.32);
+    transform: rotate(-2deg);
+}
+
+.service-card__more::before {
+    content: '';
+    position: absolute;
+    inset: -7px;
+    border: 2px solid rgba(255,122,0,0.32);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.service-card__more::after {
+    content: none;
+}
+
+.service-card:hover .service-card__more {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 0 16px 30px rgba(255,122,0,0.36), inset 0 2px 0 rgba(255,255,255,0.36);
+}
+
+.service-card--community:hover {
+    border-color: #0EA5E9;
+}
+.service-card--community:hover i {
+    color: #0EA5E9;
+}
+.service-card--culture:hover {
+    border-color: #7C3AED;
+}
+.service-card--culture:hover i {
+    color: #7C3AED;
+}
+.service-card--welfare:hover {
+    border-color: #16A34A;
+}
+.service-card--welfare:hover i {
+    color: #16A34A;
+}
+
+@media (max-width: 768px) {
+    .hero__kairan-link {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+        padding: 20px 18px;
+    }
+    .hero__kairan-cta {
+        width: 100%;
+    }
+}
+
+
+/* 2026-05: つるマルシェ・カラオケ大会 写真掲載 */
+.community-events {
+    background: #FFF8E8;
+    padding: var(--spacing-xxl) 0;
+}
+
+.community-events__lead {
+    text-align: center;
+    max-width: 720px;
+    margin: -10px auto 32px;
+    color: #555;
+    font-weight: 600;
+    line-height: 1.8;
+}
+
+.community-events__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.community-event-card {
+    background: #FFFFFF;
+    border: 2px solid #1A1A1B;
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.12);
+    overflow: hidden;
+}
+
+.community-event-card__photos {
+    height: 280px;
+    background: #EEE;
+}
+
+.community-event-card__photos--double {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+}
+
+.community-event-card__photos img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.community-event-card__body {
+    padding: 24px;
+}
+
+.community-event-card__label {
+    display: inline-block;
+    background: #FFD400;
+    color: #1A1A1B;
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+}
+
+.community-event-card h3 {
+    margin: 0 0 12px;
+    font-size: 1.55rem;
+    color: #0B2447;
+}
+
+.community-event-card__schedule {
+    margin: 0 0 12px;
+    color: #C1001F;
+    font-weight: 900;
+    font-size: 1.05rem;
+}
+
+.community-event-card__body p:last-child {
+    margin-bottom: 0;
+    color: #555;
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .community-events__grid {
+        grid-template-columns: 1fr;
+    }
+    .community-event-card__photos {
+        height: 220px;
+    }
+}
+
+
+/* 2026-05: 鶴舞地区地域活動概要 PDF掲載 */
+.regional-overview-link-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: center;
+    padding: 28px;
+    margin-bottom: 28px;
+    background: linear-gradient(135deg, #FFF8E8 0%, #FFFFFF 100%);
+    border: 2px solid #1A1A1B;
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.12);
+}
+
+.regional-overview-link-card__label,
+.regional-overview__eyebrow {
+    display: inline-block;
+    background: #C1001F;
+    color: #FFFFFF;
+    padding: 6px 12px;
+    font-weight: 900;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+}
+
+.regional-overview-link-card h3 {
+    margin: 0 0 10px;
+    color: #0B2447;
+    font-size: 1.5rem;
+}
+
+.regional-overview-link-card p {
+    margin: 0;
+    line-height: 1.8;
+    color: #444;
+}
+
+.regional-overview-link-card__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    min-width: 260px;
+    justify-content: flex-end;
+}
+
+.regional-overview-hero {
+    padding: 72px 0;
+    background: linear-gradient(135deg, #0B2447 0%, #19376D 60%, #576CBC 100%);
+    color: #FFFFFF;
+}
+
+.regional-overview-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) 360px;
+    gap: 40px;
+    align-items: center;
+}
+
+.regional-overview-hero h2 {
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.25;
+    margin: 0 0 18px;
+}
+
+.regional-overview-hero p {
+    font-size: 1.08rem;
+    line-height: 1.9;
+}
+
+.regional-overview__actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 26px;
+}
+
+.regional-overview__preview {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: #1A1A1B;
+    background: #FFFFFF;
+    padding: 14px;
+    box-shadow: 12px 12px 0 rgba(0,0,0,0.22);
+    transform: rotate(1deg);
+}
+
+.regional-overview__preview img {
+    display: block;
+    width: 100%;
+    max-height: 460px;
+    object-fit: cover;
+    object-position: top;
+    border: 1px solid #E8E8E8;
+}
+
+.regional-overview__preview span {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.regional-overview-summary,
+.regional-overview-embed {
+    padding: 64px 0;
+}
+
+.regional-overview-summary {
+    background: #F7F3EE;
+}
+
+.regional-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.regional-overview-card {
+    background: #FFFFFF;
+    border-left: 6px solid #C1001F;
+    padding: 24px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+}
+
+.regional-overview-card h3 {
+    margin: 0 0 12px;
+    color: #0B2447;
+}
+
+.regional-overview-card p,
+.regional-overview-note {
+    line-height: 1.85;
+    color: #444;
+}
+
+.regional-overview-embed iframe {
+    width: 100%;
+    height: 78vh;
+    min-height: 620px;
+    border: 2px solid #1A1A1B;
+    background: #FFFFFF;
+}
+
+.regional-overview-mobile-link {
+    margin-top: 18px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .regional-overview-link-card,
+    .regional-overview-hero__inner {
+        display: block;
+    }
+    .regional-overview-link-card__actions {
+        min-width: 0;
+        justify-content: flex-start;
+        margin-top: 18px;
+    }
+    .regional-overview__preview {
+        margin-top: 28px;
+    }
+    .regional-overview-grid {
+        grid-template-columns: 1fr;
+    }
+    .regional-overview-embed iframe {
+        min-height: 480px;
+        height: 65vh;
+    }
+}
+
+
+/* =========================================================
+   本番修正: スマホ向け「詳しく見る」折りたたみ
+   ========================================================= */
+.mobile-more-accordion {
+    background: #f7f3ee;
+    padding: 42px 0 56px;
+}
+
+.mobile-more-accordion__container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.mobile-more-accordion__eyebrow {
+    display: inline-block;
+    margin: 0 0 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #0B2447;
+    color: #fff;
+    font-size: .82rem;
+    font-weight: 900;
+}
+
+.mobile-more-accordion h2 {
+    margin: 0 0 8px;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    color: #1f2937;
+    font-weight: 900;
+}
+
+.mobile-more-accordion__lead {
+    margin: 0 0 22px;
+    color: #4b5563;
+    line-height: 1.8;
+}
+
+.mobile-reservation-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 0 0 18px;
+    padding: 18px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #0B2447 0%, #19376D 100%);
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(11,36,71,.22);
+}
+
+.mobile-reservation-card__label {
+    display: block;
+    font-size: .82rem;
+    opacity: .86;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.mobile-reservation-card strong {
+    display: block;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    line-height: 1.15;
+    letter-spacing: .02em;
+}
+
+.mobile-reservation-card small {
+    display: block;
+    margin-top: 6px;
+    line-height: 1.6;
+    opacity: .92;
+}
+
+.mobile-reservation-card a {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: #C1001F;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 900;
+    box-shadow: 0 8px 18px rgba(0,0,0,.2);
+}
+
+.mobile-more-accordion__item {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.05);
+    overflow: hidden;
+}
+
+.mobile-more-accordion__item summary {
+    cursor: pointer;
+    padding: 20px 24px;
+    font-size: 1.08rem;
+    font-weight: 900;
+    color: #1f2937;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.mobile-more-accordion__item summary::-webkit-details-marker {
+    display: none;
+}
+
+.mobile-more-accordion__summary-main {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mobile-more-accordion__icon {
+    width: 34px;
+    height: 34px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 10px;
+    background: #f3f4f6;
+}
+
+.mobile-more-accordion__item summary::after {
+    content: "＋";
+    width: 34px;
+    height: 34px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 1.35rem;
+    line-height: 1;
+    font-weight: 900;
+}
+
+.mobile-more-accordion__item[open] summary::after {
+    content: "−";
+    background: #dbeafe;
+}
+
+.mobile-more-accordion__content {
+    padding: 0 24px 24px;
+    border-top: 1px solid #f1f5f9;
+    color: #374151;
+    line-height: 1.8;
+}
+
+.mobile-more-accordion__moved-section {
+    padding: 24px 0 0 !important;
+    background: transparent !important;
+}
+
+.mobile-more-accordion__moved-section .section__container {
+    padding: 0 !important;
+    max-width: none !important;
+}
+
+.mobile-more-accordion__moved-section .section__title,
+.mobile-more-accordion__moved-section .sidebar-title {
+    display: none;
+}
+
+.mobile-more-accordion__moved-section .contact__wrapper,
+.mobile-more-accordion__moved-section .mobility__card,
+.mobile-more-accordion__moved-section .calendar__wrapper {
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-more-accordion {
+        padding-top: 32px;
+    }
+    .mobile-reservation-card {
+        display: block;
+    }
+    .mobile-reservation-card a {
+        width: 100%;
+        margin-top: 14px;
+    }
+    .mobile-more-accordion__item summary {
+        padding: 18px 16px;
+    }
+    .mobile-more-accordion__content {
+        padding: 0 16px 18px;
+    }
+}
+
+/* =========================================================
+   本番修正: 主要事業配下の旧活動ページ表示崩れ補正
+   対象: activities/community.html, education.html, welfare.html など
+   ========================================================= */
+.quick-access {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 1200;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.quick-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: #0B2447;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 800;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}
+
+.quick-btn.emergency { background: #C1001F; }
+.quick-btn:hover { transform: translateY(-1px); }
+
+.header > .container {
+    max-width: var(--container-width);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.logo a {
+    text-decoration: none;
+    flex: 0 0 auto;
+}
+
+.logo-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: #F7F3EE;
+    font-size: 1.45rem;
+}
+
+.logo-text h1 {
+    margin: 0;
+    font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+    line-height: 1.2;
+    color: #4A3B32;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.logo-text .tagline {
+    margin: 3px 0 0;
+    color: #666;
+    font-size: 0.82rem;
+    line-height: 1.2;
+}
+
+.main-nav .nav-list,
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav a,
+.nav-list a {
+    color: #4A3B32;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.95rem;
+    padding: 8px 0;
+}
+
+.main-nav a:hover,
+.nav-list a:hover {
+    color: #C1001F;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 40px 24px 36px;
+    width: 100%;
+}
+
+.hero-content h2 {
+    margin: 0 0 16px;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    line-height: 1.35;
+    font-weight: 900;
+    color: #fff;
+}
+
+.vision-main {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1rem, 3vw, 1.45rem);
+    line-height: 1.7;
+}
+
+.section-title {
+    margin: 0 0 28px;
+    font-size: clamp(1.6rem, 4.5vw, 2.3rem);
+    line-height: 1.35;
+    color: #333;
+    font-weight: 900;
+}
+
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+}
+
+.activity-card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+.activity-icon {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+}
+
+.activity-card h3 {
+    margin: 0 0 10px;
+    color: #0B2447;
+    font-size: 1.25rem;
+}
+
+.activity-card p {
+    margin: 0;
+    line-height: 1.8;
+    color: #444;
+}
+
+@media (max-width: 768px) {
+    .header {
+        height: auto;
+        min-height: 64px;
+        padding: 10px 0;
+    }
+    .header > .container {
+        display: block;
+    }
+    .logo {
+        justify-content: flex-start;
+    }
+    .logo-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 1.2rem;
+    }
+    .logo-text h1 {
+        white-space: normal;
+        font-size: 1.25rem;
+    }
+    .main-nav .nav-list,
+    .nav-list {
+        margin-top: 10px;
+        gap: 14px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 2px;
+    }
+    .main-nav a,
+    .nav-list a {
+        white-space: nowrap;
+        font-size: 0.9rem;
+    }
+    .quick-access {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        justify-content: center;
+    }
+    .quick-btn {
+        padding: 9px 12px;
+        font-size: 0.82rem;
+    }
+    .hero {
+        min-height: 240px !important;
+    }
+    .activities-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* 2026-05: つるマルシェ・カラオケ大会 詳細ページ */
+.event-detail-page {
+    background: #FFFDF4;
+    min-height: 100vh;
+}
+
+.event-detail-hero {
+    position: relative;
+    min-height: 48vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    color: #fff;
+}
+
+.event-detail-hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.event-detail-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.72));
+}
+
+.event-detail-hero__content {
+    position: relative;
+    z-index: 1;
+    width: min(960px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 80px 0 48px;
+}
+
+.event-detail-hero__label {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: #FFD400;
+    color: #1A1A1B;
+    font-weight: 900;
+    margin: 0 0 14px;
+}
+
+.event-detail-hero h1 {
+    margin: 0 0 12px;
+    font-size: clamp(2.2rem, 7vw, 4rem);
+    line-height: 1.15;
+    font-weight: 900;
+}
+
+.event-detail-hero p:last-child {
+    margin: 0;
+    font-size: clamp(1rem, 3vw, 1.35rem);
+    line-height: 1.8;
+}
+
+.event-detail-body {
+    padding: 40px 16px 72px;
+}
+
+.event-detail-card {
+    max-width: 960px;
+    margin: -70px auto 0;
+    position: relative;
+    z-index: 2;
+    background: #fff;
+    border-radius: 22px;
+    padding: clamp(24px, 5vw, 44px);
+    box-shadow: 0 16px 40px rgba(0,0,0,.16);
+}
+
+.event-detail-card h2 {
+    margin: 0 0 14px;
+    color: #0B2447;
+    font-size: clamp(1.5rem, 4vw, 2.1rem);
+}
+
+.event-detail-card p {
+    line-height: 1.9;
+    color: #444;
+}
+
+.event-detail-schedule {
+    color: #C1001F !important;
+    font-size: 1.15rem;
+    font-weight: 900;
+}
+
+.event-detail-gallery {
+    margin-top: 26px;
+    display: grid;
+    gap: 14px;
+}
+
+.event-detail-gallery--double {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.event-detail-gallery img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.event-detail-actions {
+    margin-top: 26px;
+}
+
+@media (max-width: 768px) {
+    .event-detail-hero {
+        min-height: 42vh;
+    }
+    .event-detail-gallery--double {
+        grid-template-columns: 1fr;
+    }
+    .event-detail-gallery img {
+        height: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    .services__grid--departments .service-card {
+        min-height: 210px;
+        padding-right: 26px;
+    }
+    .service-card__more {
+        width: 78px;
+        height: 78px;
+        min-width: 78px;
+        flex: 0 0 78px;
+        aspect-ratio: 1 / 1;
+        font-size: 0.88rem;
+        align-self: flex-end;
+        margin-top: 18px;
+        margin-right: 8px;
+    }
+}
+
+/* 2026-05-22 activity page cache refresh: v=20260522g */
+
+
+/* 2026-05: 万葉歌屋台 準備中表示 */
+.sidebar-feature__title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.sidebar-feature__title-row .sidebar-feature__title {
+    margin-bottom: 0;
+}
+
+.sidebar-feature__status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(88, 28, 135, 0.10);
+    color: #581c87;
+    border: 1px solid rgba(88, 28, 135, 0.18);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+
+.sidebar-feature__cta--disabled {
+    background: #9CA3AF !important;
+    color: #FFFFFF !important;
+    box-shadow: none !important;
+    cursor: not-allowed;
+    pointer-events: none;
+}

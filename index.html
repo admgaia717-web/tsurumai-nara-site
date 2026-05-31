@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
+    <title>つるまい自治協議会</title>
+    <meta name="description" content="奈良市つるまい自治協議会の公式サイトです。地域活動、防災、福祉など、地域の絆を深める活動を行っています。">
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+    <link rel="apple-touch-icon" href="images/favicon.jpg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css?v=20260522j">
+    
+    <!-- PapaParse for CSV parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EYG3C4Y8XL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EYG3C4Y8XL');
+</script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header__container">
+            <h1 class="header__logo">
+                <a href="index.html">
+                    <span class="header__logo-text">つるまい自治協議会</span>
+                </a>
+            </h1>
+
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li class="header__nav-item"><a href="about.html">自治協議会について</a></li>
+                    <li class="header__nav-item"><a href="departments.html">部会の目的</a></li>
+                    <li class="header__nav-item"><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Tallinn-Style Nara Weather Widget — Full Width -->
+    <div class="nara-weather" id="naraWeather">
+        <div class="nara-weather__left">
+            <span class="nara-weather__city">奈良市</span>
+            <span class="nara-weather__label">Nara, Japan</span>
+        </div>
+        <div class="nara-weather__center">
+            <span class="nara-weather__icon" id="weatherIcon">⛅</span>
+            <span class="nara-weather__temp" id="weatherTemp">--</span>
+            <span class="nara-weather__unit">°C</span>
+        </div>
+        <div class="nara-weather__right">
+            <span class="nara-weather__desc" id="weatherDesc">読み込み中...</span>
+            <span class="nara-weather__humidity" id="weatherHumidity"></span>
+        </div>
+    </div>
+
+    <!-- PC Layout Wrapper -->
+    <div class="pc-layout-wrapper">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="pc-layout-left">
+            <!-- News Section -->
+            <section class="side-news">
+                <h2 class="sidebar-title"><i class="fa-solid fa-bullhorn"></i> 新着情報</h2>
+                <div class="side-news__content">
+                    <ul class="side-news__list">
+                        <li>
+                            <span class="side-news__date">2026/05/31</span>
+                            <a href="kairan-summary.html#kairan-2026-05-yamato-safety-corrected">「やまとの安全 訂正版」掲載</a>
+                        </li>
+                        <li>
+                            <span class="side-news__date">2026/05/31</span>
+                            <a href="kairan-summary.html#kairan-2026-05-gold-fraud-alert">「金塊詐欺に注意」掲載</a>
+                        </li>
+                        <li>
+                            <span class="side-news__date">2026/05/31</span>
+                            <a href="kairan-summary.html#kairan-2026-06-21-tsumugi-festa">「つむぎフェスタ」掲載</a>
+                        </li>
+                        <li>
+                            <span class="side-news__date">2026/05/31</span>
+                            <a href="kairan-summary.html#kairan-2026-06-mobile-sales">「移動販売 6月」掲載</a>
+                        </li>
+                        <li>
+                            <span class="side-news__date">2026/05/31</span>
+                            <a href="kairan-summary.html#kairan-2026-05-traffic-safety-award">「交通安全功労者の推薦」掲載</a>
+                        </li>
+                        <li>
+                            <span class="side-news__date">2026/05/31</span>
+                            <a href="kairan-summary.html#kairan-2026-05-traffic-safety-instructor">「交通安全指導員の推薦」掲載</a>
+                        </li>
+                        <li>
+                            <span class="side-news__date">2026/05/31</span>
+                            <a href="kairan-summary.html#kairan-2026-06-health-exercise-smile">「健康体操のお知らせ」掲載</a>
+                        </li>
+                        <li>
+                            <span class="side-news__date">2026/05/31</span>
+                            <a href="kairan-summary.html#kairan-2026-06-shakyo-activities">「鶴舞社協活動 6月」掲載</a>
+                        </li>
+                        <li>
+                            <span class="side-news__date">2026/05/31</span>
+                            <a href="kairan-summary.html#kairan-2026-05-late-construction">「学園前北地区開発プロジェクトB工区」掲載</a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Tsurumai Club Section — Helsinki City Style (hel.fi) -->
+            <div style="margin-top: 24px;"></div>
+            <section class="helsinki-club">
+                <div class="helsinki-club__header">
+                    <h2 class="helsinki-club__title helsinki-club__title--neon">鶴舞クラブ</h2>
+                </div>
+                <div class="helsinki-club__grid">
+                    <a href="#" class="helsinki-club__card" onclick="alert('準備中です');return false;">
+                        <div class="helsinki-club__icon-box helsinki-club__icon-box--amber">
+                            <img src="images/icon-shogi.png" alt="将棋" class="helsinki-club__icon-img">
+                        </div>
+                        <div class="helsinki-club__card-body">
+                            <h3>囲碁将棋部</h3>
+                            <p>市議会議員による<br>丁寧な指導</p>
+                        </div>
+                    </a>
+                    <a href="#" class="helsinki-club__card" onclick="alert('準備中です');return false;">
+                        <div class="helsinki-club__icon-box helsinki-club__icon-box--teal">
+                            <img src="images/icon-laptop.png" alt="パソコン" class="helsinki-club__icon-img">
+                        </div>
+                        <div class="helsinki-club__card-body">
+                            <h3>鶴舞人工知能倶楽部</h3>
+                            <p><span style="letter-spacing: -0.05em;">ベテランエンジニアによる</span><br>最新AI技術熱血指導</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Takenoko Experience Section (Compact with Photo BG) -->
+            <div style="margin-top: 24px;"></div>
+            <a href="activities/takenoko.html" class="tk-card-compact">
+                <img src="images/takenoko-memory-1.jpg" alt="竹林の会場" class="tk-card-compact__bg">
+                <div class="tk-card-compact__overlay"></div>
+                <div class="tk-card-compact__content">
+                    <h2 class="tk-card-compact__title">タケノコ堀り体験</h2>
+                    <span class="tk-card-compact__link">詳細を見る</span>
+                </div>
+            </a>
+
+            <!-- Tsumugi Festa Section (Compact with Photo BG) -->
+            <div style="margin-top: 16px;"></div>
+            <a href="marche.html" class="tk-card-compact">
+                <img src="images/tsumugi-marche-v2.jpg" alt="つむぎフェスタ" class="tk-card-compact__bg">
+                <div class="tk-card-compact__overlay"></div>
+                <div class="tk-card-compact__content">
+                    <h2 class="tk-card-compact__title">つむぎフェスタ</h2>
+                    <span class="tk-card-compact__link">詳細を見る</span>
+                </div>
+            </a>
+
+            <!-- Tsuru Marche / Karaoke Compact Cards -->
+            <div id="community-events" style="margin-top: 16px;"></div>
+            <a href="events/tsuru-marche.html" class="tk-card-compact">
+                <img src="images/events/tsuru-marche-2026-05-1.jpg" alt="つるマルシェの様子" class="tk-card-compact__bg">
+                <div class="tk-card-compact__overlay"></div>
+                <div class="tk-card-compact__content">
+                    <h2 class="tk-card-compact__title">つるマルシェ</h2>
+                    <span class="tk-card-compact__link">詳細を見る</span>
+                </div>
+            </a>
+
+            <div style="margin-top: 16px;"></div>
+            <a href="events/karaoke.html" class="tk-card-compact">
+                <img src="images/events/karaoke-taikai-2026-05.jpg" alt="カラオケ大会の様子" class="tk-card-compact__bg">
+                <div class="tk-card-compact__overlay"></div>
+                <div class="tk-card-compact__content">
+                    <h2 class="tk-card-compact__title">カラオケ大会</h2>
+                    <span class="tk-card-compact__link">詳細を見る</span>
+                </div>
+            </a>
+
+            <div style="margin-top: 24px;"></div>
+
+            <!-- Manyou Uta Yatai Section -->
+            <div style="margin-top: 24px;"></div>
+            <section class="sidebar-feature sidebar-feature--yatai">
+                <div class="sidebar-feature__visual">
+                    <div class="sidebar-feature__icon-wrap sidebar-feature__icon-wrap--ai">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <span class="sidebar-feature__season-tag sidebar-feature__season-tag--ai">AI体験</span>
+                </div>
+                <div class="sidebar-feature__body">
+                    <div class="sidebar-feature__title-row">
+                        <h2 class="sidebar-feature__title">万葉歌屋台</h2>
+                        <span class="sidebar-feature__status">準備中</span>
+                    </div>
+                    <p class="sidebar-feature__desc">AIが紡ぐあなただけの歌。<br>現在は公開準備中です。</p>
+                    <span class="sidebar-feature__cta sidebar-feature__cta--ai sidebar-feature__cta--disabled" aria-disabled="true">
+                        準備中
+                    </span>
+                </div>
+            </section>
+        </aside>
+
+        <!-- =======================
+             CENTER COLUMN
+             ======================= -->
+        <main class="pc-layout-center">
+
+            <!-- Hero — Berlin City Style -->
+            <section class="hero">
+                <!-- Color cycling background (separate element to avoid stacking context issues) -->
+                <div class="hero__color-bg"></div>
+                <!-- Diagonal hatch pattern (bottom-left decorative element, like berlin.de) -->
+                <div class="hero__bg-hatch"></div>
+                <div class="hero__content">
+                    <!-- Berlin Bear silhouette (white on blue — like berlin.de header) -->
+                    <span class="hero__bear" aria-hidden="true">
+                        <svg width="60" height="60" viewBox="0 0 64 64" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Left Ear (Solid) -->
+                            <circle cx="18" cy="22" r="6" />
+                            <!-- Right Ear (Solid) -->
+                            <circle cx="46" cy="22" r="6" />
+                            <!-- Main face with wide cheeks -->
+                            <rect x="10" y="26" width="44" height="22" rx="10" />
+                            <!-- Upper head base -->
+                            <rect x="18" y="22" width="28" height="20" rx="2" />
+                            <!-- Left Leg -->
+                            <rect x="18" y="44" width="10" height="16" rx="2" />
+                            <!-- Right Leg -->
+                            <rect x="36" y="44" width="10" height="16" rx="2" />
+                        </svg>
+                    </span>
+                    <h2 class="hero__title">
+                        Tsurumai, on Connection
+                    </h2>
+                    <p class="hero__subtitle">安心して住み続けられる、笑顔あふれる街へ</p>
+                    <div class="hero__kairan-feature">
+                        <a href="kairan-summary.html" class="hero__kairan-link" aria-label="回覧板要約ページを見る">
+                            <span class="hero__kairan-icon"><i class="fa-solid fa-clipboard-list"></i></span>
+                            <span class="hero__kairan-copy">
+                                <strong>回覧板要約</strong>
+                                <small>回覧資料を見やすく整理。PDF・画像・要点をまとめて確認できます。</small>
+                            </span>
+                            <span class="hero__kairan-cta">見る <i class="fa-solid fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- Main Services Section -->
+            <section id="services" class="section services">
+                <div class="section__container">
+                    <h2 class="section__title">主要事業</h2>
+                    <div class="services__grid services__grid--departments">
+                        <a href="activities/community.html" class="service-card service-card--community">
+                            <i class="fa-solid fa-people-group"></i>
+                            <div>
+                                <h3>地域活動</h3>
+                                <p>鶴舞フェスタ、つむぎフェスタ、住民交流、活動概要PDFなど</p>
+                            </div>
+                            <span class="service-card__more"><span>活動<br>内容</span></span>
+                        </a>
+                        <a href="activities/safety.html" class="service-card service-card--safety">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <div>
+                                <h3>防災防犯</h3>
+                                <p>防災訓練、避難訓練、防災倉庫、やまとの安全など</p>
+                            </div>
+                            <span class="service-card__more"><span>活動<br>内容</span></span>
+                        </a>
+                        <a href="activities/education.html" class="service-card service-card--culture">
+                            <i class="fa-solid fa-school"></i>
+                            <div>
+                                <h3>文化教育</h3>
+                                <p>小中学校・こども園・PTAとの連携、学びの活動など</p>
+                            </div>
+                            <span class="service-card__more"><span>活動<br>内容</span></span>
+                        </a>
+                        <a href="activities/welfare.html" class="service-card service-card--welfare">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                            <div>
+                                <h3>福祉</h3>
+                                <p>移動支援、健康体操、サロン、地域イベントなど</p>
+                            </div>
+                            <span class="service-card__more"><span>活動<br>内容</span></span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+                        <!-- Photo Gallery Section -->
+            <section id="gallery" class="section gallery">
+                <div class="section__container">
+                    <h2 class="section__title">活動の様子</h2>
+                    <div class="slideshow">
+                        <div class="slideshow__container" id="slideshowContainer">
+                            <div class="slideshow__slide is-active">
+                                <img src="images/bousaikunren.jpg" alt="防災訓練の様子">
+                                <div class="slideshow__caption">防災訓練</div>
+                            </div>
+                            <div class="slideshow__slide">
+                                <img src="images/takenoko-memory-8.jpg" alt="タケノコ堀り体験 竹林の会場">
+                                <div class="slideshow__caption">タケノコ堀り体験</div>
+                            </div>
+                            <div class="slideshow__slide">
+                                <img src="images/tsumugi-marche2.jpg" alt="つむぎフェスタ開催風景2">
+                                <div class="slideshow__caption">つむぎフェスタ開催風景</div>
+                            </div>
+                            <div class="slideshow__slide">
+                                <img src="images/events/tsuru-marche-2026-05-1.jpg" alt="つるマルシェの様子">
+                                <div class="slideshow__caption">つるマルシェ</div>
+                            </div>
+                            <div class="slideshow__slide">
+                                <img src="images/events/karaoke-taikai-2026-05.jpg" alt="カラオケ大会の様子">
+                                <div class="slideshow__caption">カラオケ大会</div>
+                            </div>
+                        </div>
+                        <div class="slideshow__nav">
+                            <button class="slideshow__dot is-active"></button>
+                            <button class="slideshow__dot"></button>
+                            <button class="slideshow__dot"></button>
+                            <button class="slideshow__dot"></button>
+                            <button class="slideshow__dot"></button>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </main>
+
+        <!-- =======================
+             RIGHT COLUMN
+             ======================= -->
+        <aside class="pc-layout-right">
+
+            <!-- Monthly Calendar Section -->
+            <section id="calendar" class="section calendar">
+                <div class="section__container">
+                    <h2 class="sidebar-title">今月の行事予定</h2>
+                    <div class="calendar__wrapper">
+                        <div class="calendar__main">
+                            <div class="calendar__header">
+                                <button class="calendar__nav-btn" id="prevMonth"><i
+                                        class="fa-solid fa-chevron-left"></i></button>
+                                <h3 class="calendar__month-title" id="calendarTitle">2026年1月</h3>
+                                <button class="calendar__nav-btn" id="nextMonth"><i
+                                        class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                            <div class="calendar__weekdays">
+                                <div class="calendar__weekday">日</div>
+                                <div class="calendar__weekday">月</div>
+                                <div class="calendar__weekday">火</div>
+                                <div class="calendar__weekday">水</div>
+                                <div class="calendar__weekday">木</div>
+                                <div class="calendar__weekday">金</div>
+                                <div class="calendar__weekday">土</div>
+                            </div>
+                            <div class="calendar__grid" id="calendarGrid">
+                                <!-- 日付セルを動的生成 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Event Modal -->
+            <div class="event-modal" id="eventModal">
+                <div class="event-modal__content">
+                    <button class="event-modal__close" id="eventModalClose"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="event-modal__date" id="eventModalDate"></h3>
+                    <ul class="event-modal__list" id="eventModalList"></ul>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section contact">
+                <div class="section__container">
+                    <h2 class="section__title">お問い合わせ</h2>
+                    <div class="contact__wrapper">
+                        <div class="contact__info">
+                            <p class="contact__message">お気軽に<br><span style="white-space: nowrap;">ご連絡ください <i class="fa-regular fa-face-smile"></i></span></p>
+                            <p class="contact__label">事務局</p>
+                            <a href="tel:08014260881" class="contact__tel">
+                                <i class="fa-solid fa-phone contact__tel-icon"></i>
+                                <span class="contact__tel-number">080-1426-0881</span>
+                            </a>
+                        </div>
+                        <div id="contact-success-message" class="contact__success" style="display: none;">
+                            <i class="fa-regular fa-circle-check"></i>
+                            <p>お問い合わせありがとうございます。<br>内容を確認し、担当者より折り返しご連絡いたします。</p>
+                        </div>
+                        <form class="contact__form" id="contact-form" action="mailto:w394084@gmail.com" method="post">
+                            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
+                            <div class="form__group">
+                                <label for="name" class="form__label">名前</label>
+                                <input type="text" id="name" name="name" class="form__input" required>
+                            </div>
+                            <div class="form__group">
+                                <label for="email" class="form__label">メールアドレス</label>
+                                <input type="email" id="email" name="email" class="form__input" required>
+                            </div>
+                            <div class="form__group">
+                                <label for="message" class="form__label">コメント</label>
+                                <textarea id="message" name="message" class="form__textarea" required></textarea>
+                            </div>
+                            <button type="submit" class="form__button">送信する</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+        </aside>
+
+    </div> <!-- /pc-layout-wrapper -->
+
+    <!-- =======================
+         BOTTOM SECTIONS (FULL WIDTH)
+         ======================= -->
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="section__container">
+            <h2 class="section__title">自治協議会について</h2>
+            <div class="about__grid">
+
+                <!-- Blue Block -->
+                <div class="about__card about__card--blue">
+                    <div class="about__card-header">
+                        <h3 class="about__card-title">第一ブロック</h3>
+                    </div>
+                    <div class="about__card-body">
+                        <ul class="about__list">
+                            <li>学園朝日町第一自治会</li>
+                            <li>学園朝日町第二目自治会</li>
+                            <li>学園朝日町第三自治会</li>
+                            <li>学園朝日町第四自治会</li>
+                            <li>学園朝日町第五自治会</li>
+                            <li>学園朝日元町一丁目第一自治会</li>
+                            <li>登美ヶ丘中学校区少年指導協議会</li>
+                            <li>鶴舞地区民生委員児童委員協議会</li>
+                            <li>アイフォーミュラ（グループホーム）</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Yellow Block -->
+                <div class="about__card about__card--yellow">
+                    <div class="about__card-header">
+                        <h3 class="about__card-title">第二ブロック</h3>
+                    </div>
+                    <div class="about__card-body">
+                        <ul class="about__list">
+                            <li>学園朝日元町二丁目自治会</li>
+                            <li>学園朝日元町二丁目北自治会</li>
+                            <li>エクセルハイツ学園朝日町管理組合</li>
+                            <li>鶴舞東町二番自治会</li>
+                            <li>ルネプラネシーンあやめ池自治会</li>
+                            <li>あやめ自治会</li>
+                            <li>鶴舞地区自主防災・防犯協議会</li>
+                            <li>消防団</li>
+                            <li>地域安全推進委員</li>
+                            <li>交通安全指導員</li>
+                            <li>女性防災クラブ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Red Block -->
+                <div class="about__card about__card--red">
+                    <div class="about__card-header">
+                        <h3 class="about__card-title">第三ブロック</h3>
+                    </div>
+                    <div class="about__card-body">
+                        <ul class="about__list">
+                            <li>学園北二丁目自治会</li>
+                            <li>プレジデント学園前自治会</li>
+                            <li>グラディーナ学園前自治会</li>
+                            <li>学園前団地自治会</li>
+                            <li>鶴舞小学校</li>
+                            <li>鶴舞やまとこども園</li>
+                            <li>鶴舞小学校運営協議会</li>
+                            <li>同運営委員会</li>
+                            <li>鶴舞小学校 PTA</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Green Block -->
+                <div class="about__card about__card--green">
+                    <div class="about__card-header">
+                        <h3 class="about__card-title">第四ブロック</h3>
+                    </div>
+                    <div class="about__card-body">
+                        <ul class="about__list">
+                            <li>奈良学園前・鶴舞団地自治会</li>
+                            <li>グランドビュー学園前自治会</li>
+                            <li>学園朝日元町一丁目第二自治会</li>
+                            <li>奈良市二名包括支援センター</li>
+                            <li>西奈良中央病院ケアプランセンター</li>
+                            <li>すいれん薬局</li>
+                            <li>訪問看護センターさわやか</li>
+                            <li>ケアセンターそれいゆ学園前</li>
+                            <li>鶴舞地区社会福祉協議会</li>
+                            <li>奈良市社会福祉協議会</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments Section -->
+    <section id="departments" class="section departments">
+        <div class="section__container">
+            <h2 class="section__title">部会の目的</h2>
+            <div class="departments__grid">
+
+                <div class="department__card">
+                    <h3 class="department__title">地域活動部会</h3>
+                    <p class="department__text">
+                        地域社会における様々な活動を企画、推進するための組織です。地域のコミュニティの活性化、地域住民の結束強化、地域の発展促進などを推進します。
+                    </p>
+                </div>
+
+                <div class="department__card">
+                    <h3 class="department__title">防災・防犯部会</h3>
+                    <p class="department__text">
+                        地域社会における災害や犯罪の予防・対策を担う組織です。地域住民の安全と安心を確保することを目的とし地域住民との連携や協力体制の構築を重視しながら、災害や犯罪に対する備えを進める。
+                    </p>
+                </div>
+
+                <div class="department__card">
+                    <h3 class="department__title">文化教育部会</h3>
+                    <p class="department__text">
+                        地域社会における文化や教育の推進や支援を担う組織です。地域社会全体の教育レベルの向上や地域住民の学びの機会の拡充を図り、地域の発展と社会的な活性化を支援します。
+                    </p>
+                </div>
+
+                <div class="department__card">
+                    <h3 class="department__title">福祉部会</h3>
+                    <p class="department__text">
+                        地域社会における福祉の推進や支援を担う組織です。地域住民が健やかで豊かな生活を送れるための機関であり、地域福祉の推進の企画、推進、実践、地域住民の参加促進、地域福祉関連の情報提供などを通し地域の持続可能な発展を支援します。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobility Support Section -->
+    <section id="mobility" class="section mobility">
+        <div class="section__container">
+            <div class="mobility__card">
+                <h2 class="section__title mobility__title">移動支援サービス</h2>
+                <p class="mobility__intro">
+                    鶴舞地区のアンケートを基に実現！多くの皆さんから切実な要望をいただきました。<br>
+                    利用者の方々から『続けてほしい』との希望が多く寄せられたことから、継続を決定しました。
+                </p>
+
+                <div class="mobility__details-grid">
+                    <div class="mobility__item">
+                        <span class="mobility__label"><i class="fa-solid fa-yen-sign"></i> 利用料金</span>
+                        <span class="mobility__value">1回100円</span>
+                    </div>
+                    <div class="mobility__item">
+                        <span class="mobility__label"><i class="fa-solid fa-phone"></i> 予約電話番号</span>
+                        <span class="mobility__value"><a href="tel:07085266330"
+                                class="mobility__tel">070-8526-6330</a></span>
+                    </div>
+                    <div class="mobility__item">
+                        <span class="mobility__label"><i class="fa-solid fa-calendar-days"></i> 運行日</span>
+                        <span class="mobility__value">月・水・金</span>
+                    </div>
+                    <div class="mobility__item">
+                        <span class="mobility__label"><i class="fa-solid fa-clock"></i> 運行時間</span>
+                        <span class="mobility__value">9:00〜12:00 / 13:00〜16:00</span>
+                    </div>
+                </div>
+                <p class="mobility__note">備考： 移動範囲は鶴舞地区内に限ります。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Gateway Section -->
+    <section id="dashboard" class="section dashboard">
+        <div class="section__container">
+            <h2 class="section__title"><i class="fa-solid fa-car"></i> モビリティサポート<br class="sp-only"> ダッシュボード
+            </h2>
+            <p class="dashboard__intro">
+                「学園前エリア 移動支援実証実験」の成果をリアルタイムで公開しています。<br>
+                鶴舞地区のアンケートを基に実現した移動支援の歩みを、データでご確認いただけます。
+            </p>
+            <p class="dashboard__period" id="dashboard-period">
+                <i class="fa-regular fa-clock"></i> <span id="period-text">データ読み込み中...</span>
+            </p>
+            <div class="dashboard__grid">
+                <div class="dashboard__card">
+                    <div class="dashboard__icon"><i class="fa-solid fa-chart-simple"></i></div>
+                    <div class="dashboard__label">総件数</div>
+                    <div class="dashboard__value"><span id="kpi-total">--</span><span class="dashboard__unit">件</span>
+                    </div>
+                </div>
+                <div class="dashboard__card">
+                    <div class="dashboard__icon"><i class="fa-solid fa-calendar-days"></i></div>
+                    <div class="dashboard__label">稼働日数</div>
+                    <div class="dashboard__value"><span id="kpi-days">--</span><span class="dashboard__unit">日</span>
+                    </div>
+                </div>
+                <div class="dashboard__card">
+                    <div class="dashboard__icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                    <div class="dashboard__label">月平均件数</div>
+                    <div class="dashboard__value"><span id="kpi-avg">--</span><span class="dashboard__unit">件</span>
+                    </div>
+                </div>
+                <div class="dashboard__card">
+                    <div class="dashboard__icon"><i class="fa-solid fa-fire"></i></div>
+                    <div class="dashboard__label">直近30日件数</div>
+                    <div class="dashboard__value"><span id="kpi-recent">--</span><span class="dashboard__unit">件</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard__action" style="display:flex; justify-content:center;">
+                <a href="md5.html" class="btn btn--dashboard" target="_blank">
+                    詳細な稼働状況を確認する <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__main">
+                <div class="footer__brand">
+                    <div class="footer__social">
+                        <a href="https://lin.ee/fLx83V8" class="footer__social-link footer__social-link--line"
+                            target="_blank" rel="noopener noreferrer" aria-label="LINE">
+                            <i class="fa-brands fa-line"></i>
+                        </a>
+                        <a href="https://www.instagram.com/tsurumai_sugoi/"
+                            class="footer__social-link footer__social-link--instagram" target="_blank"
+                            rel="noopener noreferrer" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer__info">
+                    <div class="footer__info-card">
+                        <div class="footer__info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="footer__info-content">
+                            <h4 class="footer__info-title">所在地</h4>
+                            <p>〒631-0015<br>奈良市学園朝日元町<br>1-506</p>
+                        </div>
+                    </div>
+                    <div class="footer__info-card">
+                        <div class="footer__info-icon"><i class="fa-solid fa-clock"></i></div>
+                        <div class="footer__info-content">
+                            <h4 class="footer__info-title">事務局受付時間</h4>
+                            <p>月・水・金<br>9:00～12:00 /<br>13:00～16:00</p>
+                        </div>
+                    </div>
+                    <div class="footer__info-card">
+                        <div class="footer__info-icon"><i class="fa-solid fa-train"></i></div>
+                        <div class="footer__info-content">
+                            <h4 class="footer__info-title">アクセス</h4>
+                            <p>近鉄奈良線 学園前駅<br>北口より徒歩15分</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">&copy; 2025 Tsurumai Community Association. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script>
+        // Dashboard Data Fetching from Google Spreadsheet
+        (function () {
+            const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1kjvKUqOoaxvOcfRFRTC-5X2MKvsvYBsnjk0a6yre0e4/export?format=csv';
+
+            async function fetchDashboardData() {
+                try {
+                    const response = await fetch(SPREADSHEET_URL);
+                    const csvText = await response.text();
+
+                    Papa.parse(csvText, {
+                        header: true,
+                        skipEmptyLines: true,
+                        complete: function (results) {
+                            const data = results.data;
+                            updateDashboard(data);
+                        },
+                        error: function (error) {
+                            console.error('CSV Parse Error:', error);
+                        }
+                    });
+                } catch (error) {
+                    console.error('Fetch Error:', error);
+                }
+            }
+
+            function parseDate(dateStr) {
+                if (!dateStr) return null;
+                // Handle YYYY/MM/DD or YYYY/M/D format (with optional time)
+                const parts = dateStr.split('/');
+                if (parts.length >= 3) {
+                    const dayPart = parts[2].split(' ')[0]; // remove time if present
+                    return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(dayPart));
+                }
+                // Fallback: try native parsing
+                const d = new Date(dateStr);
+                return isNaN(d.getTime()) ? null : d;
+            }
+
+            function updateDashboard(data) {
+                // Filter valid data (start date: March 1, 2025)
+                const startDate = new Date(2025, 2, 1); // Month is 0-indexed (2 = March)
+                const validData = data.filter(row => {
+                    const dateStr = row['予約日時'] || '';
+                    if (!dateStr || dateStr.trim() === '') return false;
+                    const parsedDate = parseDate(dateStr);
+                    return parsedDate !== null && parsedDate >= startDate;
+                });
+
+                // Total count
+                const totalCount = validData.length;
+                document.getElementById('kpi-total').textContent = totalCount;
+
+                // Get unique operating days
+                const uniqueDays = new Set();
+                validData.forEach(row => {
+                    const dateStr = row['予約日時'] || '';
+                    if (dateStr) {
+                        const dateOnly = dateStr.split(' ')[0];
+                        uniqueDays.add(dateOnly);
+                    }
+                });
+                document.getElementById('kpi-days').textContent = uniqueDays.size;
+
+                // Calculate months for average
+                const dates = validData.map(row => {
+                    return parseDate(row['予約日時'] || '');
+                }).filter(d => d !== null);
+
+                if (dates.length > 0) {
+                    const minDate = new Date(Math.min(...dates));
+                    const today = new Date();
+                    const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                    const months = Math.max(1, (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth()) + 1);
+                    const monthlyAvg = (totalCount / months).toFixed(1);
+                    document.getElementById('kpi-avg').textContent = monthlyAvg;
+
+                    // Update period text: 終端は閲覧日の今日にする
+                    const periodText = `集計期間：${startDate.getFullYear()}年${startDate.getMonth() + 1}月〜${endDate.getFullYear()}年${endDate.getMonth() + 1}月${endDate.getDate()}日`;
+                    document.getElementById('period-text').textContent = periodText;
+                }
+
+                // Recent 30 days count
+                const now = new Date();
+                const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+                const recentCount = validData.filter(row => {
+                    const date = parseDate(row['予約日時'] || '');
+                    return date && date >= thirtyDaysAgo && date <= now;
+                }).length;
+                document.getElementById('kpi-recent').textContent = recentCount;
+            }
+
+            // Fetch data on page load
+            fetchDashboardData();
+        })();
+    </script>
+    <script src="js/calendar.js?v=20260531c"></script>
+    <!-- Nara Weather Widget Script (Open-Meteo API — no key required) -->
+    <script>
+        (function () {
+            // Nara City coordinates
+            const LAT = 34.685, LON = 135.805;
+            const URL = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=temperature_2m,relative_humidity_2m,weather_code&timezone=Asia%2FTokyo`;
+
+            const WMO = {
+                0: ['☀️', '快晴'],
+                1: ['🌤', 'ほぼ晴れ'],
+                2: ['⛅', '一部曇り'],
+                3: ['☁️', '曇り'],
+                45: ['🌫', '霧'],
+                48: ['🌫', '着氷霧'],
+                51: ['🌦', '霧雨（弱）'],
+                53: ['🌦', '霧雨（中）'],
+                55: ['🌧', '霧雨（強）'],
+                61: ['🌧', '小雨'],
+                63: ['🌧', '雨'],
+                65: ['🌧', '大雨'],
+                71: ['🌨', '小雪'],
+                73: ['❄️', '雪'],
+                75: ['❄️', '大雪'],
+                80: ['🌦', 'にわか雨'],
+                81: ['🌧', 'にわか雨（中）'],
+                82: ['⛈', '激しいにわか雨'],
+                95: ['⛈', '雷雨'],
+                99: ['⛈', '雹を伴う雷雨'],
+            };
+
+            fetch(URL)
+                .then(r => r.json())
+                .then(data => {
+                    const c = data.current;
+                    const temp = Math.round(c.temperature_2m);
+                    const humidity = c.relative_humidity_2m;
+                    const code = c.weather_code;
+                    const [icon, desc] = WMO[code] || WMO[Math.floor(code / 10) * 10] || ['🌡', '現在気象'];
+
+                    document.getElementById('weatherTemp').textContent = temp;
+                    document.getElementById('weatherIcon').textContent = icon;
+                    document.getElementById('weatherDesc').textContent = desc;
+                    document.getElementById('weatherHumidity').textContent = `湿度 ${humidity}%`;
+                })
+                .catch(() => {
+                    document.getElementById('weatherDesc').textContent = '気象情報取得失敗';
+                });
+        })();
+    </script>
+
+    <!-- Takenoko Flyer Lightbox Modal -->
+    <div class="event-modal" id="takenokoModal" onclick="if(event.target===this)this.classList.remove('is-active')">
+        <div class="event-modal__content" style="max-width:560px;padding:0;background:transparent;box-shadow:none;">
+            <button class="event-modal__close" onclick="document.getElementById('takenokoModal').classList.remove('is-active')"><i class="fa-solid fa-xmark"></i></button>
+            <img src="images/takenoko-flyer-v3.jpg" alt="親子タケノコ掘り体験チラシ" style="width:100%;display:block;border-radius:4px;box-shadow:0 12px 40px rgba(0,0,0,0.5);">
+        </div>
+    </div>
+
+    <!-- 自転車交通反則通告制度＆反則金一覧 Modal (Swipeable) -->
+    <div class="event-modal" id="jitenshaComboModal" onclick="if(event.target===this)this.classList.remove('is-active')">
+        <div class="event-modal__content" style="max-width:560px;padding:0;background:transparent;box-shadow:none;">
+            <button class="event-modal__close" onclick="document.getElementById('jitenshaComboModal').classList.remove('is-active')" style="z-index: 10;"><i class="fa-solid fa-xmark"></i></button>
+            <div style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 16px;">
+                <img src="images/jitensha-seido.jpg" alt="自転車交通反則通告制度" style="width:100%; display:block; flex: 0 0 100%; scroll-snap-align: start; border-radius:4px; box-shadow:0 12px 40px rgba(0,0,0,0.5);">
+                <img src="images/jitensha-hansoku.jpg" alt="自転車の交通違反 反則金一覧" style="width:100%; display:block; flex: 0 0 100%; scroll-snap-align: start; border-radius:4px; box-shadow:0 12px 40px rgba(0,0,0,0.5);">
+            </div>
+            <div style="position: absolute; bottom: -30px; left: 0; width: 100%; text-align: center; color: white; font-size: 0.9em; pointer-events: none;">
+                <i class="fa-solid fa-angles-left"></i> スワイプして2枚目を見る <i class="fa-solid fa-angles-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 鶴舞橋耐震補強工事 Modal -->
+    <div class="event-modal" id="koujiModal" onclick="if(event.target===this)this.classList.remove('is-active')">
+        <div class="event-modal__content" style="max-width:560px;padding:0;background:transparent;box-shadow:none;">
+            <button class="event-modal__close" onclick="document.getElementById('koujiModal').classList.remove('is-active')"><i class="fa-solid fa-xmark"></i></button>
+            <img src="images/tsurumai-bridge-kouji.png" alt="鶴舞橋耐震補強工事のお知らせ" style="width:100%;display:block;border-radius:4px;box-shadow:0 12px 40px rgba(0,0,0,0.5);">
+        </div>
+    </div>
+
+    <!-- 健康体操 Modal -->
+    <div class="event-modal" id="taisouModal" onclick="if(event.target===this)this.classList.remove('is-active')">
+        <div class="event-modal__content" style="max-width:560px;padding:0;background:transparent;box-shadow:none;">
+            <button class="event-modal__close" onclick="document.getElementById('taisouModal').classList.remove('is-active')"><i class="fa-solid fa-xmark"></i></button>
+            <img src="images/kenkou-taisou.jpg" alt="健康体操のお知らせ" style="width:100%;display:block;border-radius:4px;box-shadow:0 12px 40px rgba(0,0,0,0.5);">
+        </div>
+    </div>
+
+    <!-- 移動販売 Modal -->
+    <div class="event-modal" id="hanbaiModal" onclick="if(event.target===this)this.classList.remove('is-active')">
+        <div class="event-modal__content" style="max-width:560px;padding:0;background:transparent;box-shadow:none;">
+            <button class="event-modal__close" onclick="document.getElementById('hanbaiModal').classList.remove('is-active')"><i class="fa-solid fa-xmark"></i></button>
+            <img src="images/idou-hanbai-april.png" alt="移動販売スケジュール（4月）" style="width:100%;display:block;border-radius:4px;box-shadow:0 12px 40px rgba(0,0,0,0.5);">
+        </div>
+    </div>
+
+
+
+
+<script>
+(function () {
+  function makeDetails(title, icon, section) {
+    const details = document.createElement('details');
+    details.className = 'mobile-more-accordion__item';
+    const summary = document.createElement('summary');
+    summary.innerHTML = '<span class="mobile-more-accordion__summary-main"><span class="mobile-more-accordion__icon">' + icon + '</span>' + title + '</span>';
+    const content = document.createElement('div');
+    content.className = 'mobile-more-accordion__content';
+    details.appendChild(summary);
+    details.appendChild(content);
+    section.classList.add('mobile-more-accordion__moved-section');
+    content.appendChild(section);
+    return details;
+  }
+
+  function initMobileAccordions() {
+    if (document.querySelector('.mobile-more-accordion')) return;
+
+    const wrapper = document.createElement('section');
+    wrapper.className = 'mobile-more-accordion';
+    wrapper.id = 'more-info';
+    wrapper.innerHTML = '<div class="mobile-more-accordion__container"></div>';
+    const container = wrapper.querySelector('.mobile-more-accordion__container');
+
+    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+    const targets = [
+      ['#about', '自治協議会について', '🏘️'],
+      ['#departments', '部会の目的', '🤝'],
+      ['#mobility', '移動支援サービスの詳細', '🚗'],
+      ...(isDesktop ? [] : [['#calendar', '今月の行事予定', '📅']]),
+      ['#contact', 'お問い合わせフォーム', '✉️']
+    ];
+
+    targets.forEach(([selector, title, icon]) => {
+      const section = document.querySelector(selector);
+      if (!section) return;
+      container.appendChild(makeDetails(title, icon, section));
+    });
+
+    const anchor = document.querySelector('.pc-layout-wrapper');
+    if (anchor && anchor.parentNode) {
+      anchor.insertAdjacentElement('afterend', wrapper);
+    } else {
+      document.body.insertBefore(wrapper, document.querySelector('.footer'));
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileAccordions);
+  } else {
+    initMobileAccordions();
+  }
+})();
+</script>
+
+
+<script>
+(function () {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const success = document.getElementById('contact-success-message');
+    const name = form.querySelector('[name="name"]')?.value || '';
+    const email = form.querySelector('[name="email"]')?.value || '';
+    const message = form.querySelector('[name="message"]')?.value || '';
+    const subject = `【つるまい自治協議会】お問い合わせ: ${name}様`;
+    const body = `名前: ${name}
+メールアドレス: ${email}
+
+お問い合わせ内容:
+${message}`;
+    window.location.href = `mailto:w394084@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (success) success.style.display = 'block';
+    alert('メール作成画面を開きます。内容を確認して送信してください。');
+  });
+})();
+</script>
+
+<script defer src="https://cloud.umami.is/script.js" data-website-id="95d6cb92-8c0b-49b7-b616-ed0b0409ffcd"></script>
+</body>
+
+</html>
+
+

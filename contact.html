@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>つるまい自治協議会</title>
+    <meta name="description" content="奈良市つるまい自治協議会の公式サイトです。地域活動、防災、福祉など、地域の絆を深める活動を行っています。">
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+    <link rel="apple-touch-icon" href="images/favicon.jpg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css?v=20260208b">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EYG3C4Y8XL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EYG3C4Y8XL');
+</script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header__container">
+            <h1 class="header__logo">
+                <a href="index.html">
+                    <span class="header__logo-text">つるまい自治協議会</span>
+                </a>
+            </h1>
+            <button class="header__hamburger" aria-label="メニューを開く" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li class="header__nav-item"><a href="about.html">自治協議会について</a></li>
+                    <li class="header__nav-item"><a href="departments.html">部会の目的</a></li>
+                    <li class="header__nav-item"><a href="contact.html" class="is-active">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header page-header--contact">
+        <div class="page-header__bg"></div>
+        <div class="section__container">
+            <div class="page-header__content">
+                <div class="page-header__icon"><i class="fa-solid fa-envelope"></i></div>
+                <h2 class="page-header__title">お問い合わせ</h2>
+                <p class="page-header__subtitle">お気軽にご連絡ください</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact">
+            <div class="section__container">
+                <div class="contact__wrapper">
+                    <div class="contact__info">
+                        <p class="contact__message">お気軽にご連絡ください <i class="fa-regular fa-face-smile"></i></p>
+                        <p class="contact__label">事務局</p>
+                        <a href="tel:08014260881" class="contact__tel"><i class="fa-solid fa-phone"></i>
+                            080-1426-0881</a>
+                    </div>
+                    <div id="contact-success-message-page" class="contact__success" style="display: none;">
+                        <i class="fa-regular fa-circle-check"></i>
+                        <p>お問い合わせありがとうございます。<br>内容を確認し、担当者より折り返しご連絡いたします。</p>
+                    </div>
+                    <form class="contact__form" id="contact-form-page">
+                        <div class="form__group">
+                            <label for="name" class="form__label">名前</label>
+                            <input type="text" id="name" name="name" class="form__input" required>
+                        </div>
+                        <div class="form__group">
+                            <label for="email" class="form__label">メールアドレス</label>
+                            <input type="email" id="email" name="email" class="form__input" required>
+                        </div>
+                        <div class="form__group">
+                            <label for="message" class="form__label">コメント</label>
+                            <textarea id="message" name="message" class="form__textarea" required></textarea>
+                        </div>
+                        <button type="submit" class="form__button">送信する</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__container">
+            <p class="footer__copyright">&copy; Tsurumai Community Association. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        const hamburger = document.querySelector('.header__hamburger');
+        const nav = document.querySelector('.header__nav');
+
+        hamburger.addEventListener('click', () => {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            hamburger.classList.toggle('is-active');
+            nav.classList.toggle('is-active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.header__nav-item a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.classList.remove('is-active');
+                nav.classList.remove('is-active');
+            });
+        });
+    </script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="95d6cb92-8c0b-49b7-b616-ed0b0409ffcd"></script>
+
+    <script>
+        const contactFormPage = document.getElementById('contact-form-page');
+        if (contactFormPage) {
+            contactFormPage.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const success = document.getElementById('contact-success-message-page');
+                const name = contactFormPage.querySelector('[name="name"]')?.value || '';
+                const email = contactFormPage.querySelector('[name="email"]')?.value || '';
+                const message = contactFormPage.querySelector('[name="message"]')?.value || '';
+                const subject = `【つるまい自治協議会】お問い合わせ: ${name}様`;
+                const body = `名前: ${name}\nメールアドレス: ${email}\n\nお問い合わせ内容:\n${message}`;
+                window.location.href = `mailto:w394084@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                if (success) success.style.display = 'block';
+                alert('メール作成画面を開きます。内容を確認して送信してください。');
+            });
+        }
+    </script>
+</body>
+
+</html>

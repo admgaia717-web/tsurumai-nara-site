@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タケノコ堀り体験！ | つるまい自治協議会</title>
+    <meta name="description" content="奈良市鶴舞地区で親子タケノコ堀り体験。春の竹林で旬のタケノコを掘ろう！つるまい自治協議会が贈る春の自然体験イベント。">
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="../images/favicon.jpg">
+    <link rel="apple-touch-icon" href="../images/favicon.jpg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ================================================================
+           Takenoko Page — Warm & Natural Community Record
+           ================================================================ */
+
+        :root {
+            --tk-text: #3b3226;
+            --tk-text-mid: #6b5e4f;
+            --tk-text-light: #9a8d7e;
+            --tk-bg: #f9f6f0;
+            --tk-bg-warm: #f4efe6;
+            --tk-accent: #b8860b;
+            --tk-accent-light: #d4a84b;
+            --tk-border: rgba(139, 109, 60, 0.12);
+            --tk-radius: 10px;
+            --tk-font: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            --tk-font-serif: 'Noto Serif JP', 'Yu Mincho', serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--tk-font);
+            color: var(--tk-text);
+            background: var(--tk-bg);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* ================================================================
+           Navigation
+           ================================================================ */
+        .tk-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+        }
+
+        .tk-nav.scrolled {
+            background: rgba(249, 246, 240, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--tk-border);
+            padding: 10px 24px;
+        }
+
+        .tk-nav__back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.85);
+            padding: 7px 14px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.25s ease;
+        }
+
+        .tk-nav.scrolled .tk-nav__back {
+            color: var(--tk-text);
+            background: rgba(59, 50, 38, 0.06);
+            border-color: var(--tk-border);
+        }
+
+        .tk-nav__back:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .tk-nav__org {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 0.05em;
+            transition: color 0.4s;
+        }
+        .tk-nav.scrolled .tk-nav__org { color: var(--tk-text-mid); }
+
+        /* ================================================================
+           Hero — real photo background
+           ================================================================ */
+        .tk-hero {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            overflow: hidden;
+        }
+
+        .tk-hero__bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .tk-hero__bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+        }
+
+        /* Gentle dark overlay for readability */
+        .tk-hero__bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(30, 25, 15, 0.15) 0%,
+                rgba(30, 25, 15, 0.25) 40%,
+                rgba(30, 25, 15, 0.65) 100%
+            );
+        }
+
+        .tk-hero__content {
+            position: relative;
+            z-index: 2;
+            padding: 0 clamp(24px, 5vw, 80px) clamp(48px, 8vh, 80px);
+            max-width: 620px;
+        }
+
+        .tk-hero__title {
+            font-family: var(--tk-font-serif);
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            letter-spacing: 0.03em;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.25);
+        }
+
+        .tk-hero__subtitle {
+            font-size: clamp(0.88rem, 2vw, 1rem);
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            line-height: 1.9;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.2);
+        }
+
+        /* ================================================================
+           Gallery Section
+           ================================================================ */
+        .tk-gallery {
+            padding: 64px 24px 80px;
+            background: var(--tk-bg);
+        }
+
+        .tk-gallery__inner {
+            max-width: 880px;
+            margin: 0 auto;
+        }
+
+        .tk-gallery__header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--tk-border);
+        }
+
+        .tk-gallery__date {
+            font-family: var(--tk-font-serif);
+            font-size: 0.82rem;
+            color: var(--tk-accent);
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            margin-bottom: 6px;
+        }
+
+        .tk-gallery__title {
+            font-family: var(--tk-font-serif);
+            font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+            font-weight: 700;
+            color: var(--tk-text);
+            line-height: 1.4;
+        }
+
+        .tk-gallery__desc {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--tk-text-mid);
+            line-height: 1.9;
+        }
+
+        /* --- Photo Grid --- */
+        .tk-gallery__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .tk-gallery__item {
+            border-radius: var(--tk-radius);
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(59, 50, 38, 0.06);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .tk-gallery__item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(59, 50, 38, 0.12);
+        }
+
+        .tk-gallery__item--wide {
+            grid-column: 1 / -1;
+        }
+
+        .tk-gallery__photo {
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .tk-gallery__item--wide .tk-gallery__photo {
+            aspect-ratio: 16/8;
+        }
+
+        .tk-gallery__photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .tk-gallery__item:hover .tk-gallery__photo img {
+            transform: scale(1.03);
+        }
+
+        .tk-gallery__caption {
+            padding: 12px 14px;
+            font-size: 0.82rem;
+            color: var(--tk-text-mid);
+            line-height: 1.5;
+        }
+
+        /* ================================================================
+           Flyer Section
+           ================================================================ */
+        .tk-flyer {
+            padding: 56px 24px 72px;
+            background: var(--tk-bg-warm);
+        }
+
+        .tk-flyer__inner {
+            max-width: 480px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tk-flyer__title {
+            font-family: var(--tk-font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--tk-text);
+            margin-bottom: 10px;
+        }
+
+        .tk-flyer__desc {
+            font-size: 0.85rem;
+            color: var(--tk-text-mid);
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+
+        .tk-flyer__image {
+            border-radius: var(--tk-radius);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(59, 50, 38, 0.1);
+        }
+
+        /* ================================================================
+           Footer
+           ================================================================ */
+        .tk-footer {
+            padding: 28px 24px;
+            text-align: center;
+            background: var(--tk-bg);
+            border-top: 1px solid var(--tk-border);
+        }
+
+        .tk-footer__org {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--tk-text);
+            margin-bottom: 3px;
+        }
+
+        .tk-footer__link {
+            font-size: 0.75rem;
+            color: var(--tk-text-light);
+        }
+
+        .tk-footer__link a {
+            color: var(--tk-accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* ================================================================
+           Responsive
+           ================================================================ */
+        @media (max-width: 640px) {
+            .tk-hero { min-height: 65vh; }
+            .tk-gallery { padding: 40px 16px 56px; }
+            .tk-gallery__grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .tk-gallery__item--wide { grid-column: auto; }
+            .tk-gallery__item--wide .tk-gallery__photo {
+                aspect-ratio: 4/3;
+            }
+            .tk-flyer { padding: 40px 16px 56px; }
+        }
+
+        /* ================================================================
+           Scroll Animation (subtle)
+           ================================================================ */
+        .tk-animate {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .tk-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EYG3C4Y8XL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EYG3C4Y8XL');
+</script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="tk-nav" id="tkNav">
+        <a href="../index.html" class="tk-nav__back">← トップに戻る</a>
+        <span class="tk-nav__org">つるまい自治協議会</span>
+    </nav>
+
+    <!-- Hero -->
+    <section class="tk-hero">
+        <div class="tk-hero__bg">
+            <img src="../images/takenoko-memory-7.jpg" alt="竹林から差し込む日の光">
+        </div>
+        <div class="tk-hero__content">
+            <h1 class="tk-hero__title">
+                親子で楽しむ<br>
+                タケノコ堀り体験
+            </h1>
+            <p class="tk-hero__subtitle">
+                鶴舞の竹林で、春の恵みを掘り出す喜び。<br>
+                土に触れ、自然と語らう、かけがえのない一日。
+            </p>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="tk-gallery" id="memories">
+        <div class="tk-gallery__inner">
+            <div class="tk-gallery__header">
+                <p class="tk-gallery__date">4月11日</p>
+                <h2 class="tk-gallery__title">思い出の記録</h2>
+                <p class="tk-gallery__desc">
+                    竹林に響く歓声と、土の温もりが伝わる<br>
+                    地域のかけがえのない時間。
+                </p>
+            </div>
+
+            <div class="tk-gallery__grid">
+                <div class="tk-gallery__item tk-animate">
+                    <div class="tk-gallery__photo">
+                        <img src="../images/takenoko-memory-1.jpg" alt="木漏れ日が差す竹林の会場風景">
+                    </div>
+                    <div class="tk-gallery__caption">木漏れ日が差し込む竹林の会場</div>
+                </div>
+
+
+
+                <div class="tk-gallery__item tk-animate">
+                    <div class="tk-gallery__photo">
+                        <img src="../images/takenoko-memory-3.jpg" alt="鍬を使ってタケノコを掘る参加者">
+                    </div>
+                    <div class="tk-gallery__caption">さあ、掘るぞ！真剣な手つき</div>
+                </div>
+
+                <div class="tk-gallery__item tk-animate">
+                    <div class="tk-gallery__photo">
+                        <img src="../images/takenoko-memory-4.jpg" alt="二人で協力してタケノコを掘り出す">
+                    </div>
+                    <div class="tk-gallery__caption">力を合わせて、もう少し！</div>
+                </div>
+
+                <div class="tk-gallery__item tk-animate">
+                    <div class="tk-gallery__photo">
+                        <img src="../images/takenoko-memory-5.jpg" alt="大きなタケノコを発見した瞬間">
+                    </div>
+                    <div class="tk-gallery__caption">立派なタケノコ、発見！</div>
+                </div>
+
+
+
+                <div class="tk-gallery__item tk-animate">
+                    <div class="tk-gallery__photo">
+                        <img src="../images/takenoko-memory-8.jpg" alt="竹林の中に集う人々">
+                    </div>
+                    <div class="tk-gallery__caption">真っ直ぐに伸びる竹と集う人々</div>
+                </div>
+
+                <div class="tk-gallery__item tk-animate">
+                    <div class="tk-gallery__photo">
+                        <img src="../images/takenoko-memory-9.jpg" alt="竹筒で炊かれるタケノコご飯">
+                    </div>
+                    <div class="tk-gallery__caption">竹の香りが食欲をそそる特製タケノコご飯</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="tk-footer">
+        <div class="tk-footer__org">つるまい自治協議会</div>
+        <div class="tk-footer__link">
+            <a href="../index.html">トップページへ戻る</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Navbar scroll effect
+        const nav = document.getElementById('tkNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 80);
+        });
+
+        // Scroll-triggered animations
+        const animateElements = document.querySelectorAll('.tk-animate');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+        animateElements.forEach(el => observer.observe(el));
+    </script>
+
+<script defer src="https://cloud.umami.is/script.js" data-website-id="95d6cb92-8c0b-49b7-b616-ed0b0409ffcd"></script>
+</body>
+</html>

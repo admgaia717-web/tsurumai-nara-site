@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>つむぎフェスタ | つるまい自治協議会</title>
+    <meta name="description" content="つむぎフェスタは鶴舞地区で開催される地域のマーケットです。地元の出店者が集まり、手作り品や食品、キッチンカーなどが楽しめます。">
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+    <link rel="apple-touch-icon" href="images/favicon.jpg">
+    <!-- Google Fonts — Playfair for Eagle Mountain serif feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css?v=20260522c">
+    <style>
+        /* ============================================================
+           Eagle Mountain City Design System — Marche Subpage
+           ============================================================
+           Eagle Mountain Colors (source: eaglemountaincity.com)
+             Orange:  #E87722  (brand orange — logo, arrows, accents)
+             Dark:    #1C2B39  (deep navy overlay / dark backgrounds)
+             Earth:   #3D2B1F  (deep brown — secondary dark)
+             Cream:   #F7F3EE  (warm off-white section background)
+             Stone:   #8C7B6B  (muted warm grey for subtext)
+             White:   #FFFFFF
+           Typography:
+             Headings: Playfair Display (closest to their "Recoleta" serif)
+             Body/Nav: Montserrat + Noto Sans JP
+        ============================================================ */
+
+        body {
+            font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+            color: #2C2C2C;
+            background: #FFFFFF;
+        }
+
+        /* ─── Hero — Eagle Mountain style (photo + dark overlay + large serif title) ─── */
+        .marche-hero {
+            position: relative;
+            min-height: 520px;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            background: #1C2B39; /* fallback */
+        }
+
+        /* Mountain/festival photo background */
+        .marche-hero__bg {
+            position: absolute;
+            inset: 0;
+            background: url('images/marche-gallery1.jpg') center center / cover no-repeat;
+            filter: brightness(0.45);
+        }
+
+        /* Dark gradient overlay — matches Eagle Mountain's vignetted hero */
+        .marche-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(28, 43, 57, 0.92) 0%,
+                rgba(28, 43, 57, 0.4) 40%,
+                rgba(0, 0, 0, 0.1) 100%
+            );
+            z-index: 1;
+        }
+
+        /* Right-side widget panel — Eagle Mountain style circular icon links */
+        .marche-hero__widgets {
+            position: absolute;
+            right: 48px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .marche-hero__widget {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.25);
+            text-decoration: none;
+            color: white;
+            transition: opacity 0.2s ease;
+            cursor: default;
+        }
+
+        .marche-hero__widget:last-child {
+            border-bottom: none;
+        }
+
+        .marche-hero__widget:hover {
+            opacity: 0.75;
+        }
+
+        .marche-hero__widget-icon {
+            width: 44px;
+            height: 44px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .marche-hero__widget-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+        }
+
+        .marche-hero__widget-arrow {
+            color: #E87722;
+            font-size: 0.8rem;
+        }
+
+        /* Main hero content — bottom-left aligned (Eagle Mountain style) */
+        .marche-hero__content {
+            position: relative;
+            z-index: 2;
+            padding: 48px 48px 52px;
+            max-width: 680px;
+        }
+
+        .marche-hero__tagline {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        /* Orange triangle — Eagle Mountain's signature "K" shape / chevron */
+        .marche-hero__tagline-icon {
+            width: 0;
+            height: 0;
+            border-left: 10px solid #E87722;
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+        }
+
+        .marche-hero__tagline-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: rgba(255,255,255,0.75);
+        }
+
+        .marche-hero__title {
+            font-family: 'Playfair Display', 'Noto Sans JP', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: #FFFFFF;
+            line-height: 1.05;
+            margin: 0 0 16px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .marche-hero__subtitle {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            margin: 0 0 28px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .marche-hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #E87722;
+            color: white;
+            padding: 10px 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-radius: 0; /* Eagle Mountain: square corners */
+        }
+
+        .marche-hero__organizer {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+            margin-top: 12px;
+            font-weight: 400;
+        }
+
+        /* ─── Next Event Banner — Eagle Mountain "info bar" style ─── */
+        .marche-next-event {
+            background: #1C2B39;
+            padding: 28px 0;
+            border-bottom: 3px solid #E87722;
+        }
+
+        .marche-next-event__inner {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .marche-next-event__date {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .marche-next-event__calendar {
+            background: #E87722; /* Eagle Mountain orange block */
+            border-radius: 0;
+            padding: 12px 20px;
+            text-align: center;
+            min-width: 72px;
+        }
+
+        .marche-next-event__month {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 4px;
+        }
+
+        .marche-next-event__day {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #FFFFFF;
+            line-height: 1;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .marche-next-event__weekday {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.75);
+            margin-top: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .marche-next-event__info h3 {
+            font-size: 1.1rem;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .marche-next-event__info h3 i {
+            color: #E87722;
+            margin-right: 6px;
+        }
+
+        .marche-next-event__info p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        .marche-next-event__rain {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 4px;
+        }
+
+        /* ─── Concept Section — cream background with left-rule cards ─── */
+        .marche-concept {
+            background: #F7F3EE; /* Eagle Mountain warm cream */
+            padding: 64px 0;
+        }
+
+        .marche-concept .section__title {
+            text-align: left;
+            font-family: 'Playfair Display', serif;
+            font-variant-numeric: lining-nums;
+            font-feature-settings: "lnum";
+            font-size: 2rem;
+            color: #1C2B39;
+            margin-bottom: 8px;
+        }
+
+        .marche-concept .section__title::after { display: none; }
+
+        .marche-concept__label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #E87722;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .marche-concept__label::before {
+            content: '';
+            width: 0; height: 0;
+            border-left: 8px solid #E87722;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+
+        .marche-concept__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 36px;
+        }
+
+        .marche-concept__card {
+            background: #FFFFFF;
+            padding: 32px 28px;
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.25s ease;
+            border-top: 3px solid #E87722; /* Eagle Mountain: orange top rule */
+        }
+
+        .marche-concept__card::before { display: none; }
+
+        .marche-concept__card:hover {
+            transform: none;
+            box-shadow: 0 8px 30px rgba(28,43,57,0.12);
+        }
+
+        .marche-concept__icon {
+            width: 56px;
+            height: 56px;
+            background: #1C2B39;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0 20px;
+            font-size: 1.4rem;
+            color: #E87722;
+        }
+
+        .marche-concept__title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #1C2B39;
+            margin-bottom: 12px;
+        }
+
+        .marche-concept__text {
+            color: #5A5A5A;
+            font-size: 0.9rem;
+            line-height: 1.75;
+        }
+
+        /* ─── Gallery — dark mountain-earth section ─── */
+        .marche-gallery {
+            background: #1C2B39;
+            padding: 64px 0;
+            color: white;
+        }
+
+        .marche-gallery .section__title {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-variant-numeric: lining-nums;
+            font-feature-settings: "lnum";
+            text-align: left;
+            font-size: 2rem;
+        }
+
+        .marche-gallery .section__title::after { display: none; }
+
+        .marche-gallery__label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #E87722;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .marche-gallery__label::before {
+            content: '';
+            width: 0; height: 0;
+            border-left: 8px solid #E87722;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+
+        .marche-gallery-mosaic {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: 200px;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        /* Large item takes 2x2 */
+        .marche-gallery-mosaic__item--large {
+            grid-column: span 4;
+            grid-row: span 2;
+        }
+        
+        .marche-gallery-mosaic__item {
+            grid-column: span 2;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            background: #1C2B39;
+        }
+
+        .marche-gallery-mosaic__item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease;
+            filter: brightness(0.9);
+        }
+
+        .marche-gallery-mosaic__item:hover img {
+            transform: scale(1.04);
+            filter: brightness(1.1);
+        }
+
+        /* Hover overlay icon */
+        .marche-gallery-mosaic__item::after {
+            content: "\f00e"; /* FontAwesome magnifying glass plus */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            background: rgba(28, 43, 57, 0.8);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .marche-gallery-mosaic__item:hover::after {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .lightbox-modal.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-modal__content {
+            position: relative;
+            max-width: 95%;
+            max-height: 90vh;
+        }
+
+        .lightbox-modal__content img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 90vh;
+            display: block;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .lightbox-modal__close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.7);
+            font-size: 3rem;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 10000;
+            transition: color 0.2s;
+            padding: 10px;
+        }
+
+        .lightbox-modal__close:hover {
+            color: #FFFFFF;
+        }
+
+        /* ─── Vendor — cream/white alternating ─── */
+        .marche-vendor {
+            background: #F7F3EE;
+            padding: 64px 0;
+        }
+
+        .marche-vendor .section__title {
+            text-align: left;
+            font-family: 'Playfair Display', serif;
+            font-variant-numeric: lining-nums;
+            font-feature-settings: "lnum";
+            font-size: 2rem;
+            color: #1C2B39;
+            margin-bottom: 8px;
+        }
+
+        .marche-vendor .section__title::after { display: none; }
+
+        .marche-vendor__label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #E87722;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .marche-vendor__label::before {
+            content: '';
+            width: 0; height: 0;
+            border-left: 8px solid #E87722;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+
+        .marche-vendor__intro {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 0 36px;
+            font-size: 0.95rem;
+            color: #5A5A5A;
+            line-height: 1.8;
+        }
+
+        .marche-vendor__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .marche-vendor__card {
+            background: white;
+            padding: 28px 28px 28px 36px;
+            border-radius: 0;
+            box-shadow: none;
+            border: 1px solid #E8E0D8;
+            border-left: 4px solid #E87722; /* Eagle Mountain orange left-rule */
+            position: relative;
+            overflow: visible;
+        }
+
+        .marche-vendor__card::before { display: none; }
+
+        .marche-vendor__card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E8E0D8;
+        }
+
+        .marche-vendor__card-icon {
+            width: 44px;
+            height: 44px;
+            background: #1C2B39;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #E87722;
+        }
+
+        .marche-vendor__card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #1C2B39;
+        }
+
+        .marche-vendor__list { list-style: none; }
+
+        .marche-vendor__list li {
+            padding: 9px 0;
+            border-bottom: 1px solid #EDE8E2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #3A3A3A;
+            font-size: 0.88rem;
+        }
+
+        .marche-vendor__list li:last-child { border-bottom: none; }
+
+        .marche-vendor__list li i { color: #E87722; }
+
+        /* ─── Back Link ─── */
+        .back-link {
+            background: #1C2B39;
+            padding: 20px 0;
+        }
+
+        .back-link a {
+            color: #E87722;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .back-link a:hover { color: #FFFFFF; }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 768px) {
+            .marche-hero__title { font-size: 2.4rem; }
+            .marche-hero__widgets { display: none; }
+            .marche-hero__content { padding: 32px 24px 40px; }
+            .marche-concept__grid { grid-template-columns: 1fr; }
+            .marche-gallery-mosaic {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 240px;
+                gap: 12px;
+            }
+            .marche-gallery-mosaic__item--large,
+            .marche-gallery-mosaic__item {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+            .marche-vendor__grid { grid-template-columns: 1fr; }
+            .marche-next-event__inner { gap: 24px; }
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EYG3C4Y8XL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EYG3C4Y8XL');
+    </script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header__container">
+            <h1 class="header__logo">
+                <a href="index.html">
+                    <span class="header__logo-text">つるまい自治協議会</span>
+                </a>
+            </h1>
+            <button class="header__hamburger" aria-label="メニューを開く" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li class="header__nav-item"><a href="index.html">ホーム</a></li>
+                    <li class="header__nav-item"><a href="about.html">自治協議会について</a></li>
+                    <li class="header__nav-item"><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero — Eagle Mountain City Style -->
+    <section class="marche-hero">
+        <!-- Photo background -->
+        <div class="marche-hero__bg"></div>
+
+
+        <!-- Bottom-left title content (Eagle Mountain style) -->
+        <div class="marche-hero__content">
+            <div class="marche-hero__tagline">
+                <div class="marche-hero__tagline-icon"></div>
+                <span class="marche-hero__tagline-text">つるまい自治協議会 &mdash; 地域イベント</span>
+            </div>
+            <h2 class="marche-hero__title">つむぎフェスタ</h2>
+            <p class="marche-hero__subtitle">みんな来てね♪ 地域のつながりを紡ぐお祭り</p>
+            <p class="marche-hero__organizer">主催：つるまい自治協議会・鶴舞地区社会福祉協議会</p>
+        </div>
+    </section>
+
+
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Concept -->
+        <section class="marche-concept">
+            <div class="section__container">
+                <p class="marche-concept__label">FESTIVAL CONCEPT</p>
+                <h2 class="section__title">つむぎフェスタとは</h2>
+                <div class="marche-concept__grid">
+                    <div class="marche-concept__card">
+                        <div class="marche-concept__icon"><i class="fa-solid fa-handshake"></i></div>
+                        <h3 class="marche-concept__title">地域交流の場</h3>
+                        <p class="marche-concept__text">地元の人々が集まり、顔の見える関係を築く場所です。世代を超えた交流が生まれます。</p>
+                    </div>
+                    <div class="marche-concept__card">
+                        <div class="marche-concept__icon"><i class="fa-solid fa-utensils"></i></div>
+                        <h3 class="marche-concept__title">グルメ&amp;地元の味</h3>
+                        <p class="marche-concept__text">ポテトフライ・から揚げ・手作りこんにゃく・綿菓子など、おいしいグルメが勢揃い！新鮮な季節の野菜も並びます。</p>
+                    </div>
+                    <div class="marche-concept__card">
+                        <div class="marche-concept__icon"><i class="fa-solid fa-palette"></i></div>
+                        <h3 class="marche-concept__title">体験&amp;遊び</h3>
+                        <p class="marche-concept__text">ワークショップ・お絵かきコーナー・モルック・遊びコーナーなど、子どもから大人まで楽しめるイベント満載！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section class="marche-gallery">
+            <div class="section__container">
+                <p class="marche-gallery__label">THIS YEAR'S MEMORIES</p>
+                <h2 class="section__title">2026年3月 開催の思い出</h2>
+                <div class="marche-gallery-mosaic">
+                    <!-- Photo 1 (Large) -->
+                    <div class="marche-gallery-mosaic__item marche-gallery-mosaic__item--large" data-lightbox="images/marche-gallery-1.jpg">
+                        <img src="images/marche-gallery-1.jpg" alt="つむぎフェスタ風景1">
+                    </div>
+                    <!-- Photos 2-7 (Small) -->
+                    <div class="marche-gallery-mosaic__item" data-lightbox="images/marche-gallery-2.jpg">
+                        <img src="images/marche-gallery-2.jpg" alt="つむぎフェスタ風景2">
+                    </div>
+                    <div class="marche-gallery-mosaic__item" data-lightbox="images/marche-gallery-3.jpg">
+                        <img src="images/marche-gallery-3.jpg" alt="つむぎフェスタ風景3">
+                    </div>
+                    <div class="marche-gallery-mosaic__item" data-lightbox="images/marche-gallery-4.jpg">
+                        <img src="images/marche-gallery-4.jpg" alt="つむぎフェスタ風景4">
+                    </div>
+                    <div class="marche-gallery-mosaic__item" data-lightbox="images/marche-gallery-5.jpg">
+                        <img src="images/marche-gallery-5.jpg" alt="つむぎフェスタ風景5">
+                    </div>
+                    <div class="marche-gallery-mosaic__item" data-lightbox="images/marche-gallery-6.jpg">
+                        <img src="images/marche-gallery-6.jpg" alt="つむぎフェスタ風景6">
+                    </div>
+                    <div class="marche-gallery-mosaic__item" data-lightbox="images/marche-gallery-7.jpg">
+                        <img src="images/marche-gallery-7.jpg" alt="つむぎフェスタ風景7">
+                    </div>
+                    <!-- Photo 8 (Large) -->
+                    <div class="marche-gallery-mosaic__item marche-gallery-mosaic__item--large" data-lightbox="images/marche-gallery-8.jpg">
+                        <img src="images/marche-gallery-8.jpg" alt="つむぎフェスタ風景8">
+                    </div>
+                    <!-- Photos 9-10 (Small) -->
+                    <div class="marche-gallery-mosaic__item" data-lightbox="images/marche-gallery-9.jpg">
+                        <img src="images/marche-gallery-9.jpg" alt="つむぎフェスタ風景9">
+                    </div>
+                    <div class="marche-gallery-mosaic__item" data-lightbox="images/marche-gallery-10.jpg">
+                        <img src="images/marche-gallery-10.jpg" alt="つむぎフェスタ風景10">
+                    </div>
+                </div>
+
+                <div class="u-text-center u-mb-sm" style="margin-top: 4rem;">
+                    <h2 class="section__title">2025年6月 開催の思い出</h2>
+                </div>
+                <div class="marche-gallery-mosaic">
+                    <!-- Photo 1 (Small) -->
+                    <div class="marche-gallery-mosaic__item" data-lightbox="images/marche-gallery-2025-1.jpg">
+                        <img src="images/marche-gallery-2025-1.jpg" alt="2025年つむぎフェスタ風景1">
+                    </div>
+                    <!-- Photo 2 (Large) -->
+                    <div class="marche-gallery-mosaic__item marche-gallery-mosaic__item--large" data-lightbox="images/marche-gallery-2025-2.jpg">
+                        <img src="images/marche-gallery-2025-2.jpg" alt="2025年つむぎフェスタ風景2">
+                    </div>
+                    <!-- Photo 3 (Small) -->
+                    <div class="marche-gallery-mosaic__item" data-lightbox="images/marche-gallery-2025-3.jpg">
+                        <img src="images/marche-gallery-2025-3.jpg" alt="2025年つむぎフェスタ風景3">
+                    </div>
+                </div>
+        </section>
+
+        <!-- Lightbox Modal -->
+        <div id="lightbox-modal" class="lightbox-modal" aria-hidden="true">
+            <button class="lightbox-modal__close" aria-label="閉じる">&times;</button>
+            <div class="lightbox-modal__content">
+                <img id="lightbox-image" src="" alt="拡大写真">
+            </div>
+        </div>
+
+        <!-- Vendor -->
+        <section class="marche-vendor">
+            <div class="section__container">
+                <p class="marche-vendor__label">VENDORS &amp; ACTIVITIES</p>
+                <h2 class="section__title">出店者・コーナー紹介</h2>
+                <p class="marche-vendor__intro">
+                    つむぎフェスタには地元の様々な出店者が参加しています。<br>
+                    おいしい食べ物から体験コーナーまで、盛りだくさんです！
+                </p>
+                <div class="marche-vendor__grid">
+                    <div class="marche-vendor__card">
+                        <div class="marche-vendor__card-header">
+                            <div class="marche-vendor__card-icon"><i class="fa-solid fa-utensils"></i></div>
+                            <h3 class="marche-vendor__card-title">グルメ・食べ物</h3>
+                        </div>
+                        <ul class="marche-vendor__list">
+                            <li><i class="fa-solid fa-chevron-right"></i> 来来軒さん — ポテトフライ・から揚げ</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> 農民連さん — 新鮮な季節の野菜</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> 手作りこんにゃく</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> フラッピーさん — 綿菓子</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> 飲料水等</li>
+                        </ul>
+                    </div>
+                    <div class="marche-vendor__card">
+                        <div class="marche-vendor__card-header">
+                            <div class="marche-vendor__card-icon"><i class="fa-solid fa-star"></i></div>
+                            <h3 class="marche-vendor__card-title">体験・遊び・その他</h3>
+                        </div>
+                        <ul class="marche-vendor__list">
+                            <li><i class="fa-solid fa-chevron-right"></i> といとさん — 手作り品ワークショップ</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> PTAさん — 子どもたちの用品譲渡会</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> お絵かきコーナー</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> 体験コーナー・モルック・遊びコーナー</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Back Link -->
+        <div class="back-link">
+            <div class="section__container">
+                <a href="index.html"><i class="fa-solid fa-arrow-left"></i> BACK TO TOP</a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__container">
+            <p class="footer__copyright">&copy; 2025 つるまい自治協議会. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="95d6cb92-8c0b-49b7-b616-ed0b0409ffcd"></script>
+</body>
+
+</html>

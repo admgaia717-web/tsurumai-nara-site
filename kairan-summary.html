@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回覧板要約｜つるまい自治協議会</title>
+    <meta name="description" content="つるまい自治協議会の回覧板要約ページです。地域の回覧板をわかりやすく掲載します。">
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+    <link rel="apple-touch-icon" href="images/favicon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css?v=20260516a">
+    <style>
+        body { background: #f5f7fb; }
+        .kairan-hero { background: linear-gradient(135deg,#005BAC,#0077cc); color: #fff; text-align: center; padding: 48px 20px; }
+        .kairan-hero h2 { margin: 0 0 10px; font-size: clamp(1.8rem,4vw,3rem); font-weight: 900; }
+        .kairan-hero p { margin: 0; opacity: .92; }
+        .kairan-wrap { max-width: 980px; margin: 0 auto; padding: 34px 18px 72px; }
+        .kairan-card { background: #fff; border: 3px solid #005BAC; box-shadow: 6px 6px 0 rgba(0,0,0,.10); padding: 28px; margin-bottom: 28px; }
+        .kairan-card h3 { margin: 0 0 18px; color: #005BAC; font-size: 1.55rem; display: flex; align-items: center; gap: .5em; }
+        .kairan-summary { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 14px; margin: 20px 0; }
+        .kairan-box { background: #f8fbff; border-left: 6px solid #005BAC; padding: 16px; line-height: 1.7; }
+        .kairan-box strong { display: block; color: #005BAC; margin-bottom: 4px; }
+        .kairan-points li { line-height: 1.9; margin-bottom: 6px; }
+        .kairan-preview { width: 100%; max-width: 720px; display: block; margin: 20px auto 0; border: 1px solid #d8e3f0; }
+        .kairan-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 24px; }
+        .kairan-note { color: #666; font-size: .95rem; line-height: 1.8; }
+        .kairan-archive { background:#fff; border:2px solid #d8e3f0; border-radius:18px; padding:20px; margin-bottom:28px; box-shadow:0 8px 24px rgba(0,0,0,.05); }
+        .kairan-archive h3 { margin:0 0 12px; color:#0B2447; font-size:1.25rem; }
+        .kairan-archive__links { display:flex; flex-wrap:wrap; gap:10px; }
+        .kairan-archive__links a { display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px; background:#eef6ff; color:#005BAC; font-weight:900; text-decoration:none; }
+        .kairan-period { margin:34px 0 18px; padding:14px 18px; border-left:8px solid #005BAC; background:#eaf4ff; color:#0B2447; font-weight:900; font-size:1.25rem; }
+        .kairan-period small { display:block; margin-top:4px; color:#456; font-size:.88rem; font-weight:700; }
+        .kairan-card--featured { border-color:#f97316; box-shadow:6px 6px 0 rgba(249,115,22,.18); }
+        .kairan-card--featured h3 { color:#d35400; }
+        @media (max-width: 720px) { .kairan-card { padding: 20px; } .kairan-archive { padding:16px; } .kairan-archive__links a { width:100%; justify-content:center; } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header__container">
+            <h1 class="header__logo"><a href="index.html"><span class="header__logo-text">つるまい自治協議会</span></a></h1>
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li class="header__nav-item"><a href="about.html">自治協議会について</a></li>
+                    <li class="header__nav-item"><a href="departments.html">部会の目的</a></li>
+                    <li class="header__nav-item"><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="kairan-hero">
+        <h2>回覧板要約</h2>
+        <p>地域の回覧板を、スマホでも読みやすく要約して掲載します。</p>
+    </section>
+
+    <main class="kairan-wrap">
+
+        <section class="kairan-archive" aria-label="回覧板アーカイブ">
+            <h3><i class="fa-solid fa-box-archive"></i> 回覧板アーカイブ</h3>
+            <div class="kairan-archive__links">
+                <a href="#archive-2026-05-late"><i class="fa-solid fa-calendar-days"></i> 2026年5月後半</a>
+                <a href="#archive-2026-05-early"><i class="fa-solid fa-calendar-days"></i> 2026年5月前半</a>
+                <a href="#archive-past"><i class="fa-solid fa-clock-rotate-left"></i> 以前の掲載分</a>
+            </div>
+        </section>
+
+        <div class="kairan-period" id="archive-2026-05-late">2026年5月後半<small>今回届いた回覧資料</small></div>
+
+        <article class="kairan-card kairan-card--featured" id="kairan-2026-05-late-construction">
+            <h3><i class="fa-solid fa-helmet-safety"></i> 学園前北地区開発プロジェクト（B工区）新築工事について</h3>
+            <p class="kairan-note">掲載日: 2026年5月31日 / 5月後半アーカイブ</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>場所</strong>奈良市鶴舞東町657番34（地番）の一部</div>
+                <div class="kairan-box"><strong>建物概要</strong>共同住宅・地上7階建・292戸予定</div>
+                <div class="kairan-box"><strong>予定工期</strong>2026年7月〜2028年8月</div>
+                <div class="kairan-box"><strong>問い合わせ</strong>長谷工コーポレーション 開発推進2部</div>
+            </div>
+
+            <h4 style="color:#d35400; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>学園前北地区開発プロジェクトB工区の新築工事に関する近隣向け案内です。</li>
+                <li>事業者は近鉄不動産株式会社・大林新星和不動産株式会社、施工者は株式会社長谷工コーポレーションの予定です。</li>
+                <li>工事車両の運行、騒音・塵埃対策、作業時間、テレビ電波障害対策などについて説明されています。</li>
+                <li>主な作業時間は午前8時30分〜午後6時です。仕上げ・化粧工事は午後8時までの予定が示されています。</li>
+                <li>資料には、工事車両運行経路図、工程表、総合仮設図、土地利用計画平面図も含まれています。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-05-late-gakuenmae-kita-b-kouji.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-05-late-gakuenmae-kita-b-kouji-p1.jpg" alt="学園前北地区開発プロジェクト B工区 新築工事案内 1ページ目">
+            <img class="kairan-preview" src="images/kairan/2026-05-late-gakuenmae-kita-b-kouji-p2.jpg" alt="工事車両運行経路図">
+            <img class="kairan-preview" src="images/kairan/2026-05-late-gakuenmae-kita-b-kouji-p3.jpg" alt="工程表">
+            <img class="kairan-preview" src="images/kairan/2026-05-late-gakuenmae-kita-b-kouji-p4.jpg" alt="総合仮設図">
+            <img class="kairan-preview" src="images/kairan/2026-05-late-gakuenmae-kita-b-kouji-p5.jpg" alt="土地利用計画平面図">
+        </article>
+
+        <article class="kairan-card kairan-card--featured" id="kairan-2026-06-shakyo-activities">
+            <h3><i class="fa-solid fa-people-roof"></i> 鶴舞社会福祉協議会活動 6月</h3>
+            <p class="kairan-note">掲載日: 2026年5月31日 / 5月後半アーカイブ</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>健康体操</strong>6月10日（水）13:00〜13:40</div>
+                <div class="kairan-box"><strong>つるまい元気アップ</strong>6月3日・17日（水）13:00〜14:30</div>
+                <div class="kairan-box"><strong>シャヴェール</strong>毎週水曜日 14:00〜15:00</div>
+                <div class="kairan-box"><strong>モルック・ボッチャ</strong>金曜日 14:00〜15:30</div>
+            </div>
+
+            <h4 style="color:#d35400; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>鶴舞社会福祉協議会の6月活動案内です。ふるって参加しましょう。</li>
+                <li>はなうたは6月16日（第3火曜日）14:00〜15:00です。</li>
+                <li>麻雀は6月15日（第3月曜日）13:30〜16:30です。</li>
+                <li>つるまいモルック・ボッチャは金曜日14:00〜15:30です。第1・第3は西町6・7棟、第2・第4は東広場です。</li>
+                <li>天候により、モルック・ボッチャは集会室に変わることがあります。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-06-shakyo-activities.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-06-shakyo-activities-p1.jpg" alt="鶴舞社会福祉協議会活動 6月">
+        </article>
+
+
+        <article class="kairan-card kairan-card--featured" id="kairan-2026-06-health-exercise-smile">
+            <h3><i class="fa-solid fa-heart-pulse"></i> 健康体操のお知らせ（笑顔になることの効果）</h3>
+            <p class="kairan-note">掲載日: 2026年5月31日 / 5月後半アーカイブ</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>今月のテーマ</strong>笑顔を大切に穏やかにすごす</div>
+                <div class="kairan-box"><strong>次回</strong>6月10日（水）開催</div>
+                <div class="kairan-box"><strong>次回テーマ</strong>梅雨時の健康管理</div>
+                <div class="kairan-box"><strong>協力</strong>ケアセンターそれいゆ学園前</div>
+            </div>
+
+            <h4 style="color:#d35400; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>笑いは、ストレス解消や免疫力向上に効果が期待できます。</li>
+                <li>笑うことで血管が拡張され、血圧を下げる効果があると紹介されています。</li>
+                <li>笑うと唾液の分泌量が増え、口腔機能の維持や誤嚥性肺炎の予防にもつながります。</li>
+                <li>大声で笑うと自然に腹式呼吸になり、血行を良くし、筋力維持にも役立ちます。</li>
+                <li>次回の健康体操は6月10日（水）開催予定です。多数の参加が呼びかけられています。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-06-health-exercise-smile.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-06-health-exercise-smile-p1.jpg" alt="健康体操のお知らせ 笑顔になることの効果">
+        </article>
+
+        <article class="kairan-card kairan-card--featured" id="kairan-2026-05-traffic-safety-instructor">
+            <h3><i class="fa-solid fa-person-walking-arrow-right"></i> 奈良市交通安全指導員の推薦について</h3>
+            <p class="kairan-note">掲載日: 2026年5月31日 / 5月後半アーカイブ</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>依頼元</strong>奈良市</div>
+                <div class="kairan-box"><strong>内容</strong>交通安全指導員の推薦依頼</div>
+                <div class="kairan-box"><strong>推薦依頼人数</strong>3名</div>
+                <div class="kairan-box"><strong>提出期限</strong>2026年7月22日（水）</div>
+            </div>
+
+            <h4 style="color:#d35400; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>奈良市から、交通安全指導員の推薦について依頼がありました。</li>
+                <li>現在委嘱されている交通安全指導員は、2026年9月30日で3年間の任期満了となります。</li>
+                <li>次期任期は、2026年10月1日から2029年9月30日までの3年間です。</li>
+                <li>推薦依頼人数は3名です。提出書類は推薦書・承諾書です。</li>
+                <li>添付資料として、設置規則、事務取扱要領、推薦書・承諾書、活動内容、委嘱の流れ、名簿などが案内されています。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-05-traffic-safety-instructor-recommendation.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-05-traffic-safety-instructor-recommendation-p1.jpg" alt="奈良市交通安全指導員の推薦について">
+        </article>
+
+        <article class="kairan-card kairan-card--featured" id="kairan-2026-05-traffic-safety-award">
+            <h3><i class="fa-solid fa-award"></i> 交通安全功労被表彰者の推薦について</h3>
+            <p class="kairan-note">掲載日: 2026年5月31日 / 5月後半アーカイブ</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>依頼元</strong>奈良市交通対策協議会</div>
+                <div class="kairan-box"><strong>内容</strong>交通安全功労者の推薦依頼</div>
+                <div class="kairan-box"><strong>提出期限</strong>2026年7月17日（金）</div>
+                <div class="kairan-box"><strong>表彰予定</strong>2026年9月25日（金）の市民決起大会</div>
+            </div>
+
+            <h4 style="color:#d35400; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>交通安全活動や交通事故防止に貢献している個人・団体の推薦依頼です。</li>
+                <li>該当する個人または団体がある場合、推薦書により提出します。</li>
+                <li>推薦は、各地区につき個人1名または1団体を上限とされています。</li>
+                <li>表彰は、2026年9月25日（金）開催予定の「秋の交通安全運動市民決起大会」で行われる予定です。</li>
+                <li>別紙として、被表彰者推薦書、表彰規程、表彰履歴などが案内されています。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-05-traffic-safety-award-recommendation.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-05-traffic-safety-award-recommendation-p1.jpg" alt="交通安全功労被表彰者の推薦について">
+        </article>
+
+        <article class="kairan-card kairan-card--featured" id="kairan-2026-06-mobile-sales">
+            <h3><i class="fa-solid fa-truck"></i> 移動販売（6月）</h3>
+            <p class="kairan-note">掲載日: 2026年5月31日 / 5月後半アーカイブ</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>学園朝日町・元町公民館</strong>水曜日（3・10・17・24日）13:40〜14:10</div>
+                <div class="kairan-box"><strong>鶴舞団地西町UR管理事務所付近</strong>月曜日（1・8・15・22・29日）15:40〜16:10</div>
+                <div class="kairan-box"><strong>鶴舞団地西町UR管理事務所付近</strong>金曜日（5・12・19・26日）14:00〜14:30</div>
+                <div class="kairan-box"><strong>主催</strong>鶴舞地区社会福祉協議会</div>
+            </div>
+
+            <h4 style="color:#d35400; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>6月の移動販売スケジュールのお知らせです。</li>
+                <li>学園朝日町・元町公民館では、水曜日の13:40〜14:10に実施されます。</li>
+                <li>鶴舞団地西町UR管理事務所付近では、月曜日の15:40〜16:10、金曜日の14:00〜14:30に実施されます。</li>
+                <li>買い物支援として、地域のみなさんが利用できます。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-06-mobile-sales-schedule.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-06-mobile-sales-schedule-p1.jpg" alt="移動販売 6月スケジュール">
+        </article>
+
+        <article class="kairan-card kairan-card--featured" id="kairan-2026-06-21-tsumugi-festa">
+            <h3><i class="fa-solid fa-store"></i> つむぎフェスタ</h3>
+            <p class="kairan-note">掲載日: 2026年5月31日 / 5月後半アーカイブ</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>開催日</strong>2026年6月21日（日）</div>
+                <div class="kairan-box"><strong>時間</strong>10:00〜12:00</div>
+                <div class="kairan-box"><strong>場所</strong>鶴舞小学校 校庭</div>
+                <div class="kairan-box"><strong>主催</strong>つるまい地区自治協議会・鶴舞地区社会福祉協議会</div>
+            </div>
+
+            <h4 style="color:#d35400; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>家族みなさんで楽しめる「つむぎフェスタ」の案内です。</li>
+                <li>新鮮なお野菜の販売や、食べ物、ゲームなどが案内されています。</li>
+                <li>会場は鶴舞小学校の校庭です。</li>
+                <li>開催時間は10:00〜12:00です。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-06-21-tsumugi-festa.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="marche.html" class="btn btn--line"><i class="fa-solid fa-store"></i> つむぎフェスタへ</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-06-21-tsumugi-festa-p1.jpg" alt="つむぎフェスタ 6月21日">
+        </article>
+
+        <article class="kairan-card kairan-card--featured" id="kairan-2026-05-gold-fraud-alert">
+            <h3><i class="fa-solid fa-shield-halved"></i> 資産調査名目の金塊詐欺に注意</h3>
+            <p class="kairan-note">掲載日: 2026年5月31日 / 5月後半アーカイブ</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>発行</strong>奈良県警察本部 生活安全企画課</div>
+                <div class="kairan-box"><strong>発行日</strong>2026年5月29日</div>
+                <div class="kairan-box"><strong>内容</strong>資産調査名目の金塊詐欺への注意喚起</div>
+                <div class="kairan-box"><strong>合言葉</strong>警察官や公務員が金塊を預かることは絶対にありません</div>
+            </div>
+
+            <h4 style="color:#d35400; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>郵便局員を名乗り「荷物から大麻や不正なカードが見つかった」などと不安をあおる電話に注意してください。</li>
+                <li>偽の警察官・検察官が「マネーロンダリングの容疑がある」「協力しないと逮捕する」などと脅す手口があります。</li>
+                <li>LINEやビデオ通話で警察手帳・逮捕状を見せることはありません。SNSで見せられるものは偽物です。</li>
+                <li>「身の潔白を証明するため現金を金塊に替えて預ける必要がある」と言われても応じないでください。</li>
+                <li>警察官や公務員が金塊を預かったり、指定場所に置かせたりする手続きは存在しません。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-05-gold-fraud-alert.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-05-gold-fraud-alert-p1.jpg" alt="資産調査名目の金塊詐欺に注意">
+        </article>
+
+        <article class="kairan-card kairan-card--featured" id="kairan-2026-05-yamato-safety-corrected">
+            <h3><i class="fa-solid fa-shield-halved"></i> やまとの安全（令和7年中の奈良県内刑法犯認知件数・訂正版）</h3>
+            <p class="kairan-note">掲載日: 2026年5月31日 / 5月後半アーカイブ</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>発行</strong>奈良県警察本部 生活安全企画課</div>
+                <div class="kairan-box"><strong>発行日</strong>2026年5月29日</div>
+                <div class="kairan-box"><strong>県内刑法犯認知件数</strong>6,265件（前年比＋48件）</div>
+                <div class="kairan-box"><strong>重点</strong>特殊詐欺・SNS型詐欺・空き巣・自転車盗への注意</div>
+            </div>
+
+            <h4 style="color:#d35400; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>令和7年中の奈良県内刑法犯認知件数は6,265件で、前年より48件増加しています。</li>
+                <li>特殊詐欺は323件、被害額は約23億4,030万円です。サギ電話の多くは国際電話からと案内されています。</li>
+                <li>SNS型投資・ロマンス詐欺は212件、被害額は約34億6,890万円です。「安全」「簡単」「高配当」などのもうけ話に注意してください。</li>
+                <li>住宅対象侵入窃盗は150件で、無施錠率は57％です。鍵かけの徹底と防犯設備の導入が呼びかけられています。</li>
+                <li>自転車盗は867件で、無施錠率は77％です。家でも外でも鍵をかけ、二重ロックを心がけましょう。</li>
+                <li>地域全体で取り組む「あいさつ・声かけ・鍵かけ運動 チャレンジ“絆”」への参加も呼びかけられています。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-05-challenge-kizuna-crime-prevention.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-05-challenge-kizuna-crime-prevention-p1.jpg" alt="やまとの安全 令和7年中の奈良県内刑法犯認知件数 訂正版">
+        </article>
+
+        <div class="kairan-period" id="archive-2026-05-early">2026年5月前半<small>5月前半に掲載した回覧資料</small></div>
+
+        <article class="kairan-card">
+            <h3><i class="fa-solid fa-clipboard-list"></i> 学園前移動支援</h3>
+            <p class="kairan-note">掲載日: 2026年5月16日 / 回覧板資料より作成</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>対象</strong>鶴舞地区内にお住まいの方</div>
+                <div class="kairan-box"><strong>利用料</strong>1回100円</div>
+                <div class="kairan-box"><strong>運航日</strong>月・水・金</div>
+                <div class="kairan-box"><strong>運航時間</strong>9:00〜12:00 / 13:00〜16:00</div>
+            </div>
+
+            <h4 style="color:#005BAC; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>鶴舞地区のアンケートをもとに実現した移動支援です。</li>
+                <li>買い物・通院などの生活の足として、令和7年3月より運行されています。</li>
+                <li>事前予約制です。予約受付は午前9時〜11時です。</li>
+                <li>予約電話番号は 070-8526-6330 です。利用日・時間・行先を伝えてください。</li>
+                <li>不明点は「つるまい自治協議会」事務局 080-1426-0881 まで。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-gakuenmae-mobility.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-gakuenmae-mobility.jpg" alt="学園前移動支援 回覧板">
+        </article>
+
+        <article class="kairan-card">
+            <h3><i class="fa-solid fa-clipboard-list"></i> 大規模地震時の電気火災対策</h3>
+            <p class="kairan-note">掲載日: 2026年5月16日 / 回覧板資料より作成</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>テーマ</strong>火災を防ぐための備え</div>
+                <div class="kairan-box"><strong>重点</strong>地震による電気火災対策</div>
+                <div class="kairan-box"><strong>有効策</strong>感震ブレーカーの設置</div>
+                <div class="kairan-box"><strong>資料</strong>総務省消防庁の啓発資料</div>
+            </div>
+
+            <h4 style="color:#005BAC; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>大規模地震では、建物の倒壊だけでなく火災被害も多く発生します。</li>
+                <li>東日本大震災の火災では、原因が特定されたものの過半数が電気に起因していました。</li>
+                <li>電気火災対策には、震度5強相当の地震を感知して電気を自動で遮断する感震ブレーカーが効果的です。</li>
+                <li>感震ブレーカーには、分電盤タイプ（内蔵型・後付型）、コンセントタイプ、簡易タイプがあります。</li>
+                <li>設置方法によっては電気工事が必要です。家庭の状況に合わせて検討しましょう。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-electric-fire-breaker.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-electric-fire-breaker.jpg" alt="大規模地震時の電気火災対策 回覧板">
+        </article>
+
+        <article class="kairan-card">
+            <h3><i class="fa-solid fa-clipboard-list"></i> 奈良市のごみを考える市民説明会</h3>
+            <p class="kairan-note">掲載日: 2026年5月16日 / 回覧板資料より作成</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>開催日</strong>令和8年5月24日（日）</div>
+                <div class="kairan-box"><strong>時間</strong>10:00〜12:00（開場 9:30）</div>
+                <div class="kairan-box"><strong>場所</strong>奈良市役所 中央棟6階 正庁</div>
+                <div class="kairan-box"><strong>参加費</strong>無料・申込不要</div>
+            </div>
+
+            <h4 style="color:#005BAC; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>奈良市の重要課題である新クリーンセンター建設計画についての市民説明会です。</li>
+                <li>20年以上にわたり候補地の検討を続けている課題について、市と市民が今後の展望を話し合います。</li>
+                <li>内容は「奈良市のクリーンセンター建設の取組について」の説明と、奈良市と市民の意見交換です。</li>
+                <li>駐車場台数に限りがあるため、できるだけ公共交通機関の利用が案内されています。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-05-24-gomi-setsumeikai.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-05-24-gomi-setsumeikai.jpg" alt="奈良市のごみを考える市民説明会 回覧板">
+        </article>
+
+        <article class="kairan-card">
+            <h3><i class="fa-solid fa-clipboard-list"></i> 健康体操のお知らせ</h3>
+            <p class="kairan-note">掲載日: 2026年5月16日 / 回覧板資料より作成</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>テーマ</strong>気温の変動を乗り越える身体づくり</div>
+                <div class="kairan-box"><strong>内容</strong>室内でできる軽い運動の紹介</div>
+                <div class="kairan-box"><strong>協力</strong>ケアセンターそれいゆ学園前</div>
+                <div class="kairan-box"><strong>関連</strong>5月の社協活動案内も掲載</div>
+            </div>
+
+            <h4 style="color:#005BAC; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>寒暖差対策には、生活習慣を意識することが大切です。</li>
+                <li>水分補給、栄養バランスのよい食事、適度な運動を心がけましょう。</li>
+                <li>グーパー運動は、手を前に伸ばしてグー・パーを交互に繰り返す運動です。握力維持や関節を動かす効果が期待できます。</li>
+                <li>椅子に座った足踏み、簡単な筋トレ、首や肩のストレッチも紹介されています。</li>
+                <li>5月の社協活動案内として、健康体操、つるまい元気アップ、つるまいモルック・ボッチャ等の案内も掲載されています。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-05-health-exercise.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-05-health-exercise-p1.jpg" alt="健康体操のお知らせ 回覧板 1ページ目">
+            <img class="kairan-preview" src="images/kairan/2026-05-health-exercise-p2.jpg" alt="5月の社協活動案内 回覧板 2ページ目">
+        </article>
+
+        <article class="kairan-card">
+            <h3><i class="fa-solid fa-clipboard-list"></i> 白玉団子作り</h3>
+            <p class="kairan-note">掲載日: 2026年5月16日 / 回覧板資料より作成</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>開催日</strong>5月20日（水）</div>
+                <div class="kairan-box"><strong>時間</strong>14:00〜</div>
+                <div class="kairan-box"><strong>場所</strong>学園朝日町・元町公民館</div>
+                <div class="kairan-box"><strong>主催</strong>つるまい自治協議会、鶴舞地区社会福祉協議会</div>
+            </div>
+
+            <h4 style="color:#005BAC; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>みなさんで白玉団子を作って、楽しく食べる集まりです。</li>
+                <li>参加される方は、エプロンを持参してください。</li>
+                <li>会場は学園朝日町・元町公民館です。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-05-20-shiratama.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-05-20-shiratama.jpg" alt="白玉団子作り 回覧板">
+        </article>
+        <article class="kairan-card">
+            <h3><i class="fa-solid fa-clipboard-list"></i> 麻雀を楽しもう</h3>
+            <p class="kairan-note">掲載日: 2026年5月16日 / 回覧板資料より作成</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>開催日</strong>5月18日（月）</div>
+                <div class="kairan-box"><strong>時間</strong>13:30〜17:30</div>
+                <div class="kairan-box"><strong>場所</strong>学園朝日町・元町公民館</div>
+                <div class="kairan-box"><strong>主催</strong>つるまい自治協議会、鶴舞地区社会福祉協議会</div>
+            </div>
+
+            <h4 style="color:#005BAC; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>地域のみなさんで麻雀を楽しむ集まりです。</li>
+                <li>賭け事はしません。楽しく頭の体操をすることが目的です。</li>
+                <li>人数が多いときは、順番に行います。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/kairan/2026-05-18-mahjong.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 元PDFを見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-05-18-mahjong.jpg" alt="麻雀を楽しもう 回覧板">
+        </article>
+
+
+        <div class="kairan-period" id="archive-past">以前の掲載分<small>2026年4月以前に掲載した回覧資料</small></div>
+
+        <article class="kairan-card">
+            <h3><i class="fa-solid fa-clipboard-list"></i> 鶴舞橋耐震補強工事のお知らせ</h3>
+            <p class="kairan-note">掲載日: 2026年3月31日 / 新着情報の画像付き告知を回覧板要約へ移動</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>工事名</strong>鶴舞橋耐震補強工事</div>
+                <div class="kairan-box"><strong>場所</strong>奈良市鶴舞東町（鶴舞橋の橋脚部分）</div>
+                <div class="kairan-box"><strong>工期</strong>2025年3月6日〜2026年6月4日（延長予定）</div>
+                <div class="kairan-box"><strong>施工者</strong>株式会社 森本組</div>
+            </div>
+
+            <h4 style="color:#005BAC; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>工事期間が2026年6月4日まで延長予定となっています。</li>
+                <li>鶴舞橋橋梁下の西行道路は、5月中を目途に開放予定です。</li>
+                <li>詳しい開放日時は、現地看板で別途案内されます。</li>
+                <li>東側側道通行止めは、本工事完了後の長寿命修繕工事期間中も継続予定です。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="images/kairan/2026-03-31-tsurumai-bridge-kouji.png" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-image"></i> 元画像を見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-03-31-tsurumai-bridge-kouji.png" alt="鶴舞橋耐震補強工事のお知らせ">
+        </article>
+
+        <article class="kairan-card">
+            <h3><i class="fa-solid fa-clipboard-list"></i> 移動販売スケジュール（4月）</h3>
+            <p class="kairan-note">掲載日: 2026年4月1日 / 新着情報の画像付き告知を回覧板要約へ移動</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>学園朝日町・元町公民館</strong>水曜日 13:40〜14:10</div>
+                <div class="kairan-box"><strong>鶴舞団地西町 UR管理事務所付近</strong>月曜日 15:40〜16:10</div>
+                <div class="kairan-box"><strong>鶴舞団地西町 UR管理事務所付近</strong>金曜日 14:00〜14:30</div>
+                <div class="kairan-box"><strong>主催</strong>鶴舞地区社会福祉協議会</div>
+            </div>
+
+            <h4 style="color:#005BAC; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>4月の移動販売スケジュールのお知らせです。</li>
+                <li>学園朝日町・元町公民館は、水曜日に実施されます。</li>
+                <li>鶴舞団地西町 UR管理事務所付近は、月曜日と金曜日に実施されます。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="images/kairan/2026-04-idou-hanbai.png" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-image"></i> 元画像を見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-04-idou-hanbai.png" alt="移動販売スケジュール 4月">
+        </article>
+
+        <article class="kairan-card">
+            <h3><i class="fa-solid fa-clipboard-list"></i> 自転車 交通反則通告制度・反則金一覧</h3>
+            <p class="kairan-note">掲載日: 2026年4月1日 / 新着情報の画像付き告知を回覧板要約へ移動</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>開始</strong>令和8年4月1日</div>
+                <div class="kairan-box"><strong>対象</strong>16歳以上</div>
+                <div class="kairan-box"><strong>内容</strong>自転車の交通違反に交通反則通告制度が導入</div>
+                <div class="kairan-box"><strong>資料</strong>奈良市交通対策協議会</div>
+            </div>
+
+            <h4 style="color:#005BAC; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>走行中のスマホ操作、イヤホン等の使用、右側通行・逆走などが紹介されています。</li>
+                <li>信号無視、警報機が鳴っている踏切への立ち入り、一時不停止、二人乗りなども反則金の対象例として掲載されています。</li>
+                <li>自転車は軽車両です。車両の左側を走行し、安全確認を心がけましょう。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="images/kairan/2026-04-01-jitensha-seido.jpg" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-image"></i> 制度画像を見る</a>
+                <a href="images/kairan/2026-04-01-jitensha-hansoku.jpg" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-image"></i> 反則金画像を見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-04-01-jitensha-seido.jpg" alt="自転車 交通反則通告制度">
+            <img class="kairan-preview" src="images/kairan/2026-04-01-jitensha-hansoku.jpg" alt="自転車 反則金一覧">
+        </article>
+
+        <article class="kairan-card">
+            <h3><i class="fa-solid fa-clipboard-list"></i> 健康体操のお知らせ（春のおすすめ）</h3>
+            <p class="kairan-note">掲載日: 2026年4月8日 / 新着情報の画像付き告知を回覧板要約へ移動</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>今月のテーマ</strong>春のおすすめ、身体を動かそう</div>
+                <div class="kairan-box"><strong>内容</strong>腰を捻るストレッチ、ウォーキング</div>
+                <div class="kairan-box"><strong>次回</strong>4月8日（水）開催</div>
+                <div class="kairan-box"><strong>協力</strong>ケアセンターそれいゆ学園前</div>
+            </div>
+
+            <h4 style="color:#005BAC; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>春の暖かい気候は体のこわばりが緩和され、運動しやすくなります。</li>
+                <li>軽い運動やストレッチで身体を動かしましょう。</li>
+                <li>腰を捻るストレッチは、筋肉の柔軟性を高め、姿勢の改善や呼吸機能の維持・向上に効果が期待できます。</li>
+                <li>ウォーキングでは、背筋を伸ばし、猫背や反りすぎに注意しましょう。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="images/kairan/2026-04-08-kenkou-taisou.jpg" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-image"></i> 元画像を見る</a>
+                <a href="index.html" class="btn btn--line"><i class="fa-solid fa-house"></i> ホームへ戻る</a>
+            </div>
+
+            <img class="kairan-preview" src="images/kairan/2026-04-08-kenkou-taisou.jpg" alt="健康体操のお知らせ 春のおすすめ">
+        </article>
+
+
+        <article class="kairan-card">
+            <h3><i class="fa-solid fa-shield-halved"></i> やまとの安全（令和8年4月15日号）</h3>
+            <p class="kairan-note">掲載日: 2026年4月24日 / 防災防犯部会の安全情報を回覧板要約にも掲載</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>発行</strong>奈良西警察署</div>
+                <div class="kairan-box"><strong>区分</strong>防災防犯部会の安全情報</div>
+                <div class="kairan-box"><strong>資料</strong>やまとの安全 令和8年4月15日号</div>
+                <div class="kairan-box"><strong>掲載方針</strong>発行の都度、回覧板要約にも掲載</div>
+            </div>
+
+            <h4 style="color:#005BAC; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>警察官が反則告知の際に、現場で反則金を受け取ることはありません。</li>
+                <li>不審な請求や現金の要求があった場合は、すぐに警察へ相談してください。</li>
+                <li>防犯・安全情報は、防災防犯部会ページにもまとめて掲載します。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/yamato-safety/R8.4.15.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> PDFを見る</a>
+                <a href="activities/safety.html#yamato-security" class="btn btn--line"><i class="fa-solid fa-shield-halved"></i> 防災防犯部会へ</a>
+            </div>
+        </article>
+
+        <article class="kairan-card">
+            <h3><i class="fa-solid fa-shield-halved"></i> やまとの安全（令和8年4月7日号）</h3>
+            <p class="kairan-note">掲載日: 2026年4月24日 / 防災防犯部会の安全情報を回覧板要約にも掲載</p>
+
+            <div class="kairan-summary">
+                <div class="kairan-box"><strong>発行</strong>奈良西警察署</div>
+                <div class="kairan-box"><strong>区分</strong>防災防犯部会の安全情報</div>
+                <div class="kairan-box"><strong>資料</strong>やまとの安全 令和8年4月7日号</div>
+                <div class="kairan-box"><strong>掲載方針</strong>発行の都度、回覧板要約にも掲載</div>
+            </div>
+
+            <h4 style="color:#005BAC; font-size:1.2rem; margin-top:24px;">要点</h4>
+            <ul class="kairan-points">
+                <li>奈良西警察署から届いた地域の防犯・安全情報です。</li>
+                <li>地域の安全に関わる注意事項として、防災防犯部会ページに格納します。</li>
+                <li>回覧板要約ページでも、住民が見つけやすいように掲載します。</li>
+            </ul>
+
+            <div class="kairan-actions">
+                <a href="pdf/yamato-safety/R8.4.7.pdf" class="btn btn--kairan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> PDFを見る</a>
+                <a href="activities/safety.html#yamato-security" class="btn btn--line"><i class="fa-solid fa-shield-halved"></i> 防災防犯部会へ</a>
+            </div>
+        </article>
+    </main>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="95d6cb92-8c0b-49b7-b616-ed0b0409ffcd"></script>
+</body>
+</html>

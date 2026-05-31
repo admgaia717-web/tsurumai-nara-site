@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防災・防犯部会 | つるまい自治協議会</title>
+    <meta name="description" content="鶴舞地区の防災・防犯活動。住民の安全・安心を守るための訓練と活動を行っています。">
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="../images/favicon.jpg">
+    <link rel="apple-touch-icon" href="../images/favicon.jpg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css?v=20260522g">
+    <style>
+        /* ============================================================
+           NYC.gov Design System — Safety Subpage
+           ============================================================
+           NYC Brand Colors (source: nyc.gov):
+             Navy:   #112E51  (official NYC dark navy)
+             Blue:   #103FEF  (primary action / button blue)
+             Orange: #FF6600  (accent — NYPD+FDNY civic orange)
+             Black:  #1A1A1A  (body text)
+             Grey:   #F0F0F0  (background sections)
+             Border: #D6D6D6  (divider lines)
+        ============================================================ */
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, 'Noto Sans JP', sans-serif;
+            color: #1A1A1A;
+            background: #FFFFFF;
+        }
+
+        /* --- Hero ------------------------------------------------- */
+        .safety-hero {
+            background: #112E51;
+            padding: 48px 0 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid #103FEF;
+        }
+
+        .safety-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: repeating-linear-gradient(
+                0deg,
+                rgba(255,255,255,0.03) 0px,
+                rgba(255,255,255,0.03) 1px,
+                transparent 1px,
+                transparent 24px
+            );
+            pointer-events: none;
+        }
+
+        .safety-hero .section__container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .safety-hero__icon {
+            font-size: 2.8rem;
+            color: #FF6600;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .safety-hero__text {
+            position: relative;
+            z-index: 1;
+        }
+
+        .safety-hero__eyebrow {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 6px;
+        }
+
+        .safety-hero__title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin: 0 0 8px;
+            text-shadow: none;
+            letter-spacing: -0.01em;
+            color: #FFFFFF;
+        }
+
+        .safety-hero__subtitle {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        /* --- Mission ---------------------------------------------- */
+        .safety-mission {
+            background: #FFFFFF;
+            padding: 48px 0;
+            border-bottom: 1px solid #D6D6D6;
+        }
+
+        .safety-mission .section__title {
+            text-align: left;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #112E51;
+        }
+
+        .safety-mission .section__title::after { display: none; }
+
+        .safety-mission__text {
+            max-width: 760px;
+            margin: 0;
+            text-align: left;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #3A3A3A;
+        }
+
+        /* --- Activities ------------------------------------------- */
+        .safety-activities {
+            background: #F0F0F0;
+            padding: 48px 0;
+            border-bottom: 1px solid #D6D6D6;
+        }
+
+        .safety-activities .section__title {
+            text-align: left;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #112E51;
+        }
+
+        .safety-activities .section__title::after { display: none; }
+
+        .safety-activities__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .safety-activity-card {
+            background: #FFFFFF;
+            border-radius: 0;
+            padding: 24px;
+            box-shadow: none;
+            border: 1px solid #D6D6D6;
+            border-left: 4px solid #103FEF;
+            transition: border-left-color 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: visible;
+        }
+
+        .safety-activity-card::before { display: none; }
+
+        .safety-activity-card:hover {
+            transform: none;
+            border-left-color: #FF6600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .safety-activity-card__header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .safety-activity-card__icon {
+            width: 40px;
+            height: 40px;
+            background: #F0F0F0;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .safety-activity-card__title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #112E51;
+        }
+
+        .safety-activity-card__text {
+            color: #3A3A3A;
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+
+        /* --- Emergency -------------------------------------------- */
+        .safety-emergency {
+            background: #112E51;
+            padding: 48px 0;
+            color: white;
+        }
+
+        .safety-emergency .section__title {
+            color: white;
+            text-align: left;
+            font-size: 1.5rem;
+        }
+
+        .safety-emergency .section__title::after { display: none; }
+
+        .safety-emergency__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .safety-emergency__card {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-top: 3px solid #FF6600;
+            border-radius: 0;
+            padding: 24px;
+            text-align: left;
+            transition: background 0.2s ease;
+        }
+
+        .safety-emergency__card:hover {
+            background: rgba(255,255,255,0.12);
+            transform: none;
+        }
+
+        .safety-emergency__label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.65;
+            margin-bottom: 8px;
+        }
+
+        .safety-emergency__number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #FFFFFF;
+            text-decoration: none;
+            display: block;
+            transition: color 0.2s ease;
+            letter-spacing: -0.02em;
+        }
+
+        .safety-emergency__number:hover { color: #FF6600; }
+
+        /* --- Info ------------------------------------------------- */
+        .safety-info {
+            background: #FFFFFF;
+            padding: 48px 0;
+        }
+
+        .safety-info .section__title {
+            text-align: left;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #112E51;
+            margin-bottom: 24px;
+        }
+
+        .safety-info .section__title::after { display: none; }
+
+        .safety-info__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .safety-info__card {
+            background: #F0F0F0;
+            border-radius: 0;
+            border: 1px solid #D6D6D6;
+            padding: 24px;
+        }
+
+        .safety-info__card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #112E51;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #103FEF;
+        }
+
+        .safety-info__card-title i { color: #103FEF; }
+
+        .safety-info__list { list-style: none; }
+
+        .safety-info__list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #D6D6D6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .safety-info__list li:last-child { border-bottom: none; }
+        .safety-info__list li i { color: #103FEF; }
+
+        /* --- Back Link -------------------------------------------- */
+        .back-link {
+            background: #F0F0F0;
+            padding: 20px 0;
+            border-top: 1px solid #D6D6D6;
+        }
+
+        .back-link a {
+            color: #103FEF;
+            font-weight: 600;
+            text-decoration: underline;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+
+        .back-link a:hover { color: #112E51; }
+
+        /* --- Yamato Safety PDFs ----------------------------------- */
+        .safety-yamato {
+            background: #FFFFFF;
+            padding: 48px 0;
+            border-top: 1px solid #D6D6D6;
+        }
+
+        .safety-yamato .section__title {
+            text-align: left;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #112E51;
+            margin-bottom: 12px;
+        }
+
+        .safety-yamato .section__title::after { display: none; }
+        .safety-yamato .section__title i { color: #FF6600; margin-right: 6px; }
+
+        .safety-yamato__intro {
+            font-size: 0.92rem;
+            color: #3A3A3A;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .safety-yamato__list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .safety-yamato__item a {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 20px;
+            background: #F0F0F0;
+            border: 1px solid #D6D6D6;
+            border-left: 4px solid #FF6600;
+            text-decoration: none;
+            color: #1A1A1A;
+            transition: background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .safety-yamato__item a:hover {
+            background: #E8E8E8;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .safety-yamato__icon {
+            font-size: 1.8rem;
+            color: #C0392B;
+            flex-shrink: 0;
+            width: 44px;
+            text-align: center;
+        }
+
+        .safety-yamato__text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .safety-yamato__title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #112E51;
+        }
+
+        .safety-yamato__meta {
+            font-size: 0.82rem;
+            color: #666;
+        }
+
+        .safety-yamato__dl {
+            font-size: 1.1rem;
+            color: #103FEF;
+            flex-shrink: 0;
+            opacity: 0.6;
+            transition: opacity 0.2s ease;
+        }
+
+        .safety-yamato__item a:hover .safety-yamato__dl {
+            opacity: 1;
+        }
+
+        /* --- Responsive ------------------------------------------- */
+        @media (max-width: 768px) {
+            .safety-activities__grid,
+            .safety-emergency__grid,
+            .safety-info__grid { grid-template-columns: 1fr; }
+
+            .safety-hero__title { font-size: 1.5rem; }
+
+            .safety-hero .section__container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EYG3C4Y8XL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EYG3C4Y8XL');
+    </script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header__container">
+            <h1 class="header__logo">
+                <a href="../index.html">
+                    <span class="header__logo-text">つるまい自治協議会</span>
+                </a>
+            </h1>
+            <button class="header__hamburger" aria-label="メニューを開く" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li class="header__nav-item"><a href="../index.html">ホーム</a></li>
+                    <li class="header__nav-item"><a href="../about.html">自治協議会について</a></li>
+                    <li class="header__nav-item"><a href="../contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero — NYC.gov Style -->
+    <section class="safety-hero">
+        <div class="section__container">
+            <div class="safety-hero__icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="safety-hero__text">
+                <p class="safety-hero__eyebrow">つるまい自治協議会 — 防災・防犯部会</p>
+                <h2 class="safety-hero__title">防災・防犯部会</h2>
+                <p class="safety-hero__subtitle">住民の安全・安心の確保、協力体制の構築</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Mission -->
+        <section class="safety-mission">
+            <div class="section__container">
+                <h2 class="section__title">私たちの使命</h2>
+                <p class="safety-mission__text">
+                    防災・防犯部会は、地域住民の安全と安心を守るため、<br>
+                    日頃からの備えと地域の連携を大切にしています。<br>
+                    いざという時に助け合える関係づくりを目指し、<br>
+                    様々な活動を通じて地域の防災力向上に取り組んでいます。
+                </p>
+            </div>
+        </section>
+
+        <!-- Activities -->
+        <section class="safety-activities">
+            <div class="section__container">
+                <h2 class="section__title"><i class="fa-solid fa-list-check"></i> 活動内容</h2>
+                <div class="safety-activities__grid">
+                    <div class="safety-activity-card">
+                        <div class="safety-activity-card__header">
+                            <div class="safety-activity-card__icon">&#128680;</div>
+                            <h3 class="safety-activity-card__title">防災訓練</h3>
+                        </div>
+                        <p class="safety-activity-card__text">
+                            年2回の防災訓練を実施。避難経路の確認、消火器の使い方など実践的な訓練を行います。地域全体で災害に備える意識を高めています。
+                        </p>
+                    </div>
+                    <div class="safety-activity-card">
+                        <div class="safety-activity-card__header">
+                            <div class="safety-activity-card__icon">&#128663;</div>
+                            <h3 class="safety-activity-card__title">交通安全指導</h3>
+                        </div>
+                        <p class="safety-activity-card__text">
+                            <strong>毎月20日</strong>、交通安全指導員が学園前駅で違法駐車・違法駐輪の監視活動を行っています。駅周辺の安全と秩序を守るための大切な取り組みです。
+                        </p>
+                    </div>
+                    <div class="safety-activity-card">
+                        <div class="safety-activity-card__header">
+                            <div class="safety-activity-card__icon">&#128737;</div>
+                            <h3 class="safety-activity-card__title">特殊詐欺防止活動</h3>
+                        </div>
+                        <p class="safety-activity-card__text">
+                            <strong>偶数月の15日</strong>、地域安全推進委員が金融機関前で特殊詐欺防止の啓発活動を実施。高齢者を狙う詐欺被害の防止に努めています。
+                        </p>
+                    </div>
+                    <div class="safety-activity-card">
+                        <div class="safety-activity-card__header">
+                            <div class="safety-activity-card__icon">&#128222;</div>
+                            <h3 class="safety-activity-card__title">緊急連絡網</h3>
+                        </div>
+                        <p class="safety-activity-card__text">
+                            災害時に迅速な情報共有ができるよう、連絡網を整備・更新しています。LINEグループも活用した多層的な連絡体制を構築。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Contacts -->
+        <section class="safety-emergency">
+            <div class="section__container">
+                <h2 class="section__title"><i class="fa-solid fa-phone-volume"></i> 緊急連絡先</h2>
+                <div class="safety-emergency__grid">
+                    <div class="safety-emergency__card">
+                        <p class="safety-emergency__label">警察</p>
+                        <a href="tel:110" class="safety-emergency__number">110</a>
+                    </div>
+                    <div class="safety-emergency__card">
+                        <p class="safety-emergency__label">消防・救急</p>
+                        <a href="tel:119" class="safety-emergency__number">119</a>
+                    </div>
+                    <div class="safety-emergency__card">
+                        <p class="safety-emergency__label">奈良市役所</p>
+                        <a href="tel:0742-34-1111" class="safety-emergency__number">0742-34-1111</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info -->
+        <section class="safety-info">
+            <div class="section__container">
+                <h2 class="section__title">防災のポイント</h2>
+                <div class="safety-info__grid">
+                    <div class="safety-info__card">
+                        <h3 class="safety-info__card-title"><i class="fa-solid fa-house-chimney-crack"></i> 日頃の備え</h3>
+                        <ul class="safety-info__list">
+                            <li><i class="fa-solid fa-check"></i> 非常食・水の備蓄（3日分以上）</li>
+                            <li><i class="fa-solid fa-check"></i> 懐中電灯・ラジオの準備</li>
+                            <li><i class="fa-solid fa-check"></i> 家具の転倒防止対策</li>
+                            <li><i class="fa-solid fa-check"></i> 避難場所・経路の確認</li>
+                        </ul>
+                    </div>
+                    <div class="safety-info__card">
+                        <h3 class="safety-info__card-title"><i class="fa-solid fa-location-dot"></i> 避難場所</h3>
+                        <ul class="safety-info__list">
+                            <li><i class="fa-solid fa-school"></i> 鶴舞小学校（一時避難場所）</li>
+                            <li><i class="fa-solid fa-building"></i> 公民館（福祉避難所）</li>
+                            <li><i class="fa-solid fa-tree"></i> 学園前広場（広域避難場所）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- やまとの安全 Section -->
+        <section class="safety-yamato" id="yamato-security">
+            <div class="section__container">
+                <h2 class="section__title"><i class="fa-solid fa-file-shield"></i> やまとの安全</h2>
+                <p class="safety-yamato__intro">
+                    奈良西警察署から定期的に届く防犯・安全情報です。<br>
+                    「やまとの安全」は、防災防犯部会の情報としてここに格納します。<br>
+                    月1〜3回の発行に合わせて、回覧板要約ページにも随時掲載します。
+                </p>
+                <ul class="safety-yamato__list">
+                    <!-- ★ 新しいPDFを追加するときは、下の<li>をコピーしてファイル名・日付・説明を変えるだけ ★ -->
+                    <li class="safety-yamato__item">
+                        <a href="../pdf/yamato-safety/R8.5.29.pdf" target="_blank" rel="noopener noreferrer">
+                            <div class="safety-yamato__icon"><i class="fa-solid fa-file-pdf"></i></div>
+                            <div class="safety-yamato__text">
+                                <span class="safety-yamato__title">やまとの安全（令和8年5月29日号）</span>
+                                <span class="safety-yamato__meta">刑法犯認知件数と特殊詐欺・自転車盗への注意</span>
+                            </div>
+                            <div class="safety-yamato__dl"><i class="fa-solid fa-download"></i></div>
+                        </a>
+                    </li>
+                    <li class="safety-yamato__item">
+                        <a href="../pdf/yamato-safety/R8.5.29sikintyousa.pdf" target="_blank" rel="noopener noreferrer">
+                            <div class="safety-yamato__icon"><i class="fa-solid fa-file-pdf"></i></div>
+                            <div class="safety-yamato__text">
+                                <span class="safety-yamato__title">やまとの安全（金塊詐欺注意）</span>
+                                <span class="safety-yamato__meta">資産調査名目の金塊詐欺に注意</span>
+                            </div>
+                            <div class="safety-yamato__dl"><i class="fa-solid fa-download"></i></div>
+                        </a>
+                    </li>
+                    <li class="safety-yamato__item">
+                        <a href="../pdf/yamato-safety/R8.4.15.pdf" target="_blank" rel="noopener noreferrer">
+                            <div class="safety-yamato__icon"><i class="fa-solid fa-file-pdf"></i></div>
+                            <div class="safety-yamato__text">
+                                <span class="safety-yamato__title">やまとの安全（令和8年4月15日号）</span>
+                                <span class="safety-yamato__meta">警察官が反則告知の際に現場で反則金を受け取ることはありません</span>
+                            </div>
+                            <div class="safety-yamato__dl"><i class="fa-solid fa-download"></i></div>
+                        </a>
+                    </li>
+                    <li class="safety-yamato__item">
+                        <a href="../pdf/yamato-safety/R8.4.7.pdf" target="_blank" rel="noopener noreferrer">
+                            <div class="safety-yamato__icon"><i class="fa-solid fa-file-pdf"></i></div>
+                            <div class="safety-yamato__text">
+                                <span class="safety-yamato__title">やまとの安全（令和8年4月7日号）</span>
+                                <span class="safety-yamato__meta">奈良西警察署からのお知らせ</span>
+                            </div>
+                            <div class="safety-yamato__dl"><i class="fa-solid fa-download"></i></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Back Link -->
+        <div class="back-link">
+            <a href="../index.html"><i class="fa-solid fa-arrow-left"></i> トップページに戻る</a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__container">
+            <p class="footer__copyright">&copy; 2025 つるまい自治協議会. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="95d6cb92-8c0b-49b7-b616-ed0b0409ffcd"></script>
+</body>
+
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOBILITY DASHBOARD — 鶴舞自治協議会</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#f5f5f7;--card:#ffffff;--border:#e0e0e0;--t1:#1a1a1a;--t2:#555;--t3:#888;--accent:#111;--r:12px}
+        body{font-family:'Inter','Noto Sans JP',sans-serif;background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased}
+
+        /* NAV */
+        .nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+        .nav-brand{display:flex;align-items:center;gap:12px}
+        .nav-icon{width:32px;height:32px;border-radius:8px;border:1.5px solid #bbb;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+        .nav h1{font-size:.875rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#1a1a1a}
+        .nav-sub{font-size:.65rem;color:var(--t3);font-weight:400;letter-spacing:.02em}
+        .nav-live{display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--t3)}
+        .dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+        /* MAP */
+        .map-wrap{position:relative;height:48vh;min-height:300px;border-bottom:1px solid var(--border)}
+        #map{width:100%;height:100%}
+        .map-badge{position:absolute;top:12px;left:12px;z-index:800;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border:1px solid #ccc;border-radius:10px;padding:8px 16px;font-size:.75rem;font-weight:600;display:flex;align-items:center;gap:8px;color:#555}
+        .map-badge .num{color:#111;font-size:1.1rem;font-weight:800}
+        .vehicle-pin{position:relative;display:flex;align-items:center;justify-content:center}
+        .vehicle-pin .pulse{position:absolute;width:48px;height:48px;border-radius:50%;background:rgba(59,130,246,.18);animation:vPulse 2s ease-out infinite}
+        .vehicle-pin .dot{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#2563eb);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;box-shadow:0 2px 12px rgba(59,130,246,.35),0 0 20px rgba(59,130,246,.12);border:2.5px solid #fff;position:relative;z-index:2}
+        .vehicle-pin .tag{position:absolute;top:-22px;left:50%;transform:translateX(-50%);background:rgba(30,30,30,.85);color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:99px;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.2);letter-spacing:.03em}
+        @keyframes vPulse{0%{transform:scale(.7);opacity:.6}100%{transform:scale(2.2);opacity:0}}
+        .leaflet-popup-content-wrapper{background:#fff!important;color:#333!important;border-radius:10px!important;box-shadow:0 4px 20px rgba(0,0,0,.12)!important;border:1px solid #ddd!important}
+        .leaflet-popup-tip{background:#fff!important}
+        .leaflet-popup-content{margin:10px 14px!important;font-family:'Inter','Noto Sans JP',sans-serif!important;font-size:12px;line-height:1.6}
+        .fly-home{position:absolute;bottom:16px;right:16px;z-index:800;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);color:#333;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.12);transition:all .25s;border:1px solid #ddd}
+        .fly-home:hover{background:#fff;transform:scale(1.1);box-shadow:0 4px 16px rgba(0,0,0,.18)}
+        .fly-home:active{transform:scale(.95)}
+
+        /* DASHBOARD */
+        .dash{max-width:1200px;margin:0 auto;padding:24px}
+        .dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+        .dash-title{font-size:1.1rem;font-weight:700;letter-spacing:.02em;color:#1a1a1a}
+        .controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+        .sync-status{display:flex;align-items:center;gap:6px;font-size:.65rem;color:var(--t3);letter-spacing:.03em}
+        .sync-dot{width:5px;height:5px;border-radius:50%;background:#22c55e}
+        .sync-status.loading .sync-dot{background:#eab308;animation:blink 1s infinite}
+        .sync-status.error .sync-dot{background:#ef4444}
+        .date-wrap{display:flex;align-items:center;gap:4px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:4px 8px}
+        .date-wrap label{font-size:.65rem;color:var(--t3);padding-right:4px}
+        .date-wrap input{background:transparent;border:none;color:var(--t1);font-family:inherit;font-size:.75rem;outline:none;width:120px}
+        .date-wrap .sep{color:var(--t3);font-size:.7rem;margin:0 2px}
+
+        /* KPI */
+        .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+        .kpi{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;transition:border-color .3s,box-shadow .3s}
+        .kpi:hover{border-color:#bbb;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+        .kpi-label{font-size:.6rem;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+        .kpi-val{font-size:2rem;font-weight:900;letter-spacing:-.03em;line-height:1;color:#1a1a1a}
+        .kpi-note{font-size:.6rem;color:var(--t3);margin-top:6px}
+
+        /* CHARTS */
+        .chart-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:12px}
+        .chart-box h3{font-size:.8rem;font-weight:700;margin-bottom:16px;color:var(--t2);letter-spacing:.02em}
+        .chart-area{position:relative;height:280px}
+        .chart-area.tall{height:320px}
+        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+        .footer{text-align:center;padding:32px;font-size:.6rem;color:var(--t3);letter-spacing:.04em}
+
+        @media(max-width:768px){
+            .kpi-row{grid-template-columns:1fr 1fr}
+            .two-col{grid-template-columns:1fr}
+            .map-wrap{height:35vh;min-height:240px}
+            .dash{padding:16px}
+            .chart-area{height:220px}
+            .dash-header{flex-direction:column;align-items:flex-start}
+        }
+        @media(max-width:480px){.kpi-row{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-brand">
+            <div><h1>Mobility Dashboard</h1><div class="nav-sub">鶴舞自治協議会</div></div>
+        </div>
+        <div class="nav-live"><span class="dot"></span>LIVE</div>
+    </nav>
+
+    <section class="map-wrap">
+        <div id="map"></div>
+        <button class="fly-home" id="btnFlyHome" title="学園前へ戻る">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4m10-10h-4M6 12H2"/><circle cx="12" cy="12" r="8" stroke-dasharray="2 3"/></svg>
+        </button>
+    </section>
+
+    <div class="dash">
+        <div class="dash-header">
+            <div class="dash-title">稼働データ</div>
+            <div class="controls">
+                <div class="date-wrap">
+                    <label>期間</label>
+                    <input type="date" id="sd">
+                    <span class="sep">→</span>
+                    <input type="date" id="ed">
+                </div>
+            </div>
+        </div>
+
+        <div class="kpi-row">
+            <div class="kpi"><div class="kpi-label">累計予約件数</div><div class="kpi-val" id="k1">–</div><div class="kpi-note">選択期間内</div></div>
+            <div class="kpi"><div class="kpi-label">稼働日数</div><div class="kpi-val" id="k2">–</div><div class="kpi-note">予約があった日数</div></div>
+            <div class="kpi"><div class="kpi-label">月平均件数</div><div class="kpi-val" id="k3">–</div><div class="kpi-note">1ヶ月あたり</div></div>
+            <div class="kpi"><div class="kpi-label">直近30日</div><div class="kpi-val" id="k4">–</div><div class="kpi-note">過去30日間</div></div>
+        </div>
+
+        <div class="chart-box"><h3>月別利用件数</h3><div class="chart-area tall"><canvas id="c1"></canvas></div></div>
+        <div class="two-col">
+            <div class="chart-box"><h3>目的地別</h3><div class="chart-area"><canvas id="c2"></canvas></div></div>
+            <div class="chart-box"><h3>出発地別</h3><div class="chart-area"><canvas id="c3"></canvas></div></div>
+        </div>
+    </div>
+
+
+
+<script>
+/* ====== MAP ====== */
+var FBURL = 'https://tsurumai-gps-default-rtdb.asia-southeast1.firebasedatabase.app';
+var map = L.map('map', {
+    attributionControl: false,
+    minZoom: 2,
+    dragging: true,
+    tap: true
+}).setView([34.7039, 135.7574], 15);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19
+}).addTo(map);
+
+var HOME = [34.7039, 135.7574];
+var lastVehiclePos = null;
+document.getElementById('btnFlyHome').addEventListener('click', function() {
+    var target = lastVehiclePos || HOME;
+    map.flyTo(target, 16, { duration: 1.5, easeLinearity: 0.25 });
+});
+
+var markers = {};
+function pollGPS() {
+    fetch(FBURL + '/gps.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        if (!data) { return; }
+        var ids = Object.keys(data);
+        for (var i = 0; i < ids.length; i++) {
+            var id = ids[i], v = data[id];
+            if (v.active === false) { if(markers[id]){map.removeLayer(markers[id]);delete markers[id];} continue; }
+            var lat = v.latitude || v.lat, lng = v.longitude || v.lng || v.lon;
+            if (!lat || !lng) continue;
+            lastVehiclePos = [lat, lng];
+            var name = v.name || v.label || id;
+            var num = name.replace(/[^0-9]/g,'') || '?';
+            var spd = v.speed != null ? (v.speed * 3.6).toFixed(0) + ' km/h' : '';
+            var ts = v.timestamp ? new Date(v.timestamp).toLocaleTimeString('ja-JP') : '';
+            var pop = '<b>🚗 ' + name + '</b>' + (spd ? '<br>速度: ' + spd : '') + (ts ? '<br>更新: ' + ts : '');
+            if (markers[id]) {
+                markers[id].setLatLng([lat, lng]).setPopupContent(pop);
+            } else {
+                var html = '<div class="vehicle-pin"><div class="pulse"></div><div class="dot">' + num + '</div><div class="tag">' + name + '</div></div>';
+                var icon = L.divIcon({ className: '', html: html, iconSize: [48, 48], iconAnchor: [24, 24] });
+                markers[id] = L.marker([lat, lng], { icon: icon }).addTo(map).bindPopup(pop);
+            }
+        }
+        // remove stale
+        var mk = Object.keys(markers);
+        for (var j = 0; j < mk.length; j++) {
+            if (!data[mk[j]]) { map.removeLayer(markers[mk[j]]); delete markers[mk[j]]; }
+        }
+    })
+    .catch(function() {});
+}
+pollGPS();
+setInterval(pollGPS, 3000);
+
+/* ====== SHEETS ====== */
+var SID = '1kjvKUqOoaxvOcfRFRTC-5X2MKvsvYBsnjk0a6yre0e4';
+var CSV_URL = 'https://docs.google.com/spreadsheets/d/' + SID + '/gviz/tq?tqx=out:csv';
+var allRows = [], filtered = [];
+var ch1 = null, ch2 = null, ch3 = null;
+var elSD = document.getElementById('sd'), elED = document.getElementById('ed');
+
+Chart.defaults.color = '#888';
+Chart.defaults.borderColor = '#e5e5e5';
+Chart.defaults.font.family = "'Inter','Noto Sans JP',sans-serif";
+var ttip = { backgroundColor: 'rgba(255,255,255,.97)', titleColor: '#111', bodyColor: '#555', borderWidth: 1, borderColor: '#ddd', cornerRadius: 8, padding: 10, displayColors: false };
+
+elSD.onchange = applyFilter;
+elED.onchange = applyFilter;
+
+function syncSheets() {
+    fetch(CSV_URL)
+    .then(function(r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function(t) {
+        parseData(t);
+    })
+    .catch(function() {});
+}
+window.addEventListener('DOMContentLoaded', function() { syncSheets(); setInterval(syncSheets, 300000); });
+
+function splitCSVLine(line) {
+    var fields = [], cur = '', inQ = false;
+    for (var i = 0; i < line.length; i++) {
+        var c = line[i];
+        if (c === '"') { inQ = !inQ; }
+        else if (c === ',' && !inQ) { fields.push(cur); cur = ''; }
+        else { cur += c; }
+    }
+    fields.push(cur);
+    return fields;
+}
+
+function parseDate(s) {
+    if (!s) return null;
+    s = s.trim();
+    var m = s.match(/(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/);
+    if (m) return new Date(+m[1], m[2] - 1, +m[3]);
+    m = s.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+    if (m) return new Date(+m[1], m[2] - 1, +m[3]);
+    return null;
+}
+
+function fmtDate(d) {
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+
+/* プライバシー保護: 個人名を自動マスク */
+function sanitizeName(s) {
+    if (!s) return '不明';
+    s = s.trim();
+    if (!s) return '不明';
+    /* 個人名パターン: さん、様、宅、お迎え、ハイツ、UR、マンション名等 */
+    if (/さん|様|宅|お迎え|迎え/.test(s)) return '個人宅';
+    if (/^(エクセル|ハイツ|コーポ|メゾン|UR\d|シャトー|レオパレス)/.test(s)) return '集合住宅';
+    return s;
+}
+
+function parseData(csv) {
+    var lines = csv.trim().split('\n');
+    var rows = [];
+    var today = new Date(); today.setHours(23,59,59,999);
+    for (var i = 1; i < lines.length; i++) {
+        var f = splitCSVLine(lines[i].trim());
+        if (f.length < 5) continue;
+        var d = parseDate(f[1]);
+        var orig = sanitizeName(f[3]);
+        var dest = sanitizeName(f[4]);
+        if (d && d <= today) rows.push({ date: d, origin: orig, destination: dest });
+    }
+    if (!rows.length) { alert('有効データなし'); return; }
+    allRows = rows;
+    var dates = rows.map(function(r) { return r.date.getTime(); });
+    var mn = new Date(Math.min.apply(null, dates));
+    var mx = new Date(Math.max.apply(null, dates));
+    elSD.value = fmtDate(mn);
+    elED.value = fmtDate(mx);
+    applyFilter();
+}
+
+function applyFilter() {
+    var s = elSD.value ? new Date(elSD.value) : null;
+    var e = elED.value ? new Date(elED.value + 'T23:59:59') : null;
+    filtered = allRows.filter(function(r) {
+        return (!s || r.date >= s) && (!e || r.date <= e);
+    });
+    updateKPI();
+    drawCharts();
+}
+
+function anim(el, target) {
+    var start = parseInt(el.textContent.replace(/,/g, '')) || 0;
+    var t0 = performance.now();
+    var dur = 600;
+    function step(t) {
+        var p = Math.min((t - t0) / dur, 1);
+        var ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(start + (target - start) * ease).toLocaleString();
+        if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+}
+
+function updateKPI() {
+    var n = filtered.length;
+    anim(document.getElementById('k1'), n);
+    var daySet = {};
+    for (var i = 0; i < filtered.length; i++) { daySet[fmtDate(filtered[i].date)] = 1; }
+    anim(document.getElementById('k2'), Object.keys(daySet).length);
+    var monSet = {};
+    for (var j = 0; j < filtered.length; j++) { monSet[filtered[j].date.getFullYear() + '-' + filtered[j].date.getMonth()] = 1; }
+    var mc = Object.keys(monSet).length;
+    anim(document.getElementById('k3'), mc ? Math.round(n / mc) : 0);
+    var now = new Date(), ago = new Date(now); ago.setDate(now.getDate() - 30);
+    var cnt30 = 0;
+    for (var x = 0; x < allRows.length; x++) { if (allRows[x].date >= ago && allRows[x].date <= now) cnt30++; }
+    anim(document.getElementById('k4'), cnt30);
+}
+
+function drawCharts() {
+    var blues = ['rgba(59,130,246,.75)','rgba(96,165,250,.7)','rgba(147,197,253,.65)','rgba(59,130,246,.55)','rgba(37,99,235,.6)','rgba(96,165,250,.5)','rgba(147,197,253,.45)','rgba(191,219,254,.55)'];
+
+    // Monthly
+    var md = {};
+    for (var i = 0; i < filtered.length; i++) {
+        var k = filtered[i].date.getFullYear() + '/' + String(filtered[i].date.getMonth() + 1).padStart(2, '0');
+        md[k] = (md[k] || 0) + 1;
+    }
+    var mk = Object.keys(md).sort(), mv = mk.map(function(k) { return md[k]; });
+    if (ch1) ch1.destroy();
+    ch1 = new Chart(document.getElementById('c1'), {
+        type: 'bar',
+        data: { labels: mk, datasets: [{ data: mv, backgroundColor: 'rgba(59,130,246,.7)', borderRadius: 6, borderSkipped: false, barPercentage: .55, categoryPercentage: .7 }] },
+        options: { responsive: true, maintainAspectRatio: false, animation: { duration: 700 },
+            plugins: { legend: { display: false }, tooltip: ttip },
+            scales: { x: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 10 }, color: '#777' } },
+                      y: { beginAtZero: true, grid: { color: '#eee' }, border: { display: false }, ticks: { stepSize: 1, font: { size: 10 }, color: '#777' } } } }
+    });
+
+    // Destination
+    var dd = {};
+    for (var a = 0; a < filtered.length; a++) { var dk = filtered[a].destination || '不明'; dd[dk] = (dd[dk] || 0) + 1; }
+    var ds = Object.entries(dd).sort(function(a, b) { return b[1] - a[1]; }).slice(0, 8);
+    if (ch2) ch2.destroy();
+    ch2 = new Chart(document.getElementById('c2'), {
+        type: 'bar',
+        data: { labels: ds.map(function(s) { return s[0]; }), datasets: [{ data: ds.map(function(s) { return s[1]; }), backgroundColor: blues.slice(0, ds.length), borderRadius: 4, borderSkipped: false, barPercentage: .65 }] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, animation: { duration: 700 },
+            plugins: { legend: { display: false }, tooltip: ttip },
+            scales: { x: { beginAtZero: true, grid: { color: '#eee' }, border: { display: false }, ticks: { stepSize: 1, font: { size: 10 }, color: '#777' } },
+                      y: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 10 }, color: '#555', padding: 6 } } } }
+    });
+
+    // Origin
+    var od = {};
+    for (var b = 0; b < filtered.length; b++) { var ok = filtered[b].origin || '不明'; od[ok] = (od[ok] || 0) + 1; }
+    var os = Object.entries(od).sort(function(a, b) { return b[1] - a[1]; }).slice(0, 8);
+    if (ch3) ch3.destroy();
+    ch3 = new Chart(document.getElementById('c3'), {
+        type: 'bar',
+        data: { labels: os.map(function(s) { return s[0]; }), datasets: [{ data: os.map(function(s) { return s[1]; }), backgroundColor: blues.slice(0, os.length), borderRadius: 4, borderSkipped: false, barPercentage: .65 }] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, animation: { duration: 700 },
+            plugins: { legend: { display: false }, tooltip: ttip },
+            scales: { x: { beginAtZero: true, grid: { color: '#eee' }, border: { display: false }, ticks: { stepSize: 1, font: { size: 10 }, color: '#777' } },
+                      y: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 10 }, color: '#555', padding: 6 } } } }
+    });
+}
+</script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="95d6cb92-8c0b-49b7-b616-ed0b0409ffcd"></script>
+</body>
+</html>
