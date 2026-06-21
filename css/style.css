@@ -4532,3 +4532,21 @@ img {
     cursor: not-allowed;
     pointer-events: none;
 }
+
+    .footer__phone-link {
+        color: var(--color-primary);
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        display: inline-block;
+        transition: color 0.2s ease;
+    }
+    .footer__phone-link:hover {
+        color: var(--color-primary-dark, #003D80);
+        text-decoration: underline;
+    }
+    @media (max-width: 480px) {
+        .footer__phone-link { font-size: 1rem; }
+    }
+
