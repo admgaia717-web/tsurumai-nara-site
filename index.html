@@ -624,9 +624,9 @@
                     </div>
                 </div>
                 <div class="dashboard__card">
-                    <div class="dashboard__icon"><i class="fa-solid fa-calendar-days"></i></div>
-                    <div class="dashboard__label">稼働日数</div>
-                    <div class="dashboard__value"><span id="kpi-days">--</span><span class="dashboard__unit">日</span>
+                    <div class="dashboard__icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="dashboard__label">利用者数</div>
+                    <div class="dashboard__value"><span id="kpi-users">--</span><span class="dashboard__unit">名</span>
                     </div>
                 </div>
                 <div class="dashboard__card">
@@ -708,95 +708,83 @@
 
 
     <script>
-        // Dashboard Data Fetching from Google Spreadsheet
+        // Dashboard Data Fetching from mobility API (same source as analytics.php)
         (function () {
-            const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1kjvKUqOoaxvOcfRFRTC-5X2MKvsvYBsnjk0a6yre0e4/export?format=csv';
+            const API_URL = 'https://tsurumai-nara.com/mobility/api.php';
 
             async function fetchDashboardData() {
                 try {
-                    const response = await fetch(SPREADSHEET_URL);
-                    const csvText = await response.text();
-
-                    Papa.parse(csvText, {
-                        header: true,
-                        skipEmptyLines: true,
-                        complete: function (results) {
-                            const data = results.data;
-                            updateDashboard(data);
-                        },
-                        error: function (error) {
-                            console.error('CSV Parse Error:', error);
-                        }
-                    });
+                    const response = await fetch(API_URL);
+                    const data = await response.json();
+                    updateDashboard(data);
                 } catch (error) {
-                    console.error('Fetch Error:', error);
+                    console.error('API Fetch Error:', error);
+                    // Fallback: try Google Spreadsheet
+                    fallbackToSpreadsheet();
                 }
             }
 
-            function parseDate(dateStr) {
-                if (!dateStr) return null;
-                // Handle YYYY/MM/DD or YYYY/M/D format (with optional time)
-                const parts = dateStr.split('/');
-                if (parts.length >= 3) {
-                    const dayPart = parts[2].split(' ')[0]; // remove time if present
-                    return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(dayPart));
-                }
-                // Fallback: try native parsing
-                const d = new Date(dateStr);
-                return isNaN(d.getTime()) ? null : d;
+            function fallbackToSpreadsheet() {
+                const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1kjvKUqOoaxvOcfRFRTC-5X2MKvsvYBsnjk0a6yre0e4/export?format=csv';
+                fetch(SPREADSHEET_URL)
+                    .then(r => r.text())
+                    .then(csvText => {
+                        Papa.parse(csvText, {
+                            header: true,
+                            skipEmptyLines: true,
+                            complete: function (results) {
+                                // Convert to API format
+                                const data = {
+                                    summary: {
+                                        total: results.data.length,
+                                        unique_users: new Set(results.data.map(r => r['利用者名'])).size
+                                    },
+                                    monthly: [],
+                                    daily: [],
+                                    ranking: []
+                                };
+                                updateDashboard(data);
+                            }
+                        });
+                    })
+                    .catch(e => console.error('Fallback Error:', e));
             }
 
             function updateDashboard(data) {
-                // Filter valid data (start date: March 1, 2025)
-                const startDate = new Date(2025, 2, 1); // Month is 0-indexed (2 = March)
-                const validData = data.filter(row => {
-                    const dateStr = row['予約日時'] || '';
-                    if (!dateStr || dateStr.trim() === '') return false;
-                    const parsedDate = parseDate(dateStr);
-                    return parsedDate !== null && parsedDate >= startDate;
-                });
+                const summary = data.summary || {};
+                const today = new Date();
+                const startDate = new Date(2025, 2, 1);
 
                 // Total count
-                const totalCount = validData.length;
-                document.getElementById('kpi-total').textContent = totalCount;
+                document.getElementById('kpi-total').textContent = summary.total || '--';
 
-                // Get unique operating days
-                const uniqueDays = new Set();
-                validData.forEach(row => {
-                    const dateStr = row['予約日時'] || '';
-                    if (dateStr) {
-                        const dateOnly = dateStr.split(' ')[0];
-                        uniqueDays.add(dateOnly);
-                    }
-                });
-                document.getElementById('kpi-days').textContent = uniqueDays.size;
+                // Unique users
+                document.getElementById('kpi-users').textContent = summary.unique_users || '--';
 
-                // Calculate months for average
-                const dates = validData.map(row => {
-                    return parseDate(row['予約日時'] || '');
-                }).filter(d => d !== null);
-
-                if (dates.length > 0) {
-                    const minDate = new Date(Math.min(...dates));
-                    const today = new Date();
-                    const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-                    const months = Math.max(1, (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth()) + 1);
-                    const monthlyAvg = (totalCount / months).toFixed(1);
-                    document.getElementById('kpi-avg').textContent = monthlyAvg;
-
-                    // Update period text: 終端は閲覧日の今日にする
-                    const periodText = `集計期間：${startDate.getFullYear()}年${startDate.getMonth() + 1}月〜${endDate.getFullYear()}年${endDate.getMonth() + 1}月${endDate.getDate()}日`;
-                    document.getElementById('period-text').textContent = periodText;
+                // Operating days (from monthly data)
+                if (data.monthly && data.monthly.length > 0) {
+                    const totalDays = data.monthly.reduce((sum, m) => sum + (parseInt(m.count) || 0), 0);
+                    // Estimate days from monthly count (assuming ~4 weeks/month)
+                    const months = Math.max(1, (today.getFullYear() - 2025) * 12 + today.getMonth() - 2);
+                    const avgPerMonth = summary.total / months;
+                    const estDays = Math.round(summary.total / 3.5); // rough estimate
+                    document.getElementById('kpi-days').textContent = estDays || '--';
                 }
 
-                // Recent 30 days count
-                const now = new Date();
-                const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-                const recentCount = validData.filter(row => {
-                    const date = parseDate(row['予約日時'] || '');
-                    return date && date >= thirtyDaysAgo && date <= now;
-                }).length;
-                document.getElementById('kpi-recent').textContent = recentCount;
+                // Monthly average
+                const months = Math.max(1, (today.getFullYear() - startDate.getFullYear()) * 12 + (today.getMonth() - startDate.getMonth()) + 1);
+                const monthlyAvg = (summary.total / months).toFixed(1);
+                document.getElementById('kpi-avg').textContent = monthlyAvg;
+
+                // Recent 30 days (from daily data)
+                if (data.daily && data.daily.length > 0) {
+                    const recentCount = data.daily.reduce((sum, d) => sum + (parseInt(d.count) || 0), 0);
+                    document.getElementById('kpi-recent').textContent = recentCount;
+                }
+
+                // Update period text
+                const periodText = `集計期間：${startDate.getFullYear()}年${startDate.getMonth() + 1}月〜${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日`;
+                document.getElementById('period-text').textContent = periodText;
             }
 
             // Fetch data on page load
