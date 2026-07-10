@@ -4608,3 +4608,14 @@ img {
     background: rgba(255, 255, 255, 0.25);
     border-radius: 50%;
 }
+
+/* Event detail gallery - responsive grid */
+.event-detail-gallery--grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 768px) {
+    .event-detail-gallery--grid {
+        grid-template-columns: 1fr;
+    }
+}
