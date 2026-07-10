@@ -4619,3 +4619,16 @@ img {
         grid-template-columns: 1fr;
     }
 }
+
+.event-detail-photo-caption {
+    margin-top: 24px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    font-weight: 500;
+}
+
+.event-detail-photo-caption i {
+    margin-right: 6px;
+    color: var(--color-primary);
+}
