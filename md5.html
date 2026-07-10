@@ -255,7 +255,7 @@ function parseData(csv) {
         var d = parseDate(f[1]);
         var orig = sanitizeName(f[3]);
         var dest = sanitizeName(f[4]);
-        if (d && d <= today) rows.push({ date: d, origin: orig, destination: dest });
+        if (d) rows.push({ date: d, origin: orig, destination: dest });
     }
     if (!rows.length) { alert('有効データなし'); return; }
     allRows = rows;
